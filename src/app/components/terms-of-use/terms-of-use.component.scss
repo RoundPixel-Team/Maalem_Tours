@@ -1,0 +1,73 @@
+/* hide header with links */
+:host ::ng-deep .terms-page .showinside
+{
+display: block !important;
+
+}
+:host ::ng-deep .terms-page  .change-inside
+{
+  box-shadow: 0px 1px 7px -2px #00000061;
+}
+:host ::ng-deep .terms-page .hide-inside
+{
+display: none !important;
+}
+:host ::ng-deep .terms-page  .currdropDown
+{
+    /* display: none !important; */
+    visibility: hidden;
+}
+
+
+/* hide header with links */
+.row{
+    margin: 0;
+}
+
+
+.wraber{
+    width: 100%;
+    font-family: var(--two-font);
+}
+
+.title h1{
+    margin: 27px 0;
+    font-size: 23px;
+    border-bottom: 4px solid #000000;
+    padding-bottom: 10px;
+}
+li a {
+    color: rgb(128, 128, 128);
+}
+li a:hover {
+    cursor: pointer;
+    color:black;
+}
+
+h3{
+    font-size: 20px;
+    /* text-transform: capitalize; */
+    font-weight: 600;
+    color:#d92434;
+}
+
+.accord-dis{
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: var(--nine-color);
+    border: 1px solid #a8b2b8;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+/* hide header with links */
+
+@media(max-width:768px){
+
+    :host ::ng-deep .terms-page  ul.navbar-nav.lang-curr
+    {
+      display: block;
+    }
+  }

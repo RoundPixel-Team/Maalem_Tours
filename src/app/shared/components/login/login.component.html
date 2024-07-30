@@ -1,0 +1,138 @@
+<mat-dialog-content class="dialogContent">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="login_leftSide">
+          <div class=""></div>
+          <div class="leftside_content">
+            <div class="crateAccount">
+              <span class="" (click)="toSignUp()">
+                {{ translate.currentLang == "en" ? "Sign Up" : "تسجيل" }} /
+              </span>
+              <span class="">
+                {{ translate.currentLang == "en" ? "Login" : "تسجيل الدخول" }}
+              </span>
+            </div>
+            <div class="find_gift">
+              <p>
+                {{
+                  translate.currentLang == "en"
+                    ? "Just sign up and Find your gift inside !"
+                    : "فقط قم بالتسجيل  ابحث عن هديتك في الداخل! "
+                }}
+              </p>
+              <img class="img-fluid" src="assets/images/gift.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div style="width: 100%">
+          <img
+            (click)="closeDialog()"
+            class="closeIcon"
+            src="assets/images/closeicons.svg"
+          />
+          <div
+            class="contianer"
+            [ngClass]="{ ar: translate.currentLang == 'ar' }"
+          >
+            <form [formGroup]="user.loginForm" class="loginform">
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <mat-label for="email">
+                    {{
+                      translate.currentLang == "en"
+                        ? "Email Address"
+                        : "البريد الالكتروني"
+                    }}</mat-label
+                  >
+                  <mat-form-field
+                    color="accent"
+                    appearance="outline"
+                    class="authForm"
+                  >
+                    <input
+                      matInput
+                      required
+                      formControlName="email"
+                      type="email"
+                      id="email"
+                      pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    />
+                  </mat-form-field>
+                </div>
+  
+                <div class="col-12 mb-2">
+                  <mat-label for="password">
+                    {{
+                      translate.currentLang == "en" ? "Password" : "كلمة السر"
+                    }}</mat-label
+                  >
+                  <mat-form-field
+                    color="accent"
+                    appearance="outline"
+                    class="authForm"
+                  >
+                    <input
+                      matInput
+                      required
+                      formControlName="password"
+                      id="password"
+                      type="password"
+                    />
+                  </mat-form-field>
+                  <div
+                    class="forgetPass"
+                    style="text-align: right"
+                  >
+                    {{
+                      translate.currentLang == "en"
+                        ? "Forget Password"
+                        : "نسيت كلمة السر"
+                    }}
+                  </div>
+                </div>
+  
+                <div class="col-12 mt-3" (click)="onSubmit()">
+                  <button
+                    *ngIf="!user.loading"
+                    class="submitBtn"
+                    mat-raised-button
+                    color="primary"
+                  >
+                    {{ translate.currentLang == "en" ? "Login" : "تسجيل الدخول" }}
+                  </button>
+                  <mat-spinner *ngIf="user.loading"></mat-spinner>
+                </div>
+  
+                <div class="col-12 mt-4 mb-4 text-center">
+                  <!-- <span class="horizontalLine"></span> -->
+                  <span class="socialText">{{
+                    translate.currentLang == "en"
+                      ? "Or Login With"
+                      : "تسجيل الدخول باستخدام"
+                  }}</span>
+                  <!-- <span class="horizontalLine"></span> -->
+                </div>
+                <div class="col-2"></div>
+                <div  class="col-4">
+                  <button class="facebookLogin" mat-raised-button>
+                    <!-- <fa-icon class="fa-icon" [icon]="faFacebook"></fa-icon> -->
+                    <i class="bi bi-facebook" ></i>
+                  </button>
+                </div>
+  
+                <div class="col-4">
+                  <button class="twitterLogin" mat-raised-button>
+                    <!-- <fa-icon class="fa-icon" [icon]="faTwitter"></fa-icon> -->
+                    <i class="bi bi-google"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  

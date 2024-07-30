@@ -1,0 +1,44 @@
+<section class="searchbox">
+  <div class="container-fluid">
+    <!-- Search Header -->
+    <div
+      class="searchbox_header d-flex flex-md-row flex-column flex-sm-column"
+    >
+      <!-- Title -->
+      <label class="searchbox_header_title">{{
+        "searchbox.flights" | translate
+      }}</label>
+      <!-- Switch Buttons-->
+      <div class="searchbox_header_btns d-flex">
+        <div
+          class="searchbox_header_btns__wrapper"
+          *ngFor="let flightType of flightTypes; let i = index"
+        >
+          <button
+            class="radioBtn" [ngClass]="{'radioBtn-active':flightSearch.searchFlight.get('flightType')?.value == flightType.type}"
+            (click)="selectFlightType(flightType.type)"
+          >
+            .
+          </button>
+          <label class="flightType">{{ flightType.label | translate }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Search box Form -->
+  <div class="search_form mt-3">
+    <app-one-way
+      *ngIf="flightSearch.searchFlight.get('flightType')?.value == 'OneWay' || flightSearch.searchFlight.get('flightType')?.value == 'oneway' || flightSearch.searchFlight.get('flightType')?.value == 'oneWay'"
+    ></app-one-way>
+    <app-round-trip
+      *ngIf="
+        flightSearch.searchFlight.get('flightType')?.value == 'RoundTrip' || flightSearch.searchFlight.get('flightType')?.value == 'roundtrip' || flightSearch.searchFlight.get('flightType')?.value == 'roundTrip'
+      "
+    ></app-round-trip>
+    <app-multi-city
+      *ngIf="
+        flightSearch.searchFlight.get('flightType')?.value == 'MultiCity' || flightSearch.searchFlight.get('flightType')?.value == 'multicity' || flightSearch.searchFlight.get('flightType')?.value == 'multiCity'
+      "
+    ></app-multi-city>
+  </div>
+</section>

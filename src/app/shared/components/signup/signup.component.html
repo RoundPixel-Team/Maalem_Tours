@@ -1,0 +1,111 @@
+<mat-dialog-content class="dialogContent">
+    <div class="row">
+
+        <div class="col-md-5">
+            <div class="login_leftSide">
+                <div class=""></div>
+                <div class="leftside_content">
+                    <div class="crateAccount">
+                        
+                            <span>
+                                {{translate.currentLang=='en'?'Sign Up':'تسجيل'}} /
+                            </span> 
+                            <span (click)="toLogin()">
+                                {{translate.currentLang=='en'?'Login':'تسجيل الدخول'}}
+                            </span>
+                        </div>
+                        <div class="find_gift">
+                            <p>
+                                {{translate.currentLang=='en'?'Just sign up and Find your gift inside !':'فقط قم بالتسجيل  ابحث عن هديتك في الداخل! '}}
+                            </p>
+                            <img  class="img-fluid" src="assets/images/gift.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <img (click)="closeDialog()" class="closeIcon" src="assets/images/closeicons.svg">
+            <div class="contianer" [ngClass]="{ar: translate.currentLang =='ar'}">
+                <form [formGroup]="user.registerForm"  class="loginform">
+                    <div class="signupform">
+                    <div class="row">
+        
+                        <div class="col-12 col-md-6 mb-3">
+                            
+                            <mat-label> {{translate.currentLang == 'en'?'First Name' : 'الاسم الاول'}}</mat-label>
+                            <mat-form-field color="accent" appearance="outline" class="authForm">
+                                <input matInput required formControlName="FirstName" type="text" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <mat-label> {{translate.currentLang=='en'?'Last Name':'الاسم الاخير'}}</mat-label>
+                            <mat-form-field color="accent" appearance="outline" class="authForm">
+                                <input matInput required formControlName="LastName" type="text" />
+                            </mat-form-field>
+                        </div>
+        
+                        <div class="col-12 mb-3">
+                            <mat-label> {{translate.currentLang == 'en'?'Phone Number':'رقم الهاتف'}}</mat-label>
+                            <mat-form-field color="accent" appearance="outline" class="authForm">
+                                <input matInput required formControlName="PhoneNumber" type="number" />
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-12 mb-3">
+                            <mat-label> {{translate.currentLang == 'en'?'Email Address':'البريد الالكتروني'}}</mat-label>
+                            <mat-form-field color="accent" appearance="outline" class="authForm">
+                                <input matInput required formControlName="Email" type="email"
+                                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-12 mb-3">
+                            <mat-label> {{translate.currentLang=='en'?'Password':'كلمة السر'}}</mat-label>
+                            <mat-form-field color="accent" appearance="outline" class="authForm">
+                                <input matInput  required formControlName="Password" type="password" />
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-12 mb-3">
+                            <mat-label> {{translate.currentLang == 'en'?'Retype PassWord':'اعد كتابة كلمة السر'}}</mat-label>
+                            <mat-form-field color="accent" appearance="outline" class="authForm">
+                                <input matInput required formControlName="ConfirmPassword" type="password" />
+                            </mat-form-field>
+                        </div>
+        
+                        <div class="col-12 mb-3">
+                            <mat-checkbox class="longLabelCheckbox" formControlName="notification">
+                                {{translate.currentLang=='en'?'I would like to be kept informed of special promotions and offers by Rehalty.':'أود أن أكون على اطلاع بالعروض الترويجية الخاصة والعروض من رحلاتي.'}}
+                            </mat-checkbox>
+                        </div>
+        
+                        <div class="col-12 mt-3 mb-4">
+                            <button (click)="onSubmit()" *ngIf="!user.loading" class="submitBtn" mat-raised-button
+                                color="primary">{{translate.currentLang=='en'?'Register':'تسجيل'}}</button>
+                            <mat-spinner *ngIf="user.loading"></mat-spinner>
+                        </div>
+                        
+                        <div class="col-2"></div>
+                        <div  class="col-4">
+                            <button class="facebookLogin" mat-raised-button>
+                                <i class="bi bi-facebook" ></i>
+                            </button>
+                        </div>
+        
+                        <div class="col-4">
+                            <button class="twitterLogin" mat-raised-button>
+                                <i class="bi bi-google"></i>
+                            </button>
+                        </div>
+        
+                    </div>
+                </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+ 
+</mat-dialog-content>

@@ -1,0 +1,127 @@
+<app-header [homePage]='false'></app-header>
+<!--DATA BINDING-->
+<div class="container" *ngIf="!flight.loader && flight.selectedFlight && flight.selectedFlight.status == 'Valid'">
+        <div *ngIf="checkoutStepNow == 1" class="summary-card p-2 mt-4 mx-auto ">
+            <div class="summary-card-text ms-2 ">{{"checkout.fastConfirm" | translate }}</div>
+                <div class="row justify-content-center align-items-center ">
+                    <div class="col-4 summary-price ">
+                       <span>{{flight.selectedFlight.airItineraryDTO.itinTotalFare.currencyCode | exchange:'code'}}&nbsp;</span>{{flight.selectedFlight.airItineraryDTO.itinTotalFare.amount | exchange:'value'}}
+                    </div>
+                    <div class="col-6 me-3"><button (click)="goToNextStep()" class="btn booknow-btn">{{"checkout.bookNow.fastBookBtn" | translate }}</button></div>
+                </div>
+        </div>
+
+        <!--FLIGHT CARD BINDING-->
+        <div class="col-12  mt-3">
+            <app-one-way-checkout *ngIf="flight.selectedFlight.searchCriteria.flightType == 'oneway' || flight.selectedFlight.searchCriteria.flightType == 'Oneway' || flight.selectedFlight.searchCriteria.flightType == 'OneWay' "></app-one-way-checkout>
+            <app-round-trip-checkout *ngIf="flight.selectedFlight.searchCriteria.flightType == 'roundtrip' || flight.selectedFlight.searchCriteria.flightType == 'Roundtrip' || flight.selectedFlight.searchCriteria.flightType == 'RoundTrip' "></app-round-trip-checkout>
+            <app-multi-city-checkout *ngIf="flight.selectedFlight.searchCriteria.flightType == 'multicity' || flight.selectedFlight.searchCriteria.flightType == 'Multicity' ||flight.selectedFlight.searchCriteria.flightType ==  'MultiCity' "></app-multi-city-checkout>
+        </div>
+
+        <!--MAIN FORM SECTION-->
+        
+        <div class="col-12 mt-3" *ngIf="checkoutStepNow == 1">
+            <div class="mainFormSection" [formGroup]="flight.usersForm" id="mainFormSection" #mainFormSection>
+                <ng-container formArrayName="users">
+                    <ng-container *ngFor="let user of flight.usersArray.controls | slice: 0:1; let i = index">
+                        <ng-container [formGroupName]="i">
+                            <div class="row">
+                                <div class="col-12 col-lg-3 mt-2">
+                                    <ngx-intl-tel-input [cssClass]="phonenumber"
+                                        [preferredCountries]="['us', 'gb', 'eg', 'sa']" [enableAutoCountrySelect]="true"
+                                        [enablePlaceholder]="true" name="phone"
+                                        [selectedCountryISO]="CountryISO.Kuwait"
+                                         formControlName="phoneNumber"
+                                        (change)="invalidPhone()">
+                                    </ngx-intl-tel-input>
+                                    <!-- <input type="email" formControlName="email" 
+                                    [placeholder]="translate.currentLang == 'en'?'Email':'البريد الالكتروني'"> -->
+                                </div>
+
+                                <div class="col-12 col-lg-3 mt-2">
+                                    <input type="email" formControlName="email" 
+                                    [ngClass]="{'alert':user.get('email')!.touched && user.get('email')!.status == 'INVALID'}"
+                                    [placeholder]="translate.currentLang == 'en'?'Email':'البريد الالكتروني'">
+                                </div>
+
+                                <div class="col-12 col-lg-1 p-0 m-0"></div>
+                                <div class="col-6 col-lg-3 mt-2">
+                                    <input type="text" 
+                                    [placeholder]="translate.currentLang=='en'?'Enter Coupon Code':'ادخل كوبون كود'">
+                                </div>
+
+                                <div class="col-6 col-lg-2 mt-2">
+                                    <button   mat-raised-button class="applyCopon">
+                                        {{'checkout.coponCode.apply' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+                
+            </div>
+        </div>
+
+
+        <!--OFFLINE SERVICES SECTION-->
+        <div class="col-12 mt-3" *ngIf="checkoutStepNow == 1">
+            <app-offline-service></app-offline-service>
+        </div>
+
+        <!--BOOK NOW SECTION-->
+        <div class="bookNowWrapper">
+            <div class="col-12 desktopMargin" *ngIf="checkoutStepNow == 1">
+                <app-book-now (checkoutSteps)="changeCheckoutStep($event)"></app-book-now>
+            </div>
+        </div>
+        
+
+        <!--PASSENGERS DETAILS-->
+        <div class="col-12 mt-3" *ngIf="checkoutStepNow == 2">
+            <app-passenger-details (fareBreakup)="fareBreakupWindow($event)"></app-passenger-details>
+        </div>
+</div>
+
+<!--LOADER BINDING-->
+<div class="container" *ngIf="flight.loader">
+    <div class="row">
+        <div class="col-12 text-center mt-5">
+            <mat-spinner style="width: 100% !important;"></mat-spinner>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="checkoutStepNow == 2"
+ class="desktopHide" style="width: 100%;background-color: #f5f5f5 !important;"
+  [ngStyle] = "{'height.px': CalculateFormseHeight()}">
+</div>
+
+
+<!------------------------------------------------------------------>
+<!--FARE BREAKUP POPUP-->
+<div id="popup1" class="overlay" *ngIf="showFareBreaker" (click)="showFareBreaker = false">
+    <div class="popupFareBreaker">
+        <app-fare-breakup></app-fare-breakup>
+    </div>
+</div>
+
+<!--ERROR POPUP-->
+<div id="popup1" class="overlay" *ngIf="flight.selectedFlightError">
+    <div class="popupError">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>{{'checkout.error' | translate}}</h1>
+                </div>
+                <div class="col-12 text-center">
+                    <button mat-raised-button class="searchAgainBtn" (click)="goToHomePage()">
+                        {{'checkout.searchAgain' | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

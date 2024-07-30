@@ -1,0 +1,307 @@
+.big-header{
+    background: var(--one-color);
+    padding: 10px;
+    margin-bottom: 40px;
+
+}
+.div-header{
+    background: var(--nine-color);
+    padding: 10px;
+    border-radius: 10px;
+  
+}
+.logo-head{
+  max-width: 200px;
+}
+.actionBtn{
+    background-color: transparent;
+    border: 1px solid var(--one-color);
+    color: var(--one-color);
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 6px;
+    padding: 0% 2%;
+    float: right;
+}
+.box{
+    margin: 0px 50px;
+}
+.title span{
+    font-size: 30px;
+    color: var(--three-color);
+    font-weight: bold;
+}
+.title {
+    font-size: 30px;
+    color: var(--one-color);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.data-container{
+    padding: 8px 13px;
+    background: var(--nine-color);
+    border: 2px solid var(--one-color);
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 20px;
+}
+.padding{
+    margin: 10px;
+}
+.icon{
+
+    margin: 5px 8px;
+    float: right;
+}
+.data-cont{
+ display: flex;
+}
+.data-cont div{
+    margin: 10px 10px 10px 10px;
+    line-height: 7px;
+}
+.data-cont .iconP{
+    margin: 5px 5px 10px 5px;
+}
+.CityName{
+    color: var(--three-color);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+    .flightType{
+        color: var(--blue-color);
+        font-size: 12px;
+        float: right;
+        font-weight: 600;
+    }
+    .RefNon{
+        float: right;
+    margin-right: 20px;
+    }
+    .RefNon p:first-child{
+        margin-top: 10px;
+    }
+.RefNon p{
+    color: var(--one-color);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 10px;
+}
+:host ::ng-deep .svg-inline--fa {
+    transform: rotate(-45deg);
+    border-radius: 50%;
+    border: 1px solid var(--one-color);
+    padding: 3px 2px 3px 3px;
+}
+.header{
+    background: var(--one-color);
+    padding: 10px;
+    margin-left: 0px;
+    border-radius:10px 11px 0px 0px;
+}
+
+
+.onward{
+    margin-top: 5px;
+    background-color: var(--one-color);
+    height: 37px;
+    padding: 10px 0px 0px 10px;
+    border-radius: 10px 10px 0px 0px;
+   
+
+  }
+  .onward p{
+    color: #f8f8f8;
+    font-size: 13px;
+  }
+  .data-onward{
+    border: 2px solid var(--one-color);
+    border-radius: 0px 0px 10px 10px;
+    padding-top: 20px;
+  }
+  .img-logo{
+   
+
+    border: 1px solid var(--three-color);
+    /* padding: 10px; */
+    border-radius: 10px;
+    /* margin-top: 5px; */
+    width: 65%;
+  }
+  .flight-num ,.classFlight{
+      color: var(--sixteen-color);
+      font-size: 11px;
+  }
+  .time-onward{
+    color: var(--three-color);
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .data-onward,.data-city{
+    color: var(--sixteen-color);
+    font-size: 13px;
+    line-height: 10px;
+    background:var(--nine-color);
+  }
+  .total-time{
+    margin-top: 15px;
+    color: var(--sixteen-color);
+    font-size: 12px;
+    text-align: center;
+    line-height: 1px;
+  }
+ .t-onwar2{
+    text-align: end;
+ }
+ .onward-desc{
+     color: var(--sixteen-color);
+     font-size: 12px;
+ }
+ .onward-desc:last-child{
+     margin-bottom: 20px;
+ }
+ .des-div{
+  
+    margin: 25px 0px;
+ }
+ .log-head{
+  width: 22%;
+  background: #282969;
+  margin-top: 7px;
+
+ }
+ .stops{
+  border-top: 1px dashed var(--sixteen-color);
+  padding-top: 20px;
+ }
+ .onward-desc span{
+     font-weight: bold;
+ }
+.tota-time-flight p {
+    position: relative;
+    top: 23px;
+    left: calc(50% - 103px / 2);
+    border: 1px solid var(--one-color);
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 10px;
+    background: #dedede;
+    color: var(--sixteen-color);
+    font-size: 12px;
+ }
+ .RandC{
+     background-color: var(--nine-color);
+     padding: 15px;
+     border: 2px solid var(--one-color);
+     border-radius: 0px 0px 10px 10px;
+ }
+ .RandC li{
+     color: var(--sixteen-color);
+     font-size: 12px;
+ }
+ table {
+    margin-bottom: 2em;
+    border-spacing: 0pt;
+    border-collapse: separate;
+  }
+
+  #customers{
+   width: 100%;
+   padding: 0px 10px;
+  }
+  .Adult-list td{
+      border-bottom: 1px solid #E3E3E3;
+  }
+th{
+    background-color:var(--one-color);
+    padding: 10pt;
+    color: var(--nine-color);
+    font-size: 14px;
+    font-weight: 500;
+
+
+
+}
+
+  td {
+    padding: 10pt;
+    color: var(--sixteen-color);
+    font-size: 13px;
+  }
+
+  table tr:first-child th:first-child,
+  table tr:first-child td:first-child {
+    border-top-left-radius: 15px;
+  }
+
+  table tr:first-child th:last-child,
+  table tr:first-child td:last-child {
+    border-top-right-radius: 15px;
+  }
+
+  table tr:last-child th:first-child,
+  table tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+  }
+
+  table tr:last-child th:last-child,
+  table tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+  }
+  .Adult {
+      border-left: 2px solid var(--one-color);
+  }
+  .PhoneN{
+      border-right: 2px solid var(--one-color);
+  }
+  .Child{
+    border-left: 2px solid var(--one-color);
+  }
+  .ChildNum{
+    border-right: 2px solid var(--one-color);
+
+  }
+  .last td{
+    border-bottom: 2px solid var(--one-color);
+
+  }
+  .email-add{
+   font-size: 13px;
+   color: var(--sixteen-color);
+  }
+  .phone-N{
+    font-size: 13px;
+    color: var(--sixteen-color);
+    text-align: end;
+  }
+  @media (max-width:500px) {
+   .box{
+    margin: 0px 0px;
+   }
+   .RefNon{
+    float: none;
+    text-align: center;
+}
+.tot{
+    padding: 0px;
+}
+.onward p
+ {
+    color: #f8f8f8;
+    font-size: 12px;
+}
+*{
+    line-height: 20px !important;
+}
+.title{
+  font-size: 20px;
+}
+.CityName {
+  font-size: 14px;
+}
+.data-container{
+  padding: 8px 0;
+}
+  }

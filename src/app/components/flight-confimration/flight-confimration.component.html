@@ -1,0 +1,549 @@
+
+<ng-container *ngIf="confirmation.loading">
+    <ng-container *ngTemplateOutlet="loadingkst"></ng-container>
+</ng-container>
+
+<ng-container *ngIf="!confirmation.loading && confirmation.error">
+    <ng-container *ngTemplateOutlet="failed"></ng-container>
+</ng-container>
+
+<ng-container *ngIf="!confirmation.loading && confirmation.confirmationData">
+    <ng-container *ngTemplateOutlet="Trip"></ng-container>
+</ng-container>
+
+<ng-template #Trip [ngClass]="{ ar: translate.currentLang == 'ar' }">
+ 
+
+    <div class="container" style="margin-top: 40px;">
+      <div class="row box"  >
+        <div class="col-12">
+          <h1 class="title"> <span>{{"confirmation.confirmMsg"|translate}} </span>
+            {{"confirmation.confirmMsg2"|translate}}</h1>
+        </div>
+    
+        <div class="row header">
+          <div class="col-6">
+            <img [src]="confirmation.wgoDeebUrl" width='1' height='1'  alt='' style="border: 0px;">
+            <img src="./../../../assets/img/torest/Group.png" alt="" style="max-width: 200px;">
+            </div>
+            <div class="col-6">
+              <!-- <fa-icon
+              class="icon fa-thin"
+              [icon]="faFileDownload"
+              aria-hidden="true"
+      
+              
+            ></fa-icon>
+              
+            <fa-icon
+              class="icon fa-thin"
+              [icon]="faEnvelope"
+              aria-hidden="true"
+      
+              
+            ></fa-icon>
+            <fa-icon
+              class="icon fa-thin"
+              [icon]="faPrint"
+              aria-hidden="true"
+      
+              
+            ></fa-icon> -->
+            <!-- <img class="icon" src="../../../assets/img/torest/download-file.png" alt="">
+            <img class="icon" src="../../../assets/img/torest/email.png" alt="">
+            <img class="icon" src="../../../assets/img/torest/print.png" alt=""> -->
+    
+    
+            </div>
+        </div>
+        
+     
+         <div class="row" class="data-container" >
+        
+            
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6"> 
+             <div class="data-cont ">
+              <div class="CityName">  <p>
+                {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].departureTerminalAirport.cityName}} ( {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].departureTerminalAirport.cityCode}})</p></div>
+                
+              <!-- <fa-icon
+              class="iconP"
+              [icon]="faPlane"
+              aria-hidden="true"
+      
+              
+            ></fa-icon> -->
+            <i class="bi bi-airplane iconP"></i>
+            <div>
+             <p  class="CityName">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO.length -1].arrivalTerminalAirport.cityName}} ( {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO.length -1].arrivalTerminalAirport.cityCode}}) </p>
+             <p  class="flightType" *ngIf="confirmation.confirmationData.airItineraries[0].flightType=='Return'">(Round Trip)</p>
+             <p  class="flightType" *ngIf="confirmation.confirmationData.airItineraries[0].flightType == 'OneWay'">(OneWay)</p>
+             <p  class="flightType" *ngIf="confirmation.confirmationData.airItineraries[0].flightType != 'OneWay' && confirmation.confirmationData.airItineraries[0].flightType != 'Return'"> MultiCity</p>
+            </div>
+             </div>
+              
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6"> 
+              <div  class="RefNon">
+                <!-- <p>Total Amount: {{confirmation.confirmationData.userCurrencyCode}}{{confirmation.confirmationData.airItineraries[0].itinTotalFare.amount + confirmation.confirmationData.additionalServicesAmount}} </p>
+                <p>Ref. No: {{confirmation.confirmationData.hgNumber}}</p>
+                <p> Payment Method: Knet</p>
+                <p *ngIf="confirmation.confirmationData.paymentRef">{{"confirmation.paymentRef"|translate}}: {{confirmation.confirmationData.paymentRef}}</p>
+                <p *ngIf="confirmation.confirmationData.paymentTrackID"> {{"confirmation.paymentTrackID"|translate}}: {{confirmation.confirmationData.paymentTrackID}}</p> -->
+                <p>Date of Issue: {{todayDate | date: "shortDate"}}</p>
+              </div>
+            </div>
+          </div>
+        
+           <div class="data col-12 table-responsive">
+            <table id="customers" >
+    
+              <tr >
+                                                            
+                <th class="pass">{{'confirmation.Passengers' | translate}}</th>
+                <th>{{'confirmation.name' | translate}}</th>
+                <th>PNR</th>
+                <th class="TicketN">{{'confirmation.ticketNum' | translate}}</th>
+              </tr>
+          
+                <tr class="Adult-list"  *ngFor="let pass of confirmation.confirmationData.passengersDetails" >
+                                                                
+                  <td *ngIf="pass.passengerType =='ADT' " class="Adult">{{'checkout.passengers.adult' | translate}}</td>
+                  <td *ngIf="pass.passengerType =='CNN' " class="Adult">{{'checkout.passengers.child' | translate}}</td>
+                  <td *ngIf="pass.passengerType =='INF' " class="Adult">{{'checkout.passengers.Infant' | translate}}</td>
+                  <td>{{pass.firstName}} {{pass.lastName}}	</td>
+                 
+                  <td>	{{confirmation.confirmationData.pnr}} </td>
+                  <td  class="PhoneN" *ngIf="pass.ticketNumber == null "> - </td>
+                  <td class="PhoneN" *ngIf="pass.ticketNumber != null">   {{pass.ticketNumber}} </td>
+                
+                </tr>
+            
+             
+        
+            </table>
+            
+          </div>
+      
+          <!-- DEPART -->
+          <div class="col-12" *ngIf="confirmation.confirmationData.airItineraries[0].flightType == 'Return'">
+            <div class="row padding">
+              <div class="col-12 onward"> 
+                <p>{{'confirmation.onwardFlightiti' | translate}} ({{'confirmation.totalDuration' | translate}} :{{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].elapsedTime | hourminute }})</p>
+              </div>
+              <div class="col-12">
+                <div class="row  data-onward">
+              <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+            <img class="img-logo" src="{{
+              confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightAirline.airlineLogo
+            }}"  alt="" srcset="">
+              </div>
+              <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+               <p class="flight-num">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].flightInfo.flightNumber}}</p>
+               <p class="classFlight">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].flightInfo.cabinClass}}</p>
+              </div>
+              <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                <p class="time-onward">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].departureDate | date: "shortTime"}} </p>
+                <p class="date-onward">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].departureDate | date: "shortDate"}}</p>
+                <p class="data-city"> ({{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].departureTerminalAirport.airportCode}} ) {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].departureTerminalAirport.airportName}}</p>
+               
+               
+              </div>
+              <div class="col-2 col-md-2 col-lg-2 col-xl-2  tot">
+             <p class="total-time">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].elapsedTime | hourminute }}</p>
+             <img class="w-100" src="../../../assets/img/torest/line.png" alt="" srcset="">
+              </div>
+              <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                <p class="time-onward t-onwar2"> {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].arrivalDate | date: "shortTime"}} </p>
+                <p class="date-onward t-onwar2"> {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].arrivalDate | date: "shortDate"}}</p>
+                <p class="data-city t-onwar2"> ({{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].arrivalTerminalAirport.airportCode}} ) {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].arrivalTerminalAirport.airportName}}</p>
+              </div>
+              <div class="col-12 des-div">
+                <p class="onward-desc">
+                  <span>{{'confirmation.equipment' | translate}} : </span>{{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].flightInfo.equipmentNumber}}
+                </p>
+                <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].baggageInformation != null">
+                  <span>{{'confirmation.baggageAllowence' | translate}} : </span>{{confirmation.confirmationData.airItineraries[0].baggageInformation}}
+  
+                </p>
+               
+                <p class="onward-desc">
+                  <span>{{'confirmation.airlineRefId' | translate}}:</span>  {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].supplierRefID}}
+                </p>
+                <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].flightInfo.mealCode != ''">
+                  <span >{{'confirmation.flightMeal' | translate}} : </span>  {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].flightInfo.mealCode}}
+                </p>
+                <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].flightInfo.mealCode == ''">
+                  <span >{{'confirmation.flightMeal' | translate}} : </span>   -
+                </p>
+              </div>
+              <div class="tota-time-flight" *ngIf="confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].transitTime && confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].transitTime != '00.00.00'">
+                <p>{{'confirmation.layOver' | translate}} {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].transitTime}}</p>
+             </div>
+              <div class="col-12 stops" *ngIf="confirmation.confirmationData.airItineraries[0].allJourney.flights[0].stopsNum > 0">
+                <ng-container *ngFor="let stop of confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO | slice: 1; let i = index ">
+                <div class="row">
+                 
+                 <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+                   <img class="img-logo" src="{{stop.flightAirline.airlineLogo}}" alt="" srcset="">
+                     </div>
+                     <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+                      <p class="flight-num">{{stop.flightAirline.alternativeBusinessName}} | {{stop.flightInfo.flightNumber}}</p>
+                      <p class="classFlight">{{stop.flightInfo.cabinClass}}</p>
+                     </div>
+                     <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                      <p class="time-onward">{{stop.departureDate | date: "shortTime"}} </p>
+                      <p class="date-onward">{{stop.departureDate | date: "shortDate"}}</p>
+                      <p class="data-city"> ({{stop.departureTerminalAirport.airportCode}} ) {{stop.departureTerminalAirport.airportName}}</p>
+                     
+                      
+                     </div>
+                     <div class="col-2 tot">
+                    <p class="total-time">{{stop.durationPerLeg | hourminute }}</p>
+                    <img class="w-100" src="../../../assets/img/torest/line.png" alt="" srcset="">
+                     </div>
+                     <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                      <p class="time-onward t-onwar2"> {{stop.arrivalDate | date: "shortTime"}} </p>
+                      <p class="date-onward t-onwar2"> {{stop.arrivalDate | date: "shortDate"}}</p>
+                      <p class="data-city t-onwar2"> ({{stop.arrivalTerminalAirport.airportCode}} ) {{stop.arrivalTerminalAirport.airportName}}</p>
+                     </div>
+                </div>
+              
+                <div class="col-12 des-div">
+                  <p class="onward-desc">
+                    <span>{{'confirmation.equipment' | translate}} : </span>{{stop.flightInfo.equipmentNumber}}
+                  </p>
+                  <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].baggageInformation != null">
+                    <span>{{'confirmation.baggageAllowence' | translate}} : </span>{{confirmation.confirmationData.airItineraries[0].baggageInformation}}
+    
+                  </p>
+                 
+                  <p class="onward-desc">
+                    <span>{{'confirmation.airlineRefId' | translate}}:</span>  {{stop.supplierRefID}}
+                  </p>
+                  <p class="onward-desc" *ngIf="stop.flightInfo.mealCode != ''">
+                    <span >{{'confirmation.flightMeal' | translate}} : </span>  {{stop.flightInfo.mealCode}}
+                  </p>
+                  <p class="onward-desc" *ngIf="stop.flightInfo.mealCode == ''">
+                    <span >{{'confirmation.flightMeal' | translate}} : </span>   -
+                  </p>
+                </div>
+                <div class="tota-time-flight" *ngIf="stop.transitTime && stop.transitTime != '00:00:00'">
+                  <p>{{'confirmation.layOver' | translate}} {{stop.transitTime}}</p>
+               </div>
+              </ng-container>
+              </div>
+            
+                 
+            </div>
+              </div>
+              
+    
+            </div>
+           
+          </div>
+    <!-- rETURM -->
+         <div class="col-12"  *ngIf="confirmation.confirmationData.airItineraries[0].flightType == 'Return'">
+            <div class="row padding ">
+              <div class="col-12 onward"> 
+                <p>{{'confirmation.returnIti' | translate}} ({{'confirmation.totalDuration' | translate}} : {{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].elapsedTime | hourminute}})</p>
+              </div>
+              <div class="col-12">
+                <div class="row  data-onward">
+              <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+            <img class="img-logo" src="{{
+              confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightAirline.airlineLogo
+            }}"alt="" srcset="">
+              </div>
+              <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+               <p class="flight-num">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].flightInfo.flightNumber}}</p>
+               <p class="classFlight">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].flightInfo.cabinClass}}</p>
+              </div>
+              <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                <p class="time-onward">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].departureDate | date: "shortTime"}} </p>
+                <p class="date-onward">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].departureDate | date: "shortDate"}}</p>
+                <p class="data-city"> ({{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].departureTerminalAirport.airportCode}} ) {{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].departureTerminalAirport.airportName}}</p>
+               
+               
+              </div>
+              <div class="col-2 tot">
+             <p class="total-time">{{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].elapsedTime | hourminute }}</p>
+             <img class="w-100" src="../../../assets/img/torest/line.png" alt="" srcset="">
+              </div>
+              <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                <p class="time-onward t-onwar2"> {{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].arrivalDate | date: "shortTime"}} </p>
+                <p class="date-onward t-onwar2"> {{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].arrivalDate | date: "shortDate"}}</p>
+                <p class="data-city t-onwar2"> ({{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].arrivalTerminalAirport.airportCode}} ) {{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].arrivalTerminalAirport.airportName}}</p>
+              </div>
+              <div class="col-12">
+               
+                <p class="onward-desc">
+                  <span>{{'confirmation.equipment' | translate}} - </span>{{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].flightInfo.equipmentNumber}}
+                </p>
+                <!-- <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].baggageInformation ==null">
+                  <span>{{'confirmation.baggageAllowence' | translate}} - </span>50 Kg(s) for Mr Abdul Rahman | 15 Kg(s) for
+  
+                </p> -->
+                <p class="onward-desc">
+                  <span>{{'confirmation.equipment' | translate}}:</span>  {{confirmation.confirmationData.airItineraries[0].allJourney.flights[0].flightDTO[0].supplierRefID}}
+                </p>
+                <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].baggageInformation != null">
+                  <span>{{'confirmation.baggageAllowence' | translate}} - </span>{{confirmation.confirmationData.airItineraries[0].baggageInformation}}
+  
+                </p>
+                
+                <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].flightInfo.mealCode == ''">
+                  <span >{{'confirmation.flightMeal' | translate}} : </span> -
+                </p>
+              </div>
+              <div class="tota-time-flight" *ngIf="confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].transitTime && confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].transitTime != '00.00.00'">
+                <p>{{'confirmation.layOver' | translate}}{{confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO[0].transitTime}}</p>
+             </div>
+              <div class="col-12 stops" *ngIf="confirmation.confirmationData.airItineraries[0].allJourney.flights[1].stopsNum > 0">
+                <ng-container *ngFor="let stop of confirmation.confirmationData.airItineraries[0].allJourney.flights[1].flightDTO | slice: 1; let i = index ">
+                <div class="row">
+                  
+                 <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+                   <img class="img-logo" src="{{stop.flightAirline.airlineLogo}}" alt="" srcset="">
+                     </div>
+                     <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+                      <p class="flight-num">{{stop.flightAirline.alternativeBusinessName}} | {{stop.flightInfo.flightNumber}}</p>
+                      <p class="classFlight">{{stop.flightInfo.cabinClass}}</p>
+                     </div>
+                     <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                      <p class="time-onward">{{stop.departureDate | date: "shortTime"}} </p>
+                      <p class="date-onward">{{stop.departureDate | date: "shortDate"}}</p>
+                      <p class="data-city"> ({{stop.departureTerminalAirport.airportCode}} ) {{stop.departureTerminalAirport.airportName}}</p>
+                     
+                      
+                     </div>
+                     <div class="col-2 tot">
+                    <p class="total-time">{{stop.durationPerLeg | hourminute }}</p>
+                    <img class="w-100" src="../../../assets/img/torest/line.png" alt="" srcset="">
+                     </div>
+                     <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                      <p class="time-onward t-onwar2"> {{stop.arrivalDate | date: "shortTime"}} </p>
+                      <p class="date-onward t-onwar2"> {{stop.arrivalDate | date: "shortDate"}}</p>
+                      <p class="data-city t-onwar2"> ({{stop.arrivalTerminalAirport.airportCode}} ) {{stop.arrivalTerminalAirport.airportName}}</p>
+                     </div>
+                </div>
+              
+                <div class="col-12 des-div">
+                  <p class="onward-desc">
+                    <span>{{'confirmation.equipment' | translate}} : </span>{{stop.flightInfo.equipmentNumber}}
+                  </p>
+                  <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].baggageInformation != null">
+                    <span>{{'confirmation.baggageAllowence' | translate}} : </span>{{confirmation.confirmationData.airItineraries[0].baggageInformation}}
+    
+                  </p>
+                 
+                  <p class="onward-desc">
+                    <span>{{'confirmation.airlineRefId' | translate}}:</span>  {{stop.supplierRefID}}
+                  </p>
+                  <p class="onward-desc" *ngIf="stop.flightInfo.mealCode != ''">
+                    <span >{{'confirmation.flightMeal' | translate}} : </span>  {{stop.flightInfo.mealCode}}
+                  </p>
+                  <p class="onward-desc" *ngIf="stop.flightInfo.mealCode == ''">
+                    <span >{{'confirmation.flightMeal' | translate}} : </span>   -
+                  </p>
+                </div>
+                <div class="tota-time-flight" *ngIf="stop.transitTime && stop.transitTime != '00:00:00'">
+                  <p>{{'confirmation.layOver' | translate}} {{stop.transitTime}}</p>
+               </div>
+              </ng-container>
+              </div>
+            
+                 
+              
+            </div>
+              </div>
+              
+    
+            </div>
+           
+          </div> 
+  
+          <ng-container *ngFor="let item of confirmation.confirmationData.airItineraries[0].allJourney.flights ; let m = index">
+          <div class="col-12" *ngIf="confirmation.confirmationData.airItineraries[0].flightType != 'Return'">
+            <div class="row padding">
+              <div class="col-12 onward"> 
+                <p>Onward Flight Itinerary (Total Duration :{{item.elapsedTime | hourminute }})</p>
+              </div>
+              <div class="col-12">
+                <div class="row  data-onward">
+              <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+            <img class="img-logo" src="{{
+              item.flightAirline.airlineLogo
+            }}"  alt="" srcset="">
+              </div>
+              <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+               <p class="flight-num">{{item.flightDTO[0].flightInfo.flightNumber}}</p>
+               <p class="classFlight">{{item.flightDTO[0].flightInfo.cabinClass}}</p>
+              </div>
+              <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                <p class="time-onward">{{item.flightDTO[0].departureDate | date: "shortTime"}} </p>
+                <p class="date-onward">{{item.flightDTO[0].departureDate | date: "shortDate"}}</p>
+                <p class="data-city"> ({{item.flightDTO[0].departureTerminalAirport.airportCode}} ) {{item.flightDTO[0].departureTerminalAirport.airportName}}</p>
+               
+               
+              </div>
+              <div class="col-2 col-md-2 col-lg-2 col-xl-2  tot">
+             <p class="total-time">{{item.elapsedTime | hourminute }}</p>
+             <img class="w-100" src="../../../assets/img/torest/line.png" alt="" srcset="">
+              </div>
+              <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                <p class="time-onward t-onwar2"> {{item.flightDTO[0].arrivalDate | date: "shortTime"}} </p>
+                <p class="date-onward t-onwar2"> {{item.flightDTO[0].arrivalDate | date: "shortDate"}}</p>
+                <p class="data-city t-onwar2"> ({{item.flightDTO[0].arrivalTerminalAirport.airportCode}} ) {{item.flightDTO[0].arrivalTerminalAirport.airportName}}</p>
+              </div>
+              <div class="col-12 des-div">
+                <p class="onward-desc">
+                  <span>{{'confirmation.equipment' | translate}} : </span>{{item.flightDTO[0].flightInfo.equipmentNumber}}
+                </p>
+                <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].baggageInformation != null">
+                  <span>{{'confirmation.baggageAllowence' | translate}} : </span>{{confirmation.confirmationData.airItineraries[0].baggageInformation}}
+  
+                </p>
+               
+                <p class="onward-desc">
+                  <span>{{'confirmation.airlineRefId' | translate}}:</span>  {{item.flightDTO[0].supplierRefID}}
+                </p>
+                <p class="onward-desc" *ngIf="item.flightDTO[0].flightInfo.mealCode != ''">
+                  <span >{{'confirmation.flightMeal' | translate}} : </span>  {{item.flightDTO[0].flightInfo.mealCode}}
+                </p>
+                <p class="onward-desc" *ngIf="item.flightDTO[0].flightInfo.mealCode == ''">
+                  <span >{{'confirmation.flightMeal' | translate}} : </span>   -
+                </p>
+              </div>
+              <div class="tota-time-flight" *ngIf="item.flightDTO[0].transitTime && item.flightDTO[0].transitTime != '00.00.00'">
+                <p>{{'confirmation.layOver' | translate}} {{item.flightDTO[0].transitTime}}</p>
+             </div>
+              <div class="col-12 stops" *ngIf="item.stopsNum > 0">
+                <ng-container *ngFor="let stop of item.flightDTO | slice: 1; let i = index ">
+                <div class="row">
+                 
+                 <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+                   <img class="img-logo" src="{{stop.flightAirline.airlineLogo}}" alt="" srcset="">
+                     </div>
+                     <div class="col-6 col-md-6 col-lg-2 col-xl-2">
+                      <p class="flight-num">{{stop.flightAirline.alternativeBusinessName}} | {{stop.flightInfo.flightNumber}}</p>
+                      <p class="classFlight">{{stop.flightInfo.cabinClass}}</p>
+                     </div>
+                     <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                      <p class="time-onward">{{stop.departureDate | date: "shortTime"}} </p>
+                      <p class="date-onward">{{stop.departureDate | date: "shortDate"}}</p>
+                      <p class="data-city"> ({{stop.departureTerminalAirport.airportCode}} ) {{stop.departureTerminalAirport.airportName}}</p>
+                     
+                      
+                     </div>
+                     <div class="col-2 tot">
+                    <p class="total-time">{{stop.durationPerLeg | hourminute }}</p>
+                    <img class="w-100" src="../../../assets/img/torest/line.png" alt="" srcset="">
+                     </div>
+                     <div class="col-5 col-md-5 col-lg-3 col-xl-3">
+                      <p class="time-onward t-onwar2"> {{stop.arrivalDate | date: "shortTime"}} </p>
+                      <p class="date-onward t-onwar2"> {{stop.arrivalDate | date: "shortDate"}}</p>
+                      <p class="data-city t-onwar2"> ({{stop.arrivalTerminalAirport.airportCode}} ) {{stop.arrivalTerminalAirport.airportName}}</p>
+                     </div>
+                </div>
+              
+                <div class="col-12 des-div">
+                  <p class="onward-desc">
+                    <span>{{'confirmation.equipment' | translate}} : </span>{{stop.flightInfo.equipmentNumber}}
+                  </p>
+                  <p class="onward-desc" *ngIf="confirmation.confirmationData.airItineraries[0].baggageInformation != null">
+                    <span>{{'confirmation.baggageAllowence' | translate}} : </span>{{confirmation.confirmationData.airItineraries[0].baggageInformation}}
+    
+                  </p>
+                 
+                  <p class="onward-desc">
+                    <span>{{'confirmation.airlineRefId' | translate}}:</span>  {{stop.supplierRefID}}
+                  </p>
+                  <p class="onward-desc" *ngIf="stop.flightInfo.mealCode != ''">
+                    <span >{{'confirmation.flightMeal' | translate}} : </span>  {{stop.flightInfo.mealCode}}
+                  </p>
+                  <p class="onward-desc" *ngIf="stop.flightInfo.mealCode == ''">
+                    <span >{{'confirmation.flightMeal' | translate}} : </span>   -
+                  </p>
+                </div>
+                <div class="tota-time-flight" *ngIf="stop.transitTime && stop.transitTime != '00:00:00'">
+                  <p>{{'confirmation.layOver' | translate}} {{stop.transitTime}}</p>
+               </div>
+              </ng-container>
+              </div>
+            
+                 
+            </div>
+              </div>
+              
+    
+            </div>
+           
+          </div>
+          </ng-container>
+          <div class="col-12">
+            <div class="row padding">
+              <div class="col-12 onward"> 
+                <p>{{'confirmation.rulesAndConditions' | translate}}</p>
+              </div>
+              <div class="col-12">
+                <div class="row RandC">
+                  <ul>
+                    <li>{{'confirmation.rule1' | translate}}</li>
+                    <li>{{'confirmation.rule2'| translate}}</li>
+                    <li>{{'confirmation.rule3'| translate}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row ">
+              <div class="col-7 col-md-7 col-lg-6 col-xl-6">
+                <p class="email-add">{{'contact.email'| translate}}: reservations@triphands.com</p>
+              </div>
+              <div class="col-5 col-md-5 col-lg-6 col-xl-6">
+                 <p class="phone-N">{{'contact.phone'| translate}}: +965 220 702 22</p>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+       <!-- datra -->
+        
+        
+     
+    
+    
+      </div>
+     
+    </div>
+  
+  </ng-template>
+
+
+<ng-template #failed>
+    <div class="container ">
+      <div class="row justify-content-center loadingcard">
+        <div class="col text-center">
+          <h1 class="Title "> {{"confirmation.errMsg"|translate}} </h1>
+        </div>
+        <div class="col-12 text-center MoreDetBtn">
+          <button type="button" class="btn btn-outline-primary  moreResult " style="max-width:25%;"
+            [routerLink]="['']">{{"confirmation.newsearch"|translate}}</button>
+        </div>
+      </div>
+  
+    </div>
+  </ng-template>
+
+<ng-template #loadingkst>
+    <div class="container">
+        <div class="row justifiy-content-center text-center">
+            <div class="col-12 justifiy-content-center text-center">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+    </div>
+  </ng-template>

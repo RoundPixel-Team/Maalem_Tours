@@ -1,0 +1,98 @@
+<div class="filterContainer" [formGroup]="flightResult.filterForm">
+
+    <div class="closeIcon mb-4 mt-2 desktopHide" (click)="closeMobileSideFilter()">
+        <i class="bi bi-x-circle"></i>
+    </div>
+    <!--STOPS FILTER-->
+    <div class="filterCriteria mb-4">
+        <div class="title">{{'flightFilter.stops' | translate}}</div>
+        <hr>
+        <div class="row criteria" formGroupName="stopsForm">
+            <div class="col-12">
+            <mat-checkbox  class="filterCheckbox" formControlName="noStops">{{'flightFilter.direct' | translate}}</mat-checkbox>
+            </div>
+            <div class="col-12">
+            <mat-checkbox  class="filterCheckbox" formControlName="oneStop">{{'flightFilter.oneStop' | translate}}</mat-checkbox>
+            </div>
+            <div class="col-12">
+            <mat-checkbox  class="filterCheckbox" formControlName="twoAndm">{{'flightFilter.moreStop' | translate}}</mat-checkbox>
+            </div>
+        </div>
+    </div>
+
+
+    <!--PRICE FILTER-->
+    <div class="filterCriteria mb-4">
+        <div class="title">{{'flightFilter.price' | translate}}</div>
+        <hr>
+        <div class="row criteria">
+            <div class="col-12">
+                <ngx-slider *ngIf="!flightResult.loading" formControlName="priceSlider"  [options]="flightResult.options">
+                </ngx-slider>
+
+                <ngx-slider style="opacity: 0.2;"  [value]="0" [highValue]="500" [options]="optionsLoading" *ngIf="flightResult.loading">
+                </ngx-slider>
+            </div>
+        </div>
+    </div>
+
+
+    <!--AIRLINES FILTER-->
+    <div class="filterCriteria mb-4">
+        <div class="title">{{'flightFilter.airlines' | translate}}</div>
+        <hr>
+        <div class="row criteria">
+            <div class="col-12">
+                <ng-container formGroupName="airline">
+                    <ng-container formArrayName='airlines'>
+                      <ng-container *ngFor="let item of flightResult.airlinesA;let i= index">
+                        <div class="row pl-3">
+                          <mat-checkbox class="filterCheckbox" [formControlName]="i">{{flightResult.airlinesA[i]}}</mat-checkbox>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+            </div>
+        </div>
+    </div>
+
+
+    <!--TIME FILTER-->
+    <div class="filterCriteria mb-4">
+        <div class="title">{{'flightFilter.time' | translate}}</div>
+        <hr>
+        <div class="row criteria">
+            <div class="col-12 mb-3">
+                <p class="mb-2">{{'flightFilter.departingTime' | translate}}</p>
+                <ngx-slider *ngIf="!flightResult.loading" formControlName="dpartingSlider"  [options]="flightResult.optionsdeparting">
+                </ngx-slider>
+
+                <ngx-slider style="opacity: 0.2;"  [value]="0" [highValue]="500" [options]="optionsLoading" *ngIf="flightResult.loading">
+                </ngx-slider>
+            </div>
+
+            <div class="col-12 mb-3">
+                <p class="mb-2">{{'flightFilter.landing' | translate}}</p>
+                <ngx-slider *ngIf="!flightResult.loading" formControlName="dpartingSlider"  [options]="flightResult.optionsArriving">
+                </ngx-slider>
+
+                <ngx-slider style="opacity: 0.2;"  [value]="0" [highValue]="500" [options]="optionsLoading" *ngIf="flightResult.loading">
+                </ngx-slider>
+            </div>
+
+
+            <div class="col-12 mb-3">
+                <p class="mb-2">{{'flightFilter.duration' | translate}}</p>
+                <ngx-slider *ngIf="!flightResult.loading" formControlName="durationSlider"  [options]="flightResult.optionsDurathion">
+                </ngx-slider>
+
+                <ngx-slider style="opacity: 0.2;"  [value]="0" [highValue]="500" [options]="optionsLoading" *ngIf="flightResult.loading">
+                </ngx-slider>
+            </div>
+
+            <div  class="col-12 mb-3 text-center desktopHide" (click)="closeMobileSideFilter()">
+                <button class="closeFilterBtn">{{translate.currentLang == 'en'?'Close':"اغلاق"}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,339 @@
+.flightSummaryContainer {
+  background-color: var(--one-color);
+  padding: 2%;
+  border-radius: 0%;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    color: var(--nine-color);
+    font-size: 1.125rem;
+    font-family: var(--two-font);
+    font-style: normal;
+    font-weight: bolder;
+  }
+
+  button {
+    background-color: var(--nine-color);
+    padding: 2%;
+    color: var(--one-color);
+    font-size: 1rem;
+    font-family: var(--two-font);
+    font-style: normal;
+    font-weight: 700;
+    width: 100%;
+    border: none;
+  }
+}
+
+.sortingContainer {
+  .criteria,
+  .sortByCriteria {
+    border: 1px solid #F5F5F5;
+    background: var(--nine-color);
+    text-align: center;
+    padding: 1% 2%;
+    cursor: pointer;
+
+    .text {
+      color: var(--eight-color);
+      font-family: var(--two-font);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .value {
+      color: var(--eight-color);
+      font-family: var(--two-font);
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+
+  .criteria:hover,
+  .sortByCriteria:hover {
+    background: #cfcfcf;
+    transition-duration: 0.5s;
+  }
+
+  .sortByCriteria {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+.airlinesContainer,
+.airlinesContainerMobile {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .airlineBoxContainer {
+    animation: fadeIn 0.5s;
+
+    .airlineBox {
+      cursor: pointer;
+      border-radius: 4px;
+      padding: 2%;
+      border: 1px solid #F5F5F5;
+      background: var(--nine-color);
+      height: 4rem;
+      width: 10rem;
+
+      .airlineName {
+        color: var(--first-color);
+        font-family: var(--two-font);
+        font-size: 0.875rem;
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .lowestFareAndlogo {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .lowestFare {
+          color: var(--eight-color);
+          font-family: var(--two-font);
+          font-size: 0.875rem;
+          font-style: normal;
+          font-weight: 600;
+        }
+
+        .logo {
+          display: flex;
+          justify-content: end;
+
+          img {
+            width: 65%;
+            height: auto;
+          }
+        }
+      }
+
+    }
+
+    .airlineBox:hover {
+      background-color: #cfcfcf;
+      transition-duration: 0.1.5s;
+    }
+
+    .chosedAirline {
+      background-color: #cfcfcf !important;
+      transition-duration: 0.1.5s;
+    }
+  }
+
+  .customFilterAirlineChevron {
+    font-size: 1rem;
+    background-color: var(--nine-color);
+    border-radius: 4px;
+    padding: 2.5% 2%;
+    color: var(--first-color);
+    font-weight: bold;
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
+    cursor: pointer;
+
+  }
+
+  .arRotate {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    margin-left: 1%;
+  }
+}
+
+@media (max-width:769px) {
+  .airlinesContainer {
+    display: none !important;
+  }
+
+  .customFilterAirlineChevron {
+    font-size: 1rem;
+    background-color: var(--nine-color);
+    border-radius: 4px;
+    padding: 5.5% 2% !important;
+    color: var(--first-color);
+    font-weight: bold;
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
+    cursor: pointer;
+
+  }
+  .airlinesContainerMobile {
+    position: sticky !important;
+    top: 0;
+    z-index: 999;
+  }
+  .sortingContainer {
+    position: sticky;
+      top: 65px;
+      z-index: 999;
+      box-shadow: 2px 1px 5px 0px rgba(62, 125, 195, 0.5);
+      -webkit-box-shadow: 2px 1px 5px 0px rgba(62, 125, 195, 0.5);
+      -moz-box-shadow: 2px 1px 5px 0px rgba(62, 125, 195, 0.5);
+  }
+}
+
+@media (min-width:770px) {
+  .airlinesContainerMobile {
+    display: none !important;
+  }
+  
+}
+
+.lazyLoadCard {
+  animation-name: lazyLoadingCard;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+.lazyLoadCard2 {
+  animation-name: lazyLoadingCard;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  animation-delay: 0.1s;
+}
+
+.lazyLoadCard3 {
+  animation-name: lazyLoadingCard;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  animation-delay: 0.2s;
+}
+
+.lazyLoadCard4 {
+  animation-name: lazyLoadingCard;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  animation-delay: 0.1.5s;
+}
+
+.lazyLoadCard5 {
+  animation-name: lazyLoadingCard;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  animation-delay: 0.4s;
+}
+
+.lazyLoadCard6 {
+  animation-name: lazyLoadingCard;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  animation-delay: 0.5s;
+}
+
+@keyframes lazyLoadingCard {
+  0% {
+    opacity: 0.1;
+  }
+
+  20% {
+    opacity: 0.2;
+  }
+
+  40% {
+    opacity: 0.4;
+  }
+
+  60% {
+    opacity: 0.6;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.justifiyCenter {
+  justify-content: center !important;
+}
+
+.floatFilterIcon {
+  background-color: var(--nine-color);
+  border-radius: 7px;
+  padding: 2%;
+  font-size: 14px;
+  border: 1px solid var(--eight-color);
+  font-family: var(--one-font);
+  text-align: center;
+  width: 20%;
+  margin-inline-start: -1rem;
+  cursor: pointer;
+}
+
+#mobileFilterSideNav{
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: var(--nine-color);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+.popupError {
+  margin: 20vh auto;
+  padding: 0px;
+  background: var(--nine-color);
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  padding: 4%;
+}
+.searchAgainBtn{
+  border-radius: 10px;
+  background-color: var(--one-color);
+  padding: 2%;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--nine-color);
+}

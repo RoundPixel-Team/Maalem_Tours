@@ -1,0 +1,58 @@
+@import "../../../shared/scss/mixins.scss";
+.searchBox {
+  font-family: var(--one-font);
+  .searchboxInput {
+    @include cityInput;
+  }
+  .cityInputPlacholder{
+    @include cityInputPlacholder;
+  }
+
+  .submitBtn {
+    text-align: center;
+    margin-top: 1rem;
+    button {
+      @include searchSubmitBtn;
+    }
+  }
+  .travellerComp, .datePicker{
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .closeIcon{
+    font-size: 1.3rem;
+    color:#787878;
+  }
+}
+::ng-deep .searchBox .mat-form-field-appearance-legacy .mat-form-field-underline{
+  height:0;
+}
+::ng-deep .searchBox  .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 0.7em;
+}
+::ng-deep .ngb-dp-header{
+  direction: ltr !important;
+}
+//#region switch arrow
+.firstInput{
+  position: relative;
+}
+.switchArrow{
+  @include switchArrow(-1rem,25%);
+}
+.ar .switchArrow{
+  left: -1rem;
+  right: unset !important;
+}
+//#endregion
+@media(max-width :991px){
+
+  .switchArrow {
+    transform: rotate(90deg);
+    @include switchArrow(2rem, 79%);
+  }
+
+  .ar .switchArrow {
+    left: 2rem;
+  }
+}

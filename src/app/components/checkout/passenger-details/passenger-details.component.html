@@ -1,0 +1,239 @@
+<!--passengers header-->
+<div class="w-100 mb-3">
+    <div class="headerContainer">
+        {{'checkout.passengers.header' | translate}} {{shareService.landCity}}
+    </div>
+</div>
+
+
+<div class="w-100 sectionContainer" [ngClass]="{'ar':translate.currentLang == 'ar'}">
+    <div class="row">
+        <div class="col-12 col-lg-4 mt-2">
+            <div class="passengersHeaderTitle">
+                {{'checkout.passengers.passengersTitle' | translate}}
+            </div>
+            <div class="passengersHeaderSteps mt-2">
+                {{'checkout.passengers.passengersTitleStep' | translate}}
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 mt-2">
+            <div class="passengersHeaderDescription">
+                {{'checkout.passengers.passengersDescriptionTxt' | translate}}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-4" [formGroup]="flight.usersForm" >
+        <ng-container formArrayName="users">
+            <ng-container *ngFor="let user of flight.usersArray.controls; let i = index" >
+                <ng-container [formGroupName]="i">
+                    <div class="col-12">
+                        <mat-accordion>
+                            <mat-expansion-panel  [expanded]="passengerCompleted[i]"   class="mt-3" id="passengersFormSection" #passengersFormSection>
+                                <mat-expansion-panel-header style="background-color: #bdbdbd59;">
+                                    <mat-panel-title> 
+                                        <mat-panel-description>
+                                            <div class="passengerTitle me-1">
+                                            {{translate.currentLang == 'en'?"Passenger":"مسافر"}} 
+                                            {{i+1}}
+                                            {{translate.currentLang == 'en'?"Of":"من"}} 
+                                            {{flight.usersArray.length}} 
+                                        </div>
+                                         <div class="passengerTitle" *ngIf="user.get('PassengerType')!.value == 'ADT'">
+                                            ({{'checkout.passengers.adult' | translate}})
+                                        </div>
+                                        <div class="passengerTitle" *ngIf="user.get('PassengerType')!.value == 'CNN'">
+                                            ({{'checkout.passengers.child' | translate}})
+                                        </div>
+                                        <div class="passengerTitle" *ngIf="user.get('PassengerType')!.value == 'INF'">
+                                            ({{'checkout.passengers.Infant' | translate}})
+                                        </div>
+                                        </mat-panel-description>
+                                         </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="row">
+                                    <!--passenger header-->
+                                    <div class="col-12 col-lg-3">
+                                       
+                                        <div class="passengerType mt-2" *ngIf="user.get('PassengerType')!.value == 'ADT'">
+                                            {{'checkout.passengers.adult' | translate}}
+                                        </div>
+                                        <div class="passengerType mt-2" *ngIf="user.get('PassengerType')!.value == 'CNN'">
+                                            {{'checkout.passengers.child' | translate}}
+                                        </div>
+                                        <div class="passengerType mt-2" *ngIf="user.get('PassengerType')!.value == 'INF'">
+                                            {{'checkout.passengers.Infant' | translate}}
+                                        </div>
+                                    </div>
+
+                                    <!--passenger inputs-->
+                                    <div class="col-12 col-lg-9">
+                                        <div class="row">
+                                            <div class="col-6 col-lg-3 mt-2">
+                                                <div (click)="assignGenderToUser(i,'Male')" 
+                                                [ngClass]="{'genderSelection':user.get('title')!.value != 'Male','selectedGender':user.get('title')!.value == 'Male'}"
+                                                >
+                                                {{'checkout.passengers.male' | translate}}
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-lg-3  mt-2">
+                                                <div (click)="assignGenderToUser(i,'Female')" 
+                                                [ngClass]="{'genderSelection':user.get('title')!.value != 'Female','selectedGender':user.get('title')!.value == 'Female'}"
+                                                >
+                                                {{'checkout.passengers.female' | translate}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-12 col-lg-4  mt-2">
+                                                <input [ngClass]="{'alert':user.get('firstName')!.touched && user.get('firstName')!.status == 'INVALID'}"
+                                                 type="text" formControlName="firstName" 
+                                                [placeholder]="translate.currentLang=='en'?'First Name':'الاسم الاول'">
+                                            </div>
+
+                                            <div class="col-12 col-lg-4 mt-2">
+                                                <input [ngClass]="{'alert':user.get('lastName')!.touched && user.get('lastName')!.status == 'INVALID'}"
+                                                type="text" formControlName="lastName"
+                                                [placeholder]="translate.currentLang=='en'?'Last Name':'الاسم الاخير'">
+                                            </div>
+
+                                            <!--ADULT CALENDER-->
+                                            <div class="col-12 col-lg-4 mt-2" style="position: relative;"
+                                             *ngIf="user.get('PassengerType')!.value == 'ADT'">
+                                                <input [ngClass]="{'alert':user.get('dateOfBirth')!.touched && user.get('dateOfBirth')!.status == 'INVALID'}"
+                                                 formControlName="dateOfBirth" 
+                                                [min]="minAdultDateBirth" [max]="todayDate" 
+                                                 [matDatepicker]="pickerADT" type="datetime"
+                                                [placeholder]="translate.currentLang=='en'?'Date Of Birth':'تاريخ الميلاد'">
+                                                <mat-datepicker-toggle matSuffix [for]="pickerADT"></mat-datepicker-toggle>
+                                                <mat-datepicker [startAt]="minAdultDateBirth" #pickerADT></mat-datepicker>
+                                            </div>
+
+                                            <!--CHILD CALENDER-->
+                                            <div class="col-12 col-lg-4 mt-2" style="position: relative;" 
+                                            *ngIf="user.get('PassengerType')!.value == 'CNN'">
+                                                <input [ngClass]="{'alert':user.get('dateOfBirth')!.touched && user.get('dateOfBirth')!.status == 'INVALID'}"
+                                                formControlName="dateOfBirth" 
+                                                [min]="minChildDateBirth" [max]="todayDate" 
+                                                 [matDatepicker]="pickerCNN" type="datetime"
+                                                [placeholder]="translate.currentLang=='en'?'Date Of Birth':'تاريخ الميلاد'">
+                                                <mat-datepicker-toggle matSuffix [for]="pickerCNN"></mat-datepicker-toggle>
+                                                <mat-datepicker [startAt]="minChildDateBirth" #pickerCNN></mat-datepicker>
+                                            </div>
+
+                                            <!--INFANTS CALENDER-->
+                                            <div class="col-12 col-lg-4 mt-2" style="position: relative;"
+                                             *ngIf="user.get('PassengerType')!.value == 'INF'">
+                                                <input [ngClass]="{'alert':user.get('dateOfBirth')!.touched && user.get('dateOfBirth')!.status == 'INVALID'}"
+                                                 formControlName="dateOfBirth" 
+                                                [min]="minInfantDateBirth" [max]="todayDate" 
+                                                 [matDatepicker]="pickerINF" type="datetime"
+                                                [placeholder]="translate.currentLang=='en'?'Date Of Birth':'تاريخ الميلاد'">
+                                                <mat-datepicker-toggle matSuffix [for]="pickerINF"></mat-datepicker-toggle>
+                                                <mat-datepicker [startAt]="minInfantDateBirth" #pickerINF></mat-datepicker>
+                                            </div>
+                                        </div>
+
+                                        <!--PASSPORT DETAILS SECTION-->
+                                        <div class="row mt-3 passportDetailsSection" *ngIf="flight.selectedFlight!.passportDetailsRequired!">
+                                            <div class="col-12 col-lg-8">
+                                                <mat-accordion>
+                                                    <mat-expansion-panel hideToggle [expanded]="user.get('dateOfBirth')!.status == 'VALID'&& user.get('lastName')!.status == 'VALID' && user.get('firstName')!.status == 'VALID' " >
+                                                        <mat-expansion-panel-header>
+                                                            <mat-panel-title>
+                                                               + {{'checkout.passengers.passportDetailsHeader' | translate}}
+                                                              </mat-panel-title>
+                                                        </mat-expansion-panel-header>
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-6 mt-2">
+                                                                <input [ngClass]="{'alert':user.get('PassportNumber')!.touched && user.get('PassportNumber')!.status == 'INVALID'}"
+                                                                type="text" formControlName="PassportNumber" 
+                                                                [placeholder]="translate.currentLang=='en'?'Passport No':'رقم جواز السفر'">
+                                                            </div>
+     
+                                                            <div class="col-12 col-lg-6 mt-2">
+                                                                <input [ngClass]="{'alert':user.get('IssuedCountry')!.touched && user.get('IssuedCountry')!.status == 'INVALID'}"
+                                                                 type="text" formControlName="IssuedCountry"  aria-label="country"
+                                                                [matAutocomplete]="issuedCountryAuto" #issuedCountryVal
+                                                                [placeholder]="translate.currentLang == 'en'? 'Issued Country': 'بلد المصدر'">
+                                                                <mat-autocomplete
+                                                                    (optionSelected)="assignCountries($event, i)"
+                                                                    #issuedCountryAuto="matAutocomplete">
+                                                                    <mat-option
+                                                                    *ngFor="let country of home.allCountries | councode : issuedCountryVal.value"
+                                                                    [value]="country.countryName" >
+                                                                    {{ country.countryName }}
+                                                                    </mat-option>
+                                                                </mat-autocomplete>
+                                                            </div>
+    
+                                                            <!--passport expiration CALENDER-->
+                                                            <div class="col-12 col-lg-6 mt-2" style="position: relative;">
+                                                                <input [ngClass]="{'alert':user.get('PassportExpiry')!.touched && user.get('PassportExpiry')!.status == 'INVALID'}"
+                                                                formControlName="PassportExpiry"
+                                                                [matDatepicker]="passportPicker" type="datetime"
+                                                                [placeholder]="translate.currentLang=='en'?'Expiration Date':'تاريخ الانتهاء'">
+                                                                <mat-datepicker-toggle matSuffix [for]="passportPicker"></mat-datepicker-toggle>
+                                                                <mat-datepicker #passportPicker></mat-datepicker>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </mat-expansion-panel>
+                                                </mat-accordion>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+        <div style="position: relative;">
+            <div class="payNowSection align-items-center">
+                <div class="col-lg-2 col-4 col-sm-4">
+                    <div class="price">
+                        {{ flight.selectedFlight!.airItineraryDTO.itinTotalFare.currencyCode | exchange:'code' }} 
+                        <span *ngIf="this.flight.bookingType=='standard'">
+                            {{ flight.selectedFlight!.airItineraryDTO.itinTotalFare.amount | exchange:'value' }}
+                        </span>
+                        <span *ngIf="this.flight.bookingType=='premium'">
+                            {{flight.priceWithRecommenedService | exchange:'value'}}
+
+                        </span>
+                        
+                    </div>
+            
+                    <div class="fareBreakup "  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        {{'checkout.passengers.fareBreakup' | translate}}
+                    </div>
+            
+                </div>
+              
+                <div class="payBtn  col-lg-2 col-4 col-sm-4" (click)="saveBooking()">
+                    <button mat-raised-button>{{'checkout.passengers.payNow' | translate}}</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+    
+
+</div>
+<div class="modal fade modal-sm" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <app-fare-breakup></app-fare-breakup>
+
+      </div>
+    </div>
+  </div>

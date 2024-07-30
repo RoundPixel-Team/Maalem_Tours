@@ -1,0 +1,269 @@
+.dialogContent{
+    position: relative;
+    width: 100% !important;
+    padding-top: 0 !important;
+}
+.mat-dialog-content{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    max-height: unset;
+}
+.dialogContent .loginform{
+    /* margin-top: 5%; */
+    padding: 6rem 3rem 1rem 3rem;
+}
+.dialogContent .login_leftSide{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: url("/assets/images/login_bg.png") no-repeat center center/cover;
+}
+.dialogContent .login_leftSide .leftside_content{
+    height: 100%;
+    width: 100%;
+    padding: 4rem 3.4rem;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    align-content: center;
+    justify-content: space-evenly;
+    z-index: 5;
+    position: absolute;
+    color: var(--nine-color);
+    
+}
+
+.crateAccount{
+    margin-top: 7rem;
+}
+.find_gift{
+    margin-top: 11rem;
+}
+
+.dialogContent .login_leftSide .leftside_content .crateAccount span{
+    color: var(--nine-color);
+    font-size: 30px;
+    font-weight: 700;
+    font-family: var(--one-font);
+    cursor: pointer;
+}
+
+.dialogContent .login_leftSide .leftside_content .find_gift p{
+    font-size: 25px;
+    color: var(--nine-color);
+    font-weight: 600;
+    font-family: var(--one-font);
+    line-height: 1.2em;
+    text-align: center;
+}
+
+.dialogContent .login_leftSide .leftside_content .find_gift img{
+    display: block;
+    margin: 0 auto;
+    height: 5.5em;
+}
+
+.dialogContent .login_leftSide div:empty{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(62, 125, 195, 0.75);
+
+    /* background:  url(../../../assets/img/firstClass/login_bg.png) no-repeat center center/cover; */
+}
+
+.loginform mat-label{
+    font-weight: 800;
+    font-size: 22px;
+    /* font-size: 18px; */
+    font-family: var(--one-font);
+}
+
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline{
+    background-color: #f4f4f4;
+    border-radius: 20px;
+}
+::ng-deep .mat-form-field-outline-start {
+    border-radius: 20px 0 0 20px !important;
+    min-width: 20px !important;
+    overflow: hidden;
+}
+
+::ng-deep .mat-form-field-outline-end {
+      overflow: hidden;
+    border-radius: 0 20px 20px 0 !important;
+  }
+.forgetPass{
+    color: var(--eight-color);
+    /* font-size: var(--hight2); */
+    font-size: 22px;
+    font-weight: 800;
+    font-family: var(--one-font);
+    cursor: pointer;
+    margin-bottom: 2em;
+    margin-top: 1em;
+}
+
+.ar .forgetPass{
+    font-family: var(--one-font);
+}
+
+.submitBtn{
+    background-color: #FF0000 !important;
+    color: var(--eight-color) !important;
+    font-size: 22px;
+    font-weight: 800;
+    width: 95%;
+    font-family: var(--one-font);
+    border-radius: 14px;
+    padding: .5em;
+}
+
+.ar .submitBtn{
+    font-family: var(--one-font);
+}
+.ar .col-12{
+    text-align: right;
+}
+
+.closeIcon{
+    color: var(--nine-color);
+    position: absolute;
+    top: 3.5%;
+    right: 2%;
+    cursor: pointer;
+    z-index: 100;
+}
+
+:host ::ng-deep .autModal mat-form-field{
+    width: 100%;
+    margin-top: .9em;
+}
+:host ::ng-deep .autModal .mat-form-field-appearance-outline .mat-form-field-infix{
+    padding: 0 !important;
+}
+:host ::ng-deep .autModal .mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix{
+    border-color: unset !important;
+}
+.mat-form-field.mat-accent .mat-input-element {
+    padding: 0;
+}
+.socialText{
+    font-family: var(--one-font);
+    color: var(--eight-color);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+
+.facebookLogin,.twitterLogin{
+    height: 3em;
+    width: 80%;
+    color: var(--eight-color);
+    text-align: center;
+    font-size: 26px;
+}
+.facebookLogin fa-icon{
+    color: #2F5B9C !important;
+}
+
+.twitterLogin fa-icon{
+    color: #37BFF1 !important;
+}
+
+.noAccount{
+    color: #B4B4C8;
+    font-size: 14px;
+    font-family: var(--one-font);
+}
+
+
+
+@media(max-width:1024px){
+    .dialogContent .login_leftSide .leftside_content .crateAccount span{
+        font-size: 24px;
+    }
+}
+
+@media (max-width:991px) {
+    /* left side  */
+    .dialogContent .login_leftSide .leftside_content{
+        padding:4rem 1rem !important;
+    }
+}
+@media (max-width:769px) {
+    /* .dialogContent .login_leftSide{
+        height: 20vh !important;
+    } */
+    .dialogContent .loginform{
+        padding: 2.6em 2em
+    }
+    .dialogContent .loginform .form-control{
+        padding: .5em;
+    }
+    
+    .loginform label{
+        font-size: 15px;
+    }
+    .dialogContent .forgetPass{
+        margin-bottom: 0;
+        margin-top: 1rem;
+        font-size: 1rem;
+    }
+    .dialogContent .submitBtn{
+        padding: 0.2em;
+    }
+    .socialText{
+        font-size: 18px;
+    }
+    .facebookLogin,
+    .twitterLogin{
+        height:2em;
+        font-size: 20px;
+    }
+    .dialogContent .login_leftSide .leftside_content .crateAccount span,
+    .dialogContent .login_leftSide .leftside_content .find_gift p{
+        font-size: 18px;
+    }
+    .dialogContent .login_leftSide .leftside_content .find_gift{
+        display: none;
+    }
+    .dialogContent .login_leftSide .leftside_content .find_gift img{
+        height: 4.5em;
+    }
+
+    .leftside_content{
+        display: none !important;
+    }
+
+    .dialogContent{
+        max-height: 95vh !important;
+        width: fit-content;
+    }
+
+}
+.mat-form-field.mat-accent .mat-input-element:-webkit-autofill,
+.mat-form-field.mat-accent .mat-input-element:-moz-autofill{
+  background-color: transparent !important;
+}
+
+@media(max-width:540px){
+    .crateAccount{
+        margin-top: 1rem !important;
+    }
+}
+
+
+::ng-deep mat-dialog-container{
+    padding: 0 !important;
+    height: auto !important;
+}
+
+.authForm{
+    display: block !important;
+    width: 100%;
+}

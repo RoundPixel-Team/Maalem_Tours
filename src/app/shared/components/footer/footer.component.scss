@@ -1,0 +1,107 @@
+.footerContainer{
+    background-color: var(--one-color);
+    width: 100%;
+    .logo{
+        img{
+            width: auto;
+        }
+    }
+    .sectionTitle{
+        color: #d92434;
+        font-family: var(--two-font);
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 700;
+    }
+    .texts{
+        width: 100%;
+        .text{
+            color: var(--nine-color);
+            font-family: var(--two-font);
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+        }
+    }
+
+    .borderBottom{
+        border-bottom: 1px solid var(--three-color);
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 0;
+    }
+
+    .bottomTxt{
+        color: var(--nine-color);
+            font-family: var(--two-font);
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+    }
+
+    .bottomIcons{
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .facebook{
+        text-decoration: none;
+        background-color: #1877f2;
+        padding: 1%;
+        text-align: center;
+        border-radius: 4%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    .linkedin{
+        text-decoration: none;
+        background-color: #0a66c2;
+        padding: 1%;
+        text-align: center;
+        border-radius: 4%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    .twitter{
+        text-decoration: none;
+        background-color: #1da1f2;
+        padding: 1%;
+        text-align: center;
+        border-radius: 4%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+    .instagram{
+        text-decoration: none;
+        background-color: #c32aa3;
+        padding: 1%;
+        text-align: center;
+        border-radius: 4%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+}
+
+@media (max-width:769px) {
+    .footerContainer .bottomTxt {
+        color: var(--nine-color);
+        font-family: var(--two-font);
+        font-size: 14px !important;
+        font-style: normal;
+        font-weight: 600;
+        margin-bottom: 8%;
+    }
+
+    .footerContainer .facebook ,.twitter,.instagram,.linkedin{
+        text-decoration: none;
+        background-color: #1877f2;
+        padding: 1%;
+        text-align: center;
+        border-radius: 4%;
+        margin-left: 4% !important;
+        margin-right: 4% !important;
+    }
+}

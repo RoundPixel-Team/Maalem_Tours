@@ -1,0 +1,87 @@
+<div class="calenderMobile" *ngIf="screenWidth < 650">
+  <div class="container">
+    <div class="calenderMobile_header">
+      <!-- List Buttons -->
+      <div class="header_btnsList">
+        <i
+          class="bi bi-calendar4-week header_icon"
+          (click)="showDatePicker()"
+        ></i>
+        <i class="bi bi-people-fill header_icon" (click)="showTravellers()"></i>
+      </div>
+      <div class="header_closeBtn">
+        <button (click)="backToSearchBox()">
+          {{ "searchbox.close" | translate }}
+        </button>
+      </div>
+    </div>
+    <!-- Dates -->
+    <div *ngIf="showPicker">
+      <!-- RoundTrip DatePicker -->
+      <div
+        class="calenderMobile_datepicker"
+        *ngIf="flightType == 'RoundTrip'; else elseCondition"
+      >
+      <ngb-datepicker
+      #dp
+      [displayMonths]="12"
+      [dayTemplate]="t"
+      outsideDays="hidden"
+      [firstDayOfWeek]="7"
+      (dateSelect)="onDateSelectionRound($event)"
+      [startDate]="startDateValue"
+      firstDate="startDateValue"
+    >
+    </ngb-datepicker>
+    <ng-template #t let-date let-focused="focused" (click)="$event.stopPropagation()">
+      <span
+        class="custom-day"
+        [class.focused]="focused"
+        [class.range]="isRangeR(date)"
+        [class.faded]="isHoveredR(date) || isInsideR(date)"
+        (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null"
+      >{{ date.day }}
+      </span>
+    </ng-template>
+      </div>
+      <!-- One Way, Multicity Datepicker-->
+      <ng-template #elseCondition>
+        <div class="calenderMobile_datepicker">
+          <ngb-datepicker
+            #dp
+            [displayMonths]="12"
+            [dayTemplate]="t"
+            outsideDays="hidden"
+            [firstDayOfWeek]="7"
+            [startDate]="retStartDate()"
+            firstDate="retStartDate()"
+            (restoreFocus)="(true)"
+          >
+          </ngb-datepicker>
+          <ng-template #t let-date let-focused="focused">
+            <span
+              (click)="onDateSelection(date)"
+              (closed)="onDateSelection(date)"
+              class="custom-day"
+              [class.focused]="focused"
+              [class.active]="true"
+              [class.range]="isRange(date)"
+              [class.value]="isRange(date)"
+              [class.faded]="isHovered(date) || isInside(date)"
+              >{{ date.day }}
+            </span>
+          </ng-template>
+        </div>
+      </ng-template>
+    </div>
+    <div *ngIf="!showPicker" class="my-2">
+      <app-travellers></app-travellers>
+    </div>
+    <div class="confirmBtn">
+      <button (click)="confirmDate()">
+        {{ "searchbox.confirm" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

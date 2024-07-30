@@ -1,0 +1,168 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "node_modules/bootstrap/scss/bootstrap";
+html , body{ height: 100%;background-color:#F5F5F5; display: flex; flex-direction: column; flex-grow: 1;}
+
+:root{
+    /*COLORS SCHEHMA*/
+    --one-color:#3E7DC3;
+    --two-color:#D9D9D9;
+    --three-color:#BDBDBD; 
+    --four-color:#0F56A6;
+    --five-color:#2B4088;
+    --six-color:#176BA9;
+    --seven-color:#5B5D5E;
+    --eight-color:#000000;
+    --nine-color:#FFFFFF;
+    --ten-color:#848586;
+    --eleven-color:#13A722;
+    --tweleve-color:#FF0606;
+    --thirteen-color:#EBCAA6;
+    --fourteen-color:#FEE6CC;
+    --fifteen-color:#E8F2F9;
+    --sixteen-color:#878787;
+    --seventeen-color:#E2E2E2;
+    --blue-color:#239EFE;
+
+    /*FONT FAMILIES*/
+    --one-font:Raleway;
+    --two-font:Inter;
+
+
+    
+}
+
+.iti{
+  width: 100% !important;
+}
+
+.phonenumber {
+  width: 100%;
+  padding: 3%;
+  border-radius: 5px;
+  border-color: var(--three-color);
+  font-family: var(--two-font);
+  font-size: 1rem;
+  font-weight: 400;
+  border-width: 0.5px;
+}
+
+.alert {
+  width: 100%;
+  padding: 3%;
+  border-radius: 5px;
+  border-color: var(--tweleve-color) !important;
+  font-family: var(--two-font);
+  font-size: 1rem;
+  font-weight: 400;
+  border-width: 0.5px;
+}
+
+//#region DatePicker
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+
+.custom-day.focused {
+  background-color: rgb(2, 117, 216);
+  color: white;
+}
+
+.custom-day.range,
+.custom-day:hover {
+  background-color: rgb(2, 117, 216);
+  color: white;
+}
+
+.custom-day.faded {
+  background-color: rgba(2, 117, 216, 0.5);
+}
+
+.mat-progress-spinner svg{
+  position: unset !important;
+}
+.flight_details .mat-tab-labels .mat-tab-label {
+    border-radius: 1em;
+    margin: 1em;
+    border: 1px solid var(--four-color);
+    border-radius: 0.9em;
+    font-weight: 500;
+    color: var(--four-color);
+    opacity: 1;
+    min-width: 100px;
+    overflow: hidden;
+  }
+  .flight_details  .mat-tab-label.mat-tab-label-active {
+    border-radius: 10px;
+    border: 1px solid var(--fifteen-color);
+    background-color: var(--fifteen-color);
+    color: var(--four-color);
+    min-width: 100px;
+    height: 44px;
+  }
+  .flight_details .mat-tab-group.mat-primary .mat-ink-bar {
+    background: unset;
+  }
+  .flight_details .mat-tab-header {
+    border-bottom: unset;
+  }
+  .flight_details .mat-tab-body-content{
+    overflow: hidden;
+    padding-left: 40px;
+  }
+  @media (max-width:768px){
+    .flight_details .mat-tab-labels .mat-tab-label {
+      margin: 2%;
+      padding: 0 1.2em;
+      overflow: hidden;
+      min-width: 60px;
+    }
+    .flight_details  .mat-tab-label.mat-tab-label-active {
+      min-width: 60px;
+    }
+    .flight_details .mat-tab-body-content{
+      overflow: hidden;
+      padding-left: 0px;
+    }
+    .mobileHide{
+      display: none;
+    }
+  }
+@media (max-width:400px){
+  .flight_details .mat-tab-labels .mat-tab-label {
+    margin: 2%;
+    padding: 0 0.7em;
+    overflow: hidden;
+    min-width: 60px;
+  }
+}
+  .criteria{
+    .ngx-slider .ngx-slider-pointer {
+      cursor: pointer;
+      width: 26px !important;
+      height: 26px !important;
+      top: -10px !important;
+      background-color: white !important;
+      z-index: 3;
+      border-radius: 16px;
+      border: 6px solid #FF0000!important;
+      }
+      .ngx-slider .ngx-slider-pointer::after {
+      display: none;
+      }
+      
+      .ngx-slider .ngx-slider-selection{
+      background: #FF0000;
+      }
+  }
+
+
+  @media (min-width:770px) {
+    .desktopHide{
+      display: none !important;
+    }
+  }

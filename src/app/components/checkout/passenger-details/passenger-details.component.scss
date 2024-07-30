@@ -1,0 +1,266 @@
+.headerContainer{
+  width: 100%;
+  padding: 1%;
+  background-color: var(--nine-color);
+  color: var(--one-color);
+  text-align: center;
+  font-family: var(--one-font);
+  font-size: 1.563rem;
+  font-weight: 700;
+}
+
+.sectionContainer{
+    background-color: var(--nine-color);
+    padding: 2%; 
+    position: relative;
+    .passengersHeaderTitle{
+        color: var(--eight-color);
+        font-family: var(--two-font);
+        font-size: 1.563rem;
+        font-style: normal;
+        font-weight: 600;
+    }
+    .passengersHeaderSteps{
+        color: var(--seven-color);
+        font-family: var(--two-font);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    .passengersHeaderDescription{
+        color: var(--three-color);
+        font-family: var(--two-font);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+    }
+    .passengerTitle{
+        color: var(--seven-color);
+        font-family: var(--two-font);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+    }
+    .passengerType{
+        color: var(--eight-color);
+        font-family: var(--two-font);
+        font-size: 1.563rem;
+        font-style: normal;
+        font-weight: 600;
+    }
+    .genderSelection{
+        border-radius: 5px;
+        border: 1px solid var(--four-color);
+        padding: 4%;
+        width: 85%;
+        color: var(--seven-color);
+        font-family: var(--two-font);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        cursor: pointer;
+        text-align: center;
+    }
+    .selectedGender{
+        border-radius: 5px;
+        border: 1px solid var(--fifteen-color);
+        background-color: var(--fifteen-color);
+        padding: 4%;
+        width: 85%;
+        color: var(--four-color);
+        font-family: var(--two-font);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    input{
+        border-radius: 5px;
+        border: 1px solid var(--three-color);
+        width: 100%;
+        padding: 4%;
+        color: var(--eight-color);
+        font-family: var(--two-font);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+    }
+    mat-datepicker-toggle{
+        position: absolute;
+        right: 5% !important;
+        left: unset !important;
+        bottom: 0;
+        top: 0%;
+    }
+    
+}
+
+mat-panel-description{
+    align-items: center;
+}
+
+.payNowSection{
+    margin-top: 2rem;
+    // float: right !important;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    .price{
+        color: var(--eight-color);
+        font-family: var(--two-font);
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 700;
+    }
+    .fareBreakup{
+        color: var(--seven-color);
+        font-family: var(--two-font);
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .payBtn{
+        button{
+            border-radius: 10px;
+            background:var(--one-color);
+            padding: 3% 18%;
+            color: var(--nine-color);
+            font-family: var(--two-font);
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 700;
+        }
+    }
+}
+
+
+.ar mat-datepicker-toggle{
+    position: absolute;
+    left: 5% !important;
+    right: unset !important;
+    bottom: 0;
+    top: 0%;
+}
+
+mat-expansion-panel{
+    box-shadow: none !important;
+}
+
+
+@media (max-width:769px) {
+  .headerContainer{
+    font-size: 1rem !important;
+    padding: 3% !important;
+  }
+    .payNowSection{
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: -0.4rem;
+        margin-bottom: 0.4em;
+        z-index: 9999999;
+        padding: 4%;
+        -webkit-box-shadow: rgba(0,0,0,.24) 0px 3px 8px;
+        box-shadow: #0000003d 0 3px 8px;
+        border: 2px solid rgba(0,0,0,15%);
+        background-color: white;
+      .price{
+        margin-left: 18px;
+        white-space: nowrap;
+
+      }
+      .fareBreakup{
+        margin-top: 5px;
+        margin-left: 18px;
+        white-space: nowrap;
+      }
+      .payBtn{
+        margin-top: 10px;
+      }
+    }
+}
+
+//modal styles
+.summary-title {
+    padding: 1.063rem 1.938rem;
+    background-color: var(--one-color);
+    font-family: var(--two-font);
+    font-weight: 700;
+    font-size: 1.563rem;
+    color: var(--nine-color);
+  }
+  .footer-section {
+    padding: 1.063rem 1.938rem;
+    background-color: var(--one-color);
+    color: var(--nine-color);
+    font-weight: 400;
+    line-height: 19.36px;
+    font-family: var(--two-font);
+  }
+  .summary-title h2 {
+    margin: 0;
+  }
+  
+  .second-box {
+    border-left: 1px solid var(--seven-color);
+    border-right: 1px solid var(--seven-color);
+  }
+  .city {
+    border-bottom: 1px solid var(--three-color);
+  }
+  .summary-cites {
+    padding: 1.2rem 1.938rem;
+  }
+  .summary-priceBreack {
+    padding: 1.2rem 1.938rem 1.4rem;
+  }
+  .summary-cites h3,
+  .summary-priceBreack h4 {
+    font-family: var(--two-font);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--eight-color);
+    line-height: 24.2px;
+    margin: 0;
+  }
+  
+  .summary-cites p {
+    font-family: var(--two-font);
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--seven-color);
+  }
+  
+
+  .fare-title {
+    font-family: var(--two-font);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--eight-color);
+    line-height: 19.36px;
+  }
+  
+  .fare-amount {
+    font-family: var(--two-font);
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--eight-color);
+  }
+  
+  .summary-prices {
+    margin-top: 2%;
+    margin-bottom: 8%;
+  }
+
+  
+
+
+  

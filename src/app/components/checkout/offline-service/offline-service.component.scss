@@ -1,0 +1,88 @@
+.headerContainer{
+    width: 100%;
+    padding: 1%;
+    background-color: var(--nine-color);
+    color: var(--one-color);
+    text-align: center;
+    font-family: var(--one-font);
+    font-size: 1.563rem;
+    font-weight: 700;
+}
+
+.servicesContainer{
+    width: 100%;
+    .service{
+        width: 100%;
+        background-color: var(--nine-color);
+        padding: 2%;
+        .serviceImg{
+            width: 100%;
+            img{
+                width: 100%;
+            }
+        }
+        .serviceTitle{
+            font-size: 1.5rem;
+            color: var(--eight-color);
+            font-family: var(--one-font);
+            font-weight: 700;
+            .terms-icon{
+                width:20px !important;
+            }
+        }
+        .serviceDescription{
+            font-size: 1.1rem;
+            color: var(--eight-color);
+            font-family: var(--one-font);
+            font-weight: 400;
+        }
+        .servicePrice{
+            font-size: 1.2rem;
+            color: var(--eight-color);
+            font-family: var(--one-font);
+            font-weight: 700;
+        }
+        .addBtn{
+            border-radius: 10px;
+            padding: 2%;
+            background-color: var(--eleven-color);
+            color: var(--nine-color);
+            font-weight: 700;
+            font-size: 1rem;
+            width: 100%;
+        }
+        .rmvBtn{
+            border-radius: 10px;
+            padding: 2%;
+            background-color: var(--one-color);
+            color: var(--nine-color);
+            font-weight: 700;
+            font-size: 1rem;
+            width: 100%;
+        }
+    }
+}
+
+
+@media (max-width:769px) {
+    .serviceImg{
+        width: 100%;
+        img{
+            width: 100% !important;
+        }
+    }
+    .serviceTitle,.servicePrice{
+        font-size: 0.9rem !important;
+        
+    }
+
+    .serviceDescription{
+        font-size: 0.8rem !important;
+    }
+    .headerContainer{
+        font-size: 1.2rem !important;
+    }
+    .servicePrice{
+        font-size: 1rem !important;
+    }
+}

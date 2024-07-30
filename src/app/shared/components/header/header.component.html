@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light w-100" [ngClass]="{'homePageStyle':homePage}">
+  
+    <div class="container-fluid ">   
+        <div class="d-flex justify-content-between align-items-center w-100">
+         <a class="navbar-brand py-0 m-0 " routerLink="/">
+        <img src="../../../../assets/images/logonew 1.svg"
+                width="130"
+                height="80"
+                alt="Trip Hands"
+                class="nav-logo">
+            </a>
+            <button
+              class="navbar-toggler  border-0 shadow-none"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+              
+           
+              <ul class="navbar-nav align-items-center ">
+                <li class="nav-item flight-li" [ngClass]="{ 'ar': translate.currentLang === 'ar' }">
+                    <a class="nav-link active " aria-current="page" routerLink="/">{{"header.flights" | translate }}</a>
+                  </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link active" aria-current="page" routerLink="/aboutUs">{{"header.aboutUs"  | translate}}</a>
+                  </li>
+                  <li class="nav-item mx-2">
+                    <a class="nav-link active" aria-current="page" routerLink="/contactUs">{{"header.contactUs"  | translate}}</a>
+                  </li>
+                  <li class="nav-item mx-2">
+                    <ng-container *ngIf="this.Utilities.selectedCurrency ">
+                      <button   mat-button [matMenuTriggerFor]="currencyMenu" class="nav-link-active">
+                        <img width="20" height="15" src="{{this.Utilities.selectedCurrency['Image_Url']}}"> {{ this.Utilities.selectedCurrency["Currency_Code"] }}
+                      
+                      </button>
+                    </ng-container></li>
+                  <li class="nav-item mx-2">
+                    <button class="langBtn" mat-button  class="nav-link" (click)="updateLang()">
+                      <mat-icon class="langIcon">language</mat-icon>
+        
+                      {{"header.currentLang"  | translate}}
+                    </button>                  </li>
+                  <li class="nav-item mx-2" (click)="goToLogin()" style="cursor: pointer;">
+                    <a class="nav-link active" aria-current="page">{{"header.signIn"  | translate}}</a>
+                  </li>
+              </ul>
+            </div>
+    </div>
+
+  
+</nav>
+<mat-menu #currencyMenu="matMenu">
+  <button mat-menu-item *ngFor="let currency of this.Utilities.allCurrency " (click)="updateCurrency(currency)">
+    <img width="25" height="25" [src]="currency.Image_Url"> {{ currency["Currency_Code"] }}
+  </button>
+</mat-menu>

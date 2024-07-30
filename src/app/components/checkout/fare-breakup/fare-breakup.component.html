@@ -1,0 +1,256 @@
+
+<div class="summary">
+    <section class="review">
+      <div class="summary-card-raber pe-0">
+        <div class="summary-card">
+          <div class="summary-title">
+            <h2>{{ "checkout.BookingSummary" | translate }}</h2>
+          </div>
+          <div class="second-box">
+            <div class="city">
+              <div class="summary-cites">
+                <h3 
+                  *ngIf="
+                    flight.selectedFlight!.searchCriteria.flightType === 'roundtrip' ||
+                    flight.selectedFlight!.searchCriteria.flightType === 'Roundtrip'">
+                  {{
+                    flight.selectedFlight!.airItineraryDTO!.allJourney!.flights![0].flightDTO![0]
+                      .departureTerminalAirport.cityName
+                  }}
+                  ({{
+                    flight.selectedFlight!.airItineraryDTO!.allJourney!.flights![0].flightDTO![0]
+                      .departureTerminalAirport.airportCode
+                  }}) {{ "checkout.to" | translate }}
+                  {{
+                    flight.selectedFlight!.airItineraryDTO!.allJourney!.flights![1].flightDTO![0]
+                      .departureTerminalAirport.cityName
+                  }}
+                  ({{
+                    flight.selectedFlight!.airItineraryDTO!.allJourney!.flights![1].flightDTO![0]
+                      .departureTerminalAirport.airportCode
+                  }})
+                </h3>
+                <p
+                  class="summary-dates"
+                  *ngIf="
+                  flight.selectedFlight!.searchCriteria.flightType === 'roundtrip' ||
+                  flight.selectedFlight!.searchCriteria.flightType === 'Roundtrip'
+                  "
+                >
+                  {{
+                    flight.selectedFlight!.airItineraryDTO!.allJourney!.flights![0].flightDTO![0]
+                      .departureDate | date : "EEE, d MMM"
+                  }}
+                  -
+                  {{
+                    flight.selectedFlight!.airItineraryDTO!.allJourney!.flights[1]!.flightDTO![0]
+                      .departureDate | date : "EEE, d MMM"
+                  }}
+                </p>
+                <ng-container *ngIf="flight.selectedFlight!.airItineraryDTO">
+                  <ng-container
+                    *ngIf="
+                    flight.selectedFlight!.searchCriteria.flightType != 'roundtrip' &&
+                    flight.selectedFlight!.searchCriteria.flightType != 'Roundtrip'
+                    "
+                  >
+                    <ng-container
+                      *ngFor="
+                        let flight of flight.selectedFlight!.airItineraryDTO.allJourney.flights;
+                        let i = index
+                      "
+                    >
+                      <h3 [ngClass]="{ 'mt-0': i > 0 }">
+                        <span>
+                          {{
+                            flight.flightDTO![0].departureTerminalAirport.cityName
+                          }}
+                        </span>
+                        <span>
+                          ({{
+                            flight.flightDTO![0].departureTerminalAirport
+                              .airportCode
+                          }}) </span
+                        >{{ "checkout.to" | translate }}
+                        <span>
+                          {{
+                            flight.flightDTO![flight.flightDTO!.length - 1]
+                              .arrivalTerminalAirport.cityName
+                          }}
+                        </span>
+                        <span>
+                          ({{
+                            flight.flightDTO![flight.flightDTO!.length - 1]
+                              .arrivalTerminalAirport.airportCode
+                          }})
+                        </span>
+                      </h3>
+                      <p class="summary-dates">
+                        {{
+                          flight.flightDTO![0].departureDate | date : "EEE, d MMM"
+                        }}
+                      </p>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+  
+            <div class="summary-priceBreack">
+              <h4>{{ "checkout.PriceBreakDown" | translate }}:</h4>
+              <ng-container
+                *ngFor="
+                  let fare of flight.selectedFlight!.airItineraryDTO.passengerFareBreakDownDTOs
+                "
+              >
+                <ng-container *ngIf="flight.fareBreackup">
+                  <ng-container [ngSwitch]="fare.passengerType">
+                    <div
+                      class="summary-prices row justify-content-around"
+                      *ngSwitchCase="'ADT'"
+                    >
+                      <span class="fare-title col-6"
+                        >{{ "checkout.AdultFare" | translate }}:</span
+                      >
+                      <span class="fare-amount col-6"
+                        >{{ flight.fareBreackup.ADT.totalFare[1] | exchange : "code"
+                        }}{{
+                            flight.fareBreackup.ADT.totalFare[0] | exchange : "value"
+                        }}</span
+                      >
+                      <sub
+                        >{{ flight.fareBreackup.ADT.ScFare[2] }}
+                        X
+                        {{ flight.fareBreackup.ADT.ScFare[1] | exchange : "code" }}
+                        {{ flight.fareBreackup.ADT.ScFare[0] | exchange : "value" }}
+                      </sub>
+                    </div>
+                    <div
+                      class="summary-prices row justify-content-around"
+                      *ngSwitchCase="'CNN'"
+                    >
+                      <span class="fare-title col-6"
+                        >{{ "checkout.ChildFare" | translate }}:
+                      </span>
+                      <span class="fare-amount col-6"
+                        >{{ flight.fareBreackup.CNN.totalFare[1] | exchange : "code"
+                        }}{{
+                            flight.fareBreackup.CNN.totalFare[0] | exchange : "value"
+                        }}</span
+                      >
+                      <sub
+                        >{{ flight.fareBreackup.CNN.ScFare[2] }}
+                        X
+                        {{ flight.fareBreackup.CNN.ScFare[1] | exchange : "code" }}
+                        {{ flight.fareBreackup.CNN.ScFare[0] | exchange : "value" }}
+                      </sub>
+                    </div>
+                    <div
+                      class="summary-prices d-flex justify-content-between"
+                      *ngSwitchCase="'INF'"
+                    >
+                      <div class="row">
+                        <span class="fare-title col-12 mb-1"
+                          >{{ "checkout.InfantFare" | translate }}:</span
+                        >
+                        <sub
+                          >{{ flight.fareBreackup.INF.ScFare[2] }}
+                          X
+                          {{ flight.fareBreackup.INF.ScFare[1] | exchange : "code" }}
+                          {{ flight.fareBreackup.INF.ScFare[0] | exchange : "value" }}
+                        </sub>
+                      </div>
+  
+                      <span class="fare-amount"
+                        >{{ flight.fareBreackup.INF.totalFare[1] | exchange : "code"
+                        }}{{
+                            flight.fareBreackup.INF.totalFare[0] | exchange : "value"
+                        }}</span
+                      >
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+  
+              <div class="row justify-content-between mb-3">
+                <span class="fare-title col-6 m-0"
+                  >{{ "checkout.Taxes" | translate }}:</span
+                >
+                <span class="fare-amount col-6 m-0">
+                  {{
+                    flight.selectedFlight!.airItineraryDTO.itinTotalFare.currencyCode
+                      | exchange : "code"
+                  }}
+                  {{
+                    flight.selectedFlight!.airItineraryDTO.itinTotalFare.totalTaxes
+                      | exchange : "value"
+                  }}
+                </span>
+              </div>
+              <ng-container *ngIf="flight.fareDisscount && flight.fareDisscount[0]">
+                <div class="row mb-3">
+                  <span class="fare-title col-6 m-0"
+                    >{{ flight.fareDisscount[1] | translate }}:</span
+                  >
+  
+                  <span
+                    class="fare-amount col-6 m-0"
+                    *ngIf="flight.fareDisscount[1] === 'Service Fees'"
+                  >
+                    {{ flight.fareDisscount[2] | exchange : "code" }}
+                    {{ flight.fareDisscount[0] | exchange : "value" }}</span
+                  >
+                  <span
+                    class="fare-amount col-6 m-0"
+                    *ngIf="flight.fareDisscount[1] === 'Discount'"
+                    >(
+                    {{ flight.fareDisscount[2] | exchange : "code" }}
+                    {{ flight.fareDisscount[0] | exchange : "value" }}
+                    )</span
+                  >
+                </div>
+              </ng-container>
+              <ng-container>
+                <div class="row mb-3" *ngIf="this.flight.selectedOfflineServices.length>0">
+                  <span class="fare-title col-6 m-0"
+                    >{{"checkout.serviceFees" | translate}}:</span
+                  >
+                  <span
+                    class="fare-amount col-6 m-0"
+                   
+                  >
+                  {{
+                    flight.selectedFlight!.airItineraryDTO.itinTotalFare.currencyCode
+                      | exchange : "code"
+                  }}
+                    {{ totalServicePrice | exchange : "value" }}</span
+                  >
+                </div>
+              </ng-container>
+            </div>
+          </div>
+  
+          <div class="d-flex justify-content-between total-rab footer-section">
+            <span class="total-title"
+              >{{ "checkout.TotalFare" | translate }}:</span
+            >
+            <span class="total-amount">
+              
+              {{
+                flight.selectedFlight!.airItineraryDTO.itinTotalFare.currencyCode
+                  | exchange : "code"
+              }}
+              <span *ngIf="this.flight.bookingType=='standard'">
+                {{ flight.selectedFlight!.airItineraryDTO.itinTotalFare.amount | exchange:'value' }}
+            </span>
+            <span *ngIf="this.flight.bookingType=='premium'">
+                {{flight.priceWithRecommenedService | exchange:'value'}}
+
+            </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+

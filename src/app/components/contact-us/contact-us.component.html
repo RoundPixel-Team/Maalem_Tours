@@ -1,0 +1,110 @@
+<app-header [homePage]='false'></app-header>
+<div id="footer" class="section-bg">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+
+                        <div class="col-sm-12">
+                            <div class="footer-links">
+                                <h4>{{ "contact.contactUs" | translate }}</h4>
+                                <address>{{ "contact.address" | translate }}</address>
+                                <p>
+                                    <strong>{{"contact.phone"|translate}}:</strong>+96522070222<br>
+                                    <strong>{{"contact.whatsApp"|translate}}:</strong>
+                                    <a href="https://wa.me/+96522070222" class="twitter" target="_blank">
+                                        +96522070222
+                                    </a>
+                                    <br>
+                                    <strong>{{ "contact.email" | translate }}:</strong> reservations@triphands.com<br />
+                                </p>
+                                 
+                            </div>
+                            
+                            <div class="social-links">
+                                <a href="https://twitter.com" class="twitter">
+                                    <i class="bi bi-twitter" style="color: #fff"></i>
+                                </a>
+                                <a href="https://facebook.com" class="facebook">
+                                    <i class="bi bi-facebook" style="color: #fff"></i>
+                                </a>
+                                <a href="https://www.instagram.com" class="instagram">
+                                    <i class="bi bi-instagram" style="color: #fff"></i>
+                                </a>
+                                <a href="https://www.linkedin.com" class="linkedin">
+                                    <i class="bi bi-linkedin" style="color: #fff"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="form">
+                        <h4>{{ "contact.sendMsg" | translate }}</h4>
+
+                        <form [formGroup]="sendmessage" (ngSubmit)="onSubmit()">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <input type="text" placeholder="{{ 'contact.name' | translate }}"
+                                        formControlName="Name" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && sendmessage.get('Name')?.invalid }" />
+                                    <div *ngIf="submitted && sendmessage.get('Name')?.invalid" class="invalid-feedback">
+                                        <div *ngIf="sendmessage.get('Name')?.touched && sendmessage.get('Name')?.invalid">
+                                            {{'contact.nameValidation' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <input type="text" formControlName="email"
+                                        placeholder="{{ 'contact.email' | translate }}" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && sendmessage.get('email')?.invalid }" />
+                                    <div *ngIf="submitted && sendmessage.get('email')?.invalid" class="invalid-feedback">
+                                        <div *ngIf="sendmessage.get('email')?.touched &&  sendmessage.get('email')?.invalid">
+                                            {{'contact.EmailValidation' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <input type="text" placeholder="{{ 'contact.subject' | translate }}"
+                                        formControlName="subject" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && sendmessage.get('subject')?.invalid }" />
+                                    <div *ngIf="submitted && sendmessage.get('subject')?.invalid" class="invalid-feedback">
+                                        <div *ngIf="sendmessage.get('subject')?.invalid">
+                                            {{'contact.subjectValidation' | translate }} 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea class="form-control" formControlName="message" name="message" rows="6"
+                                    data-rule="required" data-msg="Please write something for us"
+                                    [ngClass]="{ 'is-invalid': submitted && sendmessage.get('message')?.invalid }"
+                                    placeholder="{{ 'contact.msg' | translate }}"></textarea>
+                                <div *ngIf="submitted && sendmessage.get('message')?.invalid" class="invalid-feedback">
+                                    <div *ngIf="sendmessage.get('message')?.invalid">
+                                       {{'contact.messageValidation' | translate }}  
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="text-center">
+                  <button class="btn btn-primary mr-1">Register</button>
+               
+              </div> -->
+                            <div class="text-center">
+                                <button class="btn btn-primary mr-1" type="submit" title="Send Message">
+                                    {{ "contact.send" | translate }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

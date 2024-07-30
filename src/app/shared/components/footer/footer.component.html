@@ -1,0 +1,95 @@
+<div class="footerContainer">
+    <div class="container">
+        <!--LOGO-->
+        <div class="row">
+            <div class="logo mt-3 ">
+                <img (click)="goToHome()" style="cursor: pointer;" src="../../../../assets/images/logonew 1.svg">
+            </div>
+        </div>
+        <!-- Best Flights -->
+        <div class="row borderBottom">
+            <app-top-destination [destinationView]="false"></app-top-destination>
+        </div>
+        <div class="row borderBottom">
+            <div class="col-12 col-lg-6">
+                <div class="texts">
+                    <div class="text">
+                        <i class="bi bi-geo-alt"></i>
+                        {{'footer.location' | translate}}
+                    </div>
+
+                    <div class="text mt-3">
+                        <i class="bi bi-envelope"></i>
+                        {{'footer.email' | translate}}
+                    </div>
+
+                    <div class="text mt-3">
+                        <i class="bi bi-telephone"></i>
+                        {{'footer.phone' | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- COMPANY -->
+            <div class="col-12 col-lg-3">
+                <div class="sectionTitle">
+                    {{'footer.companyTxt' | translate}}
+                </div>
+
+                <div class="texts mt-3">
+                    <div class="text mt-3" style="cursor: pointer;" (click)="goToAboutUs()">
+                        {{'footer.about' | translate}}
+                    </div>
+
+                    <div class="text mt-3" style="cursor: pointer;" (click)="goToContactUs()">
+                        {{'footer.contact' | translate}}
+                    </div>
+                </div>
+            </div>
+
+            <!--MORE-->
+            <div class="col-12 col-lg-3">
+                <div class="sectionTitle">
+                    {{'footer.moreTxt' | translate}}
+                </div>
+
+                <div class="texts mt-3">
+                    <div class="text mt-3" style="cursor: pointer;" (click)="goToPrivacy()">
+                        {{'footer.privacy' | translate}}
+                    </div>
+
+                    <div class="text mt-3" style="cursor: pointer;" (click)="goToTermsOfUse()">
+                        {{'footer.terms' | translate}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3 mb-3 p-2">
+            <div class="col-12 col-lg-8">
+                <div class="bottomTxt">
+                    {{'footer.copyRights' | translate}}
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="bottomIcons">
+                    <a href="https://facebook.com" class="facebook">
+                        <i class="bi bi-facebook" style="color: #fff"></i>
+                    </a>
+
+                    <a href="https://www.linkedin.com" class="linkedin">
+                        <i class="bi bi-linkedin" style="color: #fff"></i>
+                    </a>
+
+                    <a href="https://twitter.com" class="twitter">
+                        <i class="bi bi-twitter" style="color: #fff"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com" class="instagram">
+                        <i class="bi bi-instagram" style="color: #fff"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

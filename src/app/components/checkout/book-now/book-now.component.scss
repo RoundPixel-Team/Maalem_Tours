@@ -1,0 +1,91 @@
+.desktopContainer{
+    padding: 2%;
+    background-color: var(--nine-color);
+    .standardBooking{
+        font-family: var(--one-font) !important;
+        .title{
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--sixteen-color);
+        }
+        .standardPrice{
+            font-size: 1rem;
+            color: var(--eight-color);
+            font-weight: 700;
+        }
+        .standardBtn{
+            button{
+                border-radius: 10px;
+                background-color: var(--seventeen-color);
+                padding: 10% 50%;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 700;
+                color: var(--sixteen-color);
+            }
+        }
+    }
+
+    .premiumBooking{
+        font-family: var(--one-font) !important;
+        .newBookingLink{
+            text-decoration: underline;
+            cursor: pointer;
+            color:var(--sixteen-color);
+        }
+        .title{
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--sixteen-color);
+        }
+        .premiumPrice{
+            font-size: 1rem;
+            color: var(--eight-color);
+            font-weight: 700;
+        }
+        .premiumBtn{
+            button{
+                border-radius: 10px;
+                background-color: var(--one-color);
+                padding: 1% 10%;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 500;
+                color: var(--nine-color);
+            }
+        }
+    }
+}
+
+
+
+@media (max-width:769px) {
+    .desktopContainer{
+        .standardBooking{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .premiumBooking{
+            display: flex;
+            flex-direction: column;
+            .newBookingLink{
+                margin:10px;
+            }
+         .premiumBtn{
+            button{
+                padding: 3% !important;
+                font-size: 0.9rem !important;
+
+            }
+         }
+    }
+    }
+ 
+}
+
+@media (min-width:770px) {
+    .mobileContainer{
+        display: none;
+    }
+}

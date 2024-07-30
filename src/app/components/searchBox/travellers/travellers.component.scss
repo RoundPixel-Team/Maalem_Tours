@@ -1,0 +1,81 @@
+@import "../../../shared/scss/mixins.scss";
+
+.title {
+    @include textStyle(#000, 20px, 600);
+}
+
+.travelInput{
+    @include cityInput(70%);
+    font-family: var(--one-font);
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    margin: 0.5rem auto auto;
+    padding: 0.5rem 0.5rem;
+
+    &_text {
+        align-items: center;
+
+        &_num {
+            @include textStyle(rgb(2, 117, 216), 30px, 600);
+        }
+
+        &_title {
+            @include textStyle(rgb(2, 117, 216), 25px, 600);
+            margin-inline-start: 10px;
+            margin-top: 7px;
+        }
+    }
+
+    &_btns {
+        // margin-top: 2px;
+        display: flex;
+
+        &_active {
+            @include textStyle(#fff, 35px, 600);
+            border: 1px solid rgb(2, 117, 216);
+            background-color: rgb(2, 117, 216);
+            border-radius: 5px;
+            padding: 0.1rem 0.5rem;
+            margin: 0 0.2rem;
+        }
+
+        &_disable {
+            @include textStyle(#fff, 35px, 600);
+            border: 1px solid #ccc;
+            background-color: #ccc;
+            border-radius: 5px;
+            padding: 0.1rem 0.5rem;
+            margin: 0 0.2rem;
+        }
+    }
+}
+
+.traveller_wrapper{
+    width:70%;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    margin: 0 auto;
+}
+
+.classType {
+    @include cityInput(70%);
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+
+    &_text {
+        @include textStyle(rgb(2, 117, 216), 20px, 600);
+    }
+}
+
+@media(max-width:540px) {
+    .traveller_wrapper{
+        flex-direction: column;
+        width: 100%;
+    }
+    .travelInput, .classType{
+        width: 100%;
+    }   
+}

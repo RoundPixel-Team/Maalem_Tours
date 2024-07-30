@@ -1,0 +1,214 @@
+<app-header [homePage]='false'></app-header>
+<div class="container-fluid">
+     <div class="flights-result-container row mt-3">
+          <!-- START SUMMARY AND MODIFIY SEARCH SECTION -->
+          <div class="col-12 mt-2 mb-2" *ngIf="!FlightResult.loading && FlightResult.response">
+               <div class="row flightSummaryContainer" [ngClass]="{'justifiyCenter':FlightResult.response!.searchCriteria!.flightType == 'oneway'}">
+                    <!--FLIGHTS SUMMARY-->
+                    <div class="col-6 col-lg-4 flightSummary" *ngFor="let flight of FlightResult.response!.searchCriteria!.flights">
+                         <p>{{flight.departingFrom}} - {{flight.arrivingTo}}</p>
+                         <p>{{flight.departingOnDate | date:'longDate'}}</p>
+                    </div>
+                    <!--MODIFIY BUTTON-->
+                    <div class="col-12 col-lg-4">
+                         <button (click)="modifiySearch = !modifiySearch">{{'flightFilter.modifySearch' | translate}}</button>
+                    </div>
+
+                    <!--SEARCH BOX CONTAINER-->
+                    <div class="col-12" *ngIf="modifiySearch">
+                         <app-searchBox></app-searchBox>
+                    </div>
+               </div>
+          </div>
+
+          <!--LAZY LOADING FOR SUMMARY SECTION-->
+          <div class="col-12 mt-2 mb-2" *ngIf="FlightResult.loading">
+               <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+             
+          </div>
+          <!-- END SUMMARY AND MODIFIY SEARCH SECTION -->
+          
+     </div>
+     
+</div>
+
+
+<!--FILTERS AND CARDS-->
+<div class="container">
+     <div class="flights-result-container row mt-3">
+          <div class="col-lg-3 col-sm-12 mobileHide" style="position: relative;">
+               <app-flights-filters></app-flights-filters>
+          </div>
+          <div class="col-lg-8 col-sm-12">
+               <!--START CUSTOM FILTER AIRLINE-->
+          
+               <!--FOR DESKTOP VIEW-->
+               <div class="airlinesContainer" *ngIf="!FlightResult.loading && FlightResult.response">
+                    <i (click)="FlightResult.prevcustomFilteredAirline()" [ngClass]="{'arRotate':translate.currentLang == 'ar'}" class="bi bi-chevron-left customFilterAirlineChevron"></i>
+                    <div class="airlineBoxContainer" *ngFor="let airline of FlightResult.customFilteredAirlineSlice; let i = index">
+                      <div class="airlineBox" [ngClass]="{ chosedAirline: FlightResult.checkCustomFilterAirline(airline.name)}" 
+                      (click)="FlightResult.chooseCustomFilterAirline(airline, i)"> 
+                      <div class="airlineName">{{airline.name | slice:0:15}}</div>
+                      <div class="lowestFareAndlogo">
+                         <div class="lowestFare">
+                              <span>{{airline.price | exchange: "value" | currency: "EGY":""}}</span>
+                              <span>{{airline.currency | exchange: "code" }}</span>
+                         </div>
+                         <div class="logo">
+                              <img  [src]="airline.logo" alt="airline logo"/>
+                         </div>
+                      </div>
+                    </div>
+                    </div>
+                    <i (click)="FlightResult.nextcustomFilteredAirline()" [ngClass]="{'arRotate':translate.currentLang == 'ar'}" class="bi bi-chevron-right customFilterAirlineChevron"></i>
+               </div>
+          
+                  <!--FOR MOBILE VIEW-->
+                  <div class="airlinesContainerMobile" *ngIf="!FlightResult.loading && FlightResult.response">
+                    <i (click)="FlightResult.prevcustomFilteredAirlineMobile()" [ngClass]="{'arRotate':translate.currentLang == 'ar'}" class="bi bi-chevron-left customFilterAirlineChevron"></i>
+                    <div class="airlineBoxContainer" *ngFor="let airline of FlightResult.customFilteredAirlineSliceMobile; let i = index">
+                      <div class="airlineBox" [ngClass]="{ chosedAirline: FlightResult.checkCustomFilterAirline(airline.name)}" 
+                      (click)="FlightResult.chooseCustomFilterAirline(airline, i)"> 
+                      <div class="airlineName">{{airline.name | slice:0:15}}</div>
+                      <div class="lowestFareAndlogo">
+                         <div class="lowestFare">
+                              <span>{{airline.price | exchange: "value" | currency: "EGY":""}}</span>
+                              <span>{{airline.currency | exchange: "code" }}</span>
+                         </div>
+                         <div class="logo">
+                              <img  [src]="airline.logo" alt="airline logo"/>
+                         </div>
+                      </div>
+                    </div>
+                    </div>
+                    <i (click)="FlightResult.nextcustomFilteredAirlineMobile()" [ngClass]="{'arRotate':translate.currentLang == 'ar'}" class="bi bi-chevron-right customFilterAirlineChevron"></i>
+               </div>
+               <!--END CUSTOM FILTER AIRLINE-->
+          
+          
+               <!-- START SORTING CONTAINER -->
+               <div class="sortingContainer" *ngIf="!FlightResult.loading && FlightResult.response">
+                    <div class="row">
+                         <!--cheapeast-->
+                         <div class="col-6 col-lg-3 criteria" (click)="FlightResult.sortMyResult(1)">
+                              <div class="text">{{'sorting.cheapest' | translate}}</div>
+                              <div class="value">{{FlightResult.cheapeastLowestFare | exchange:'value'}} {{FlightResult.response!.searchCriteria!.currency | exchange:"code"}}</div>
+                         </div>
+                         <!--shortest-->
+                         <div class="col-6 col-lg-3 criteria" (click)="FlightResult.sortMyResult(2)">
+                              <div class="text">{{'sorting.shortest' | translate}}</div>
+                              <div class="value">{{FlightResult.shortestLowestFare | exchange:'value'}} {{FlightResult.response!.searchCriteria!.currency | exchange:"code"}}</div>
+                         </div>
+                         <!--best experience-->
+                         <div class="col-6 col-lg-3 criteria" (click)="FlightResult.sortMyResult(7)">
+                              <div class="text">{{'sorting.bestExperience' | translate}}</div>
+                              <div class="value">{{FlightResult.bestExperienceLowestFare | exchange:'value'}} {{FlightResult.response!.searchCriteria!.currency | exchange:"code"}}</div>
+                         </div>
+                         <!--time sorting-->
+                         <div class="col-6 col-lg-3 sortByCriteria" [matMenuTriggerFor]="sortByMenu">
+                              <div class="text">{{'sorting.sortBy' | translate}}</div>
+                         </div>
+                    </div>
+               </div>
+               <!-- END SORTING CONTAINER -->
+
+               <!--float filter icon for mobile view-->
+               <div class="floatFilterIcon mt-2 mb-2 desktopHide" (click)="openMobileFilterSideNav()">
+                    <i class="bi bi-funnel"></i>
+                    <span>{{translate.currentLang == 'en'?'Filter':'تصفية'}}</span>
+               </div>
+               <div *ngFor="let flight of this.FlightResult.orgnizedResponce; let i=index">
+                    <app-oneway-result [flight]="flight" *ngIf="FlightResult.FlightType == 'oneway' || FlightResult.FlightType == 'Oneway' || FlightResult.FlightType =='OneWay' "></app-oneway-result>
+                    <app-roundtrip-result [flight]="flight" *ngIf="FlightResult.FlightType== 'roundtrip' || FlightResult.FlightType=='Roundtrip' || FlightResult.FlightType=='RoundTrip' "></app-roundtrip-result>
+                    <app-multicity-result [flight]="flight" *ngIf="FlightResult.FlightType== 'multicity' || FlightResult.FlightType=='Multicity' || FlightResult.FlightType=='MultiCity' "></app-multicity-result> 
+               </div>
+               <div *ngIf="!FlightResult.loading && FlightResult.orgnizedResponce.length==0">
+                    <div class="row flightSummaryContainer">
+                         <!--FLIGHTS SUMMARY-->
+                         <div class="col-6 col-lg-4 flightSummary">
+                              
+                         <p>{{'flightsResult.error' | translate}}</p>
+                               
+                         </div>
+                         <!--MODIFIY BUTTON-->
+                         <div class="col-12 col-lg-4">
+                              <button (click)="modifiySearch = !modifiySearch">{{'flightFilter.modifySearch' | translate}}</button>
+                         </div>
+     
+                         <!--SEARCH BOX CONTAINER-->
+                         <div class="col-12" *ngIf="modifiySearch">
+                              <app-searchBox></app-searchBox>
+                         </div>
+                    </div>
+                
+               </div>
+               
+               <div *ngIf="FlightResult.loading"> 
+                    
+                    <div class="w-100 mt-1 lazyLoadCard">
+                         <img
+                           class="w-100 "
+                           src="../../../assets/images/lazyLoadingCard.svg"
+                         />
+                       </div>
+          
+                       <div class="w-100 mt-1 lazyLoadCard2">
+                         <img
+                           class="w-100 "
+                           src="../../../assets/images/lazyLoadingCard.svg"
+                         />
+                       </div>
+          
+                       <div class="w-100 mt-1 lazyLoadCard3 ">
+                         <img
+                           class="w-100 "
+                           src="../../../assets/images/lazyLoadingCard.svg"
+                         />
+                       </div>
+          
+                       <div class="w-100 mt-1 lazyLoadCard4">
+                         <img
+                           class="w-100 "
+                           src="../../../assets/images/lazyLoadingCard.svg"
+                         />
+                       </div>
+          
+                       <div class="w-100 mt-1 lazyLoadCard5 ">
+                         <img
+                           class="w-100 "
+                           src="../../../assets/images/lazyLoadingCard.svg"
+                         />
+                       </div>
+          
+                       <div class="w-100 mt-1 lazyLoadCard6">
+                         <img
+                           class="w-100 "
+                           src="../../../assets/images/lazyLoadingCard.svg"
+                         />
+                       </div>
+               
+          </div> 
+          </div>
+     </div>
+</div>
+
+
+
+<!--SORT BY MENU-->
+<mat-menu #sortByMenu="matMenu">
+     <button (click)="FlightResult.sortMyResult(3)" mat-menu-item>{{'sorting.departureEarliest' | translate}}</button>
+     <button (click)="FlightResult.sortMyResult(4)" mat-menu-item>{{'sorting.departureLatest' | translate}}</button>
+     <!-- <button *ngIf="FlightResult.response!.searchCriteria!.flightType == 'roundtrip'"
+     (click)="FlightResult.sortMyResult(5)" mat-menu-item>{{'sorting.returnEarliest' | translate}}</button>
+     <button *ngIf="FlightResult.response!.searchCriteria!.flightType == 'roundtrip'"
+     (click)="FlightResult.sortMyResult(6)" mat-menu-item>{{'sorting.returnLatest' | translate}}</button> -->
+</mat-menu>
+
+
+<div id="mobileFilterSideNav" #mobileFilterSideNav> 
+     <app-flights-filters></app-flights-filters>
+     
+</div>
+
+
+

@@ -1,0 +1,31 @@
+<section class="container" *ngIf="destinationView">
+    <!-- Top Destination Component -->
+    <div class="row">
+        <ng-container *ngFor="let card of cards; let i=index">
+            <div *ngIf="card.tripIdeas==true" class="col-12 col-md-3 my-2" (click)="gotoSearchResult(card)">
+                <div  class="topDestination" style="background-image: url('{{card.imageURL}}')" loading="lazy">
+                    <!-- Top destination text -->
+                    <div></div>
+                    <div class="topDestination_wrapper">
+                        <h2 class="title" *ngIf="translate.currentLang == 'en'">{{card.distination }}</h2>
+                        <h2 class="title" *ngIf="translate.currentLang == 'ar'">{{card.distinationAr }}</h2>
+                        <p  class="body" *ngIf="translate.currentLang == 'en'">{{card.descriptionEn }}</p>
+                        <p  class="body" *ngIf="translate.currentLang == 'ar'">{{card.descriptionAr }}</p>
+                        <span class="footer">{{'homePage.topDestination' | translate}} {{card.price}}<span class="ms-1">KWD</span></span>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</section>
+<!-- Best Trips Component -->
+<section class="container" *ngIf="!destinationView">
+    <h2 class="bestFlight_title">{{'homePage.bestFlights' | translate}}</h2>
+    <div class="row mb-3">
+        <ng-container *ngFor="let card of cards; let i=index">
+            <div *ngIf="card.tripIdeas==true" class="col-12 col-md-3 bestFlight"(click)="gotoSearchResult(card)">
+                {{'homePage.bestFlightsDesc' | translate}} <span class="title" *ngIf="translate.currentLang == 'en'">{{card.distination}}</span><span class="title" *ngIf="translate.currentLang == 'ar'">{{card.distinationAr}}</span>
+            </div>
+        </ng-container>
+    </div>
+</section>

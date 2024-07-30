@@ -1,0 +1,166 @@
+<app-header [homePage]='false'></app-header>
+<div class="container">
+    <section id="intro" class="clearfix">
+        <div class="container d-flex h-100">
+            <div class="row justify-content-center align-self-center">
+                <div class="col-md-6 intro-info order-md-first order-last">
+                    <h2>{{'aboutUs.anEasyBook' | translate}}<br /><span>{{'aboutUs.go' | translate}}</span> {{'aboutUs.onlineSoultion'|translate}}</h2>
+                    <div>
+                        <a href="" class="btn-get-started scrollto">{{'aboutUs.getStarted' | translate}}</a>
+                    </div>
+                </div>
+    
+                <div class="col-md-6 intro-img order-md-last order-first">
+                    <img src="../../../assets/images/intro-img.svg" alt="" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- #intro -->
+    <main id="main">
+        <!--==========================
+        About Us Section
+      ============================-->
+        <section id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="about-img">
+                            <img src="../../../assets/images/about-us-plane.jpg" alt="plane" />
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-7 col-md-6">
+                        <div class="about-content">
+                            <h2>{{'aboutUs.ourCompany' | translate}}</h2>
+    
+                            <!-- <h3>It all started with a simple idea.</h3> -->
+                            <p>
+                                {{'aboutUs.ourCompanyTxt' | translate}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- #about -->
+    
+        <!--==========================
+        Features Section
+      ============================-->
+        <section id="features">
+            <div class="container">
+                <div class="row feature-item">
+                    <div class="col-lg-6 wow fadeInUp">
+                        <img src="../../../assets/images/mission.jpg" class="img-fluid" alt="" />
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
+                        <h3>{{'aboutUs.ourMission' | translate}}</h3>
+                        <p>
+                            {{'aboutUs.ourMissionTxt' | translate}}
+                        </p>
+                    </div>
+                </div>
+    
+                <div class="row feature-item mt-5 pt-5">
+                    <div class="col-lg-6 wow fadeInUp order-1 order-lg-2">
+                        <img src="../../../assets/images/vision.jpg" class="img-fluid" alt="" />
+                    </div>
+    
+                    <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
+                        <h3>{{'aboutUs.ourVision' | translate}}</h3>
+                        <p>
+                            {{'aboutUs.ourVisionTxt' | translate}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row feature-item mt-5 pt-5">
+                    <div class="col-lg-6 wow fadeInUp">
+                        <img src="../../../assets/images/puzz.jpg" class="img-fluid" alt="" />
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
+                        <h3>triphands.com</h3>
+                        <p>
+                            {{'aboutUs.firstLinkTxt' | translate}}
+                            
+                        </p>
+                        <p>
+                            <span style="color: #3E7DC3"> triphands.com </span> {{'aboutUs.firstLinkSubTxt' | translate}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- #about -->
+    
+        <!--==========================
+        Services Section
+      ============================-->
+        <section id="services" class="section-bg">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h3>{{'aboutUs.services' | translate}}</h3>
+          
+                    <p>{{'aboutUs.servicesTxt' | translate}}</p>
+                </div>
+    
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-2 wow bounceInUp" data-wow-duration="1.4s">
+                        <div class="box">
+                            <div class="icon" style="background: #3E7DC3">
+                                <!-- <fa-icon class="icon" [icon]="faPlane" aria-hidden="true"  style="top:0% "></fa-icon> -->
+                                <i class="bi bi-airplane"></i>
+                                <!-- <fa-icon [icon]=" faPlane" style="color: rgba(255, 255, 255, 0.534)" ></fa-icon> -->
+                            </div>
+                            <h4 class="title"><a>{{'aboutUs.flights' | translate}}</a></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-2 wow bounceInUp" data-wow-duration="1.4s">
+                        <div class="box">
+                            <div class="icon" style="background: #3E7DC3">
+                                <!-- <fa-icon [icon]=" faHotel" style="color: #fff" ></fa-icon> -->
+                                <i class="bi bi-buildings"></i>
+                            </div>
+                            <h4 class="title"><a>{{'aboutUs.hotels' | translate}}</a></h4>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-2 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                        <div class="box">
+                            <div class="icon" style="background: #3E7DC3">
+                                <!-- <fa-icon [icon]=" faCar" style="color: #fff" ></fa-icon> -->
+                                <i class="bi bi-car-front-fill"></i>
+    
+                            </div>
+                            <h4 class="title"><a>{{'aboutUs.carRentals' | translate}}</a></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-2 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                        <div class="box">
+                            <div class="icon" style="background: #3E7DC3">
+                                <!-- <fa-icon [icon]=" faMapMarkedAlt" style="color: #fff" ></fa-icon> -->
+                                <i class="bi bi-geo-alt"></i>
+    
+                            </div>
+                            <h4 class="title"><a>{{'aboutUs.packages' | translate}}</a></h4>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-2 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                        <div class="box">
+                            <div class="icon" style="background: #3E7DC3">
+                                <!-- <fa-icon [icon]=" faFutbol" style="color: #fff" ></fa-icon> -->
+                                <i class="bi bi-scooter"></i>
+                                
+                            </div>
+                            <h4 class="title"><a>{{'aboutUs.sport' | translate}}</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- #services -->
+    </main>
+</div>
+
+<app-footer></app-footer>

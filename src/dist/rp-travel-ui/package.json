@@ -1,0 +1,31 @@
+{
+  "name": "rp-travel-ui",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "module": "fesm2015/rp-travel-ui.mjs",
+  "es2020": "fesm2020/rp-travel-ui.mjs",
+  "esm2020": "esm2020/rp-travel-ui.mjs",
+  "fesm2020": "fesm2020/rp-travel-ui.mjs",
+  "fesm2015": "fesm2015/rp-travel-ui.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/rp-travel-ui.mjs",
+      "es2020": "./fesm2020/rp-travel-ui.mjs",
+      "es2015": "./fesm2015/rp-travel-ui.mjs",
+      "node": "./fesm2015/rp-travel-ui.mjs",
+      "default": "./fesm2020/rp-travel-ui.mjs"
+    }
+  },
+  "sideEffects": false
+}

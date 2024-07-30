@@ -1,0 +1,71 @@
+.summary-title {
+    padding: 1.063rem 1.938rem;
+    background-color: var(--one-color);
+    font-family: var(--two-font);
+    font-weight: 700;
+    font-size: 1.563rem;
+    color: var(--nine-color);
+  }
+  .footer-section {
+    padding: 1.063rem 1.938rem;
+    background-color: var(--one-color);
+    color: var(--nine-color);
+    font-weight: 400;
+    line-height: 19.36px;
+    font-family: var(--two-font);
+  }
+  .summary-title h2 {
+    margin: 0;
+  }
+  
+  .second-box {
+    border-left: 1px solid var(--seven-color);
+    border-right: 1px solid var(--seven-color);
+  }
+  .city {
+    border-bottom: 1px solid var(--three-color);
+  }
+  .summary-cites {
+    padding: 1.2rem 1.938rem;
+  }
+  .summary-priceBreack {
+    padding: 1.2rem 1.938rem 1.4rem;
+  }
+  .summary-cites h3,
+  .summary-priceBreack h4 {
+    font-family: var(--two-font);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--eight-color);
+    line-height: 24.2px;
+    margin: 0;
+  }
+  
+  .summary-cites p {
+    font-family: var(--two-font);
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--seven-color);
+  }
+  
+
+  .fare-title {
+    font-family: var(--two-font);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--eight-color);
+    line-height: 19.36px;
+  }
+  
+  .fare-amount {
+    font-family: var(--two-font);
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--eight-color);
+  }
+  
+  .summary-prices {
+    margin-top: 2%;
+    margin-bottom: 8%;
+  }
+  

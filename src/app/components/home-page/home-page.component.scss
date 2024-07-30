@@ -1,0 +1,88 @@
+.homePage {
+    .searchBox {
+        background-image: url('../../../assets/images/cloud\ 1.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 0rem 0 5rem 0;
+        border-radius: 0 0 10rem 10rem;
+    }
+    .triphandsAds{
+        background-color: transparent;
+        margin: 1.5rem 0;
+        font-family: var(--one-font);
+        .tripHands_title {
+            color: #FF0000;
+            font-weight: 700;
+            font-size: 35px;
+        }
+        .tripHands_text {
+            color: #0F56A6;
+            font-weight: 700;
+            font-size: 35px;
+            margin-top: -5px;
+        }
+        .tripHands_body{
+            color:#5B5D5E;
+            line-height: 1.2;
+            font-weight: 400;
+            font-size: 25px;
+        }
+    }
+    .wegoAd{
+        background-color:#0F56A6;
+        padding: 2rem;
+        font-family: var(--one-font);
+        text-align: center;
+        &_wrapper{
+            display: flex;
+            flex-direction: row;
+            img{
+                width: 95%;
+            }
+            .homePageAdLogo{
+                margin-top: 2rem;
+            }
+        }
+        .wegoAdTitle{
+            font-weight: 700;
+            font-size: 35px;
+            color: #fff;
+        }
+        .wegoAd_highlited{
+            color:#06F91E ;
+            margin: 0 5px;
+        }
+    }
+
+}
+
+@media(max-width:768px) {
+    .homePage{
+        .triphandsAds{
+            .tripHands_text{
+                font-size: 30px;
+            }
+            .tripHands_body{
+                font-size: 21px;
+            }
+        }
+        .searchBox {
+            background-position-x: center  !important;
+            border-radius: 0 0 10rem 10rem !important;
+        }
+    }
+
+}
+@media(max-width:600px) {
+    .wegoAdTitle{
+        line-height: 1.1;
+    }
+    .homePage{
+        .searchBox{
+            border-radius: 0 0 10rem 10rem !important;
+            &_wrapper{
+                margin-top:-3rem !important;
+            }
+        }
+    }
+}

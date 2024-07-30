@@ -1,0 +1,406 @@
+<div class="card-container">
+    
+    
+    <mat-card class="mat-card summary-mat-card">
+        <div class="card-content">
+            <mat-card-content class="card-body">
+                <div *ngFor="let data of flight.selectedFlight!.airItineraryDTO!.allJourney!.flights ">
+                    
+                    <div class="row mt-3">
+                      <div class="col-lg-3 col-sm-6 d-flex  align-items-center ">
+                        <img class=" me-2 airline-logo" src={{data.flightAirline!.airlineLogo}}>
+                        <div class="logo-name">{{data.flightAirline!.airlineName}}</div>
+                    </div>
+                        <div class="col-lg-4 col-sm-6 d-flex align-items-center" [ngClass]="{'ar':translate.currentLang==='ar'}">
+                            <div class="flight-time">{{data.flightDTO![0].departureDate | date : "shortTime"}}  -  {{data.flightDTO![data.flightDTO!.length-1].arrivalDate | date : "shortTime"}}</div>
+                        </div>
+                    </div>
+                    <div class="row  align-items-center">
+                        <div class="col-3"></div>
+                        <div class="col-4 flight-location">
+                            {{data.flightDTO![0].departureTerminalAirport.airportCode=='XNB'?'Dubai': data.flightDTO![0].departureTerminalAirport.cityName}} 
+                            ({{data.flightDTO![0].departureTerminalAirport.airportCode }}) 
+                            - {{data.flightDTO![data.flightDTO!.length-1].arrivalTerminalAirport.cityName}} 
+                             ({{data.flightDTO![data.flightDTO!.length-1].arrivalTerminalAirport.airportCode}})
+                        </div>
+                        <div class="col-lg-4 col-sm-10 d-flex flight-duration">
+                                    <div class="duration me-2">{{data.elapsedTime| hourminute }}</div>
+                                    <div class="stops">
+                                        <div *ngIf="data.stopsNum==0">({{"checkout.summaryCard.direct" | translate}})</div>
+                                    <div *ngIf="data.stopsNum==1">({{"checkout.summaryCard.oneStop" | translate}})</div>
+                                    <div *ngIf="data.stopsNum>1">({{"checkout.summaryCard.twoStops" | translate}})</div>
+                                    </div>
+                                    
+                                </div>
+                                
+                            
+                            </div>
+                </div>
+               
+                   
+                 
+    </mat-card-content>
+    <div class=" card-footer">
+        <div class="card-footer-content">
+            <div class="col-2">
+                <div *ngIf="flight.selectedFlight!.airItineraryDTO.isRefundable">
+                    {{"checkout.summaryCard.refundable" | translate}}
+                  </div>
+                  <div *ngIf="!flight.selectedFlight!.airItineraryDTO.isRefundable">
+                    {{"checkout.summaryCard.nonRefundable" | translate}}
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-4 flight-details" (click)="toggleDetailsCard();getFareRules(this.flight.selectedFlight!.searchCriteria.searchId,flight.selectedFlight!.airItineraryDTO.sequenceNum,flight.selectedFlight!.airItineraryDTO.pKey)">
+                {{ "checkout.summaryCard.flightDetails" | translate }}
+          
+        </div>        </div>
+      
+    </div>
+        </div>
+        
+</mat-card>
+<div *ngIf="showDetails">
+    <mat-card class="mt-3 flight_details">
+        <mat-card-content class="card-body">
+          <div class="row justify-content-end">
+            <button type="button" class="btn close-btn" (click)="toggleDetailsCard()">
+              <img class="img-fluid" src="../../../../assets/images/X.svg" />
+            </button>
+          </div>
+          
+          <mat-tab-group
+        mat-align-tabs="start"
+       
+        >
+        <mat-tab  label="{{'checkout.flightDetails.flightRoute' |translate}}">
+          <div class="flight_route mt-3">
+            <div *ngFor="let data of flight.selectedFlight!.airItineraryDTO!.allJourney!.flights;
+            let flightIndex=index;">
+            <div class="main-route" >
+           <div class="row w-100"> 
+            <div class="main-date">{{data.flightDTO[0].arrivalDate | date : "mediumDate"}}</div>
+            <div class="col-md-10">
+              <div class="journey">
+                <div class="journey_From">
+                  <span class="code">
+                    {{
+                      data.flightDTO[0].departureTerminalAirport
+                        .airportCode
+                    }} 
+                  </span><span class="date">
+                    {{
+                      data.flightDTO[0].departureDate
+                        | date : "shortTime"
+                    }}
+                  </span>
+                 
+                  <p class="airport_name">
+                    {{
+                      data.flightDTO[0].departureTerminalAirport
+                        .airportName
+                    }}
+                  </p>
+                </div>
+
+                <div class="journey_to">
+                  <span class="code">{{
+                    data.flightDTO[
+                      data.flightDTO.length - 1
+                    ].arrivalTerminalAirport.airportCode
+                  }}</span> <span class="date">
+                    {{
+                      data.flightDTO[
+                        data.flightDTO.length - 1
+                      ].arrivalDate | date : "shortTime"
+                    }}
+                  </span>
+                 
+                  <p class="airport_name">
+                    {{
+                      data.flightDTO[
+                        data.flightDTO.length - 1
+                      ].arrivalTerminalAirport.airportName
+                    }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-2 mt-2 col-sm-8 d-flex justify-content-between">
+              <img
+                src="{{
+                  data.flightDTO[0].flightAirline.airlineLogo
+                }}"
+                alt="airline logo"
+                title="airlineLogo"
+                class="airline-logo"
+              />
+              <button class="show-more-button" [class.expanded]="detailsStates[flightIndex]" (click)="detailsCollapse(flightIndex)">
+                <div class="arrow"></div>
+              </button>
+            </div>
+             </div>
+            </div>
+            <div *ngIf="detailsStates[flightIndex]" class="details">
+              <div class="container">
+                <div class="timeline" *ngFor="let flightDetails of flight.selectedFlight!.airItineraryDTO!.allJourney.flights[index].flightDTO; let i = index">
+                  <div class="dept_data">
+                    <div class="row">
+                      <div class="col-md-2 col-2">
+                        <div class="details_departure_time">
+                          <span class="date">
+                            {{ flightDetails.departureDate | date : "MMM d" }}
+                          </span>
+                          <span class="time">
+                            {{ flightDetails.departureDate | date : "shortTime" }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-1">
+                        <div *ngIf="i == 0" >
+                          <img
+                          style="height: 65px;
+                         "
+                            src="../../../../assets/images/topCircleFilled.svg"
+                            class=""
+                            alt=""
+                            srcset=""
+                          />
+                        </div>
+                        <div *ngIf="i > 0"  >
+                          <img
+                          style="height: 65px;
+                         "
+                            src="../../../../assets/images/topCircleOutlined.svg"
+                            class=""
+                            alt=""
+                            srcset=""
+                          />
+                        </div>
+                      </div>
+                      <div class=" col-8">
+                        <div class="airport-name">
+                          {{ flightDetails.departureTerminalAirport.airportName }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="flight_data">
+                    <div class="row mt-3 mb-3">
+                      <div class="col-md-2 col-2">
+                        <div class="flight-duration-time">
+                          {{ flightDetails.durationPerLeg | hourminute }}
+                        </div>
+                      </div>
+  
+                      <div class="col-1">
+                        <div class="plane-icon">
+                          <img
+                            src="../../../../assets/images/plane.svg"
+                            alt=""
+                            class="img"
+                          />
+                        </div>
+                      </div>
+  
+                      <div class="col-8 align-self-center">
+                        <div class="airport-info">
+                          <div class="row">
+                            <div class="col-12 col-md-12 col-lg-4">
+                              <div class="airline_logo">
+                                <img
+                                  [src]="flightDetails.flightAirline.airlineLogo"
+                                  class="img-fluid"
+                                  alt=""
+                                  srcset=""
+                                />
+                              </div>
+                            </div>
+                            <div class="text-start align-self-center col-7  col-md-4 col-lg-4">
+                              <div class="flight-number">
+                                <span class="">{{"checkout.flightDetails.flightNo" | translate}}</span> {{ flightDetails.flightInfo.flightNumber }}
+                              </div>
+                            </div>
+                            <div class="text-start align-self-center col-5 col-md-8 col-lg-4">
+                              <div class="cabin-class">
+                                {{ flightDetails.flightInfo.cabinClass }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="operatedAirline" *ngIf="flightDetails.operatedAirline.airlineName"> {{"checkout.flightDetails.operatedBy" | translate}}
+                          {{ flightDetails.operatedAirline.airlineName }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="arrival_data">
+                    <div class="row">
+                      <div class="col-md-2 col-2">
+                        <div class="details_arrival_time">
+                          <span class="date">
+                            {{ flightDetails.arrivalDate | date : "MMM d" }}
+                          </span>
+                          <span class="time">
+                            {{ flightDetails.arrivalDate | date : "shortTime" }}
+                          </span>
+                        </div>
+                      </div>
+  
+                      <div class="col-1">
+                        <div
+                          *ngIf="
+                            i !=
+                            flight.selectedFlight!.airItineraryDTO!.allJourney.flights[index].flightDTO
+                              .length -
+                              1
+                          "
+                        >
+                          <img  style="height:65px"
+                            src="../../../../assets/images/bottomCircleOutlined.svg"
+                            alt=""
+                            srcset=""
+                          />
+                        </div>
+  
+                        <div
+                          *ngIf="
+                            i ==
+                            flight.selectedFlight!.airItineraryDTO!.allJourney.flights[index].flightDTO
+                              .length -
+                              1
+                          "
+                        >
+                          <img style="height:65px"
+                            src="../../../../assets/images/bottomCircleFilled.svg"
+                            alt=""
+                            srcset=""
+                          />
+                        </div>
+                      </div>
+                      <div class="col-8">
+                        <div class="airport-name">
+                          {{ flightDetails.arrivalTerminalAirport.airportName }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                  class="transit"
+                  *ngIf="flightDetails.transitTime != '00:00:00'"
+                >
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-9">
+                      <div class="content">
+                        {{ "checkout.flightDetails.Stopover" | translate }}
+                        {{ flightDetails.transitTime  | durationToHourMin }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div> 
+              </div>
+            <hr *ngIf="flight.selectedFlight!.airItineraryDTO!.allJourney!.flights.length -1  != flightIndex">
+            </div>
+           
+          </div>
+        </mat-tab>
+        <mat-tab  label="{{'checkout.flightDetails.fareRules' |translate}}">
+          <div class="fare-rules w-100" *ngIf="FlightResult.fareLoading">
+            <div class="row">
+                <div class="col-12 text-center mt-5">
+                    <mat-spinner style="width: 100% !important;"></mat-spinner>
+                </div>
+            </div>
+        </div>
+          <div class="fare-rules w-100"  *ngIf="!FlightResult.fareLoading">
+            <div class="row mb-2">
+              <div class="col-12 col-md-12 col-lg-12 mb-2">
+                <div class="cancellation">
+                  <div class="" *ngFor="let rule of FlightResult.fareRules">
+                    <div class="content-title p-3 mt-2 mb-2">ADULTS RULES
+                      <div *ngIf="rule.adtRules.length>0">
+                        <div class="" *ngFor="let adultRules of rule.adtRules">
+                          <div class="content p-2">{{adultRules.title}}</div>
+                          <div class="cancel-text mb-2 p-2">{{adultRules.fareRule}}</div>
+                        </div>
+                      </div>
+                   <div *ngIf="rule.adtRules.length==0">
+                    <div class="cancel-text">THERE'S NO ADULTS IN THIS TRIP</div>
+                   </div>
+                  </div>
+                  <div class="content-title p-3 mt-2 mb-2">CHILDREN RULES
+                    <div *ngIf="rule.cnnRules.length>0">
+                      <div class="" *ngFor="let childRules of rule.cnnRules">
+                        <div class="content p-2">{{childRules.title}}</div>
+                        <div class="cancel-text mb-2 p-3">{{childRules.fareRule}}</div>
+                      </div>
+                    </div>
+                 <div *ngIf="rule.cnnRules.length==0">
+                  <div class="cancel-text">THERE'S NO CHILDREN IN THIS TRIP</div>
+                 </div>
+                </div>
+                <div class="content-title p-3 mt-2 ">INFANTS RULES
+                  <div *ngIf="rule.infRules.length>0">
+                    <div class="" *ngFor="let infantRules of rule.infRules">
+                      <div class="content p-2">{{infantRules.title}}</div>
+                      <div class="cancel-text mb-2 p-3">{{infantRules.fareRule}}</div>
+                    </div>
+                  </div>
+               <div *ngIf="rule.infRules.length==0">
+                <div class="cancel-text">THERE'S NO INFANTS IN THIS TRIP</div>
+               </div>
+              </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab  label="{{'checkout.flightDetails.baggage' |translate}}">
+          <div class="baggage">
+            <div class="container">
+              <div class="row mt-3">
+                <div class="col-8 col-md-5 col-lg-5 col-xl-5">
+                  <div class="row">
+                    <div class="col-6 col-md-3 col-lg-3 col-xl-3">
+                      <img
+                        src="{{
+                            flight.selectedFlight!.airItineraryDTO!.allJourney.flights[index].flightDTO[0].flightAirline
+                            .airlineLogo
+                        }}"
+                        alt="airline logo"
+                        title="airlineLogo"
+                        class="airline-logo"
+                      />
+                    </div>
+                    <div class="col-6 col-md-10 col-lg-9 col-xl-9">
+                      <p class="airline-name">
+                        {{
+                            flight.selectedFlight!.airItineraryDTO!.allJourney.flights[index].flightDTO[0].flightAirline
+                            .airlineName
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 col-md-7 col-lg-7 col-xl-7">
+                  <p class="CabinClass">{{"checkout.flightDetails.cabinBaggage" | translate}}</p>
+                  <p class="CabinBagg">
+                    {{ flight.selectedFlight!.airItineraryDTO.baggageInformation[0].baggage }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+
+          </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+  </div>
+</div>

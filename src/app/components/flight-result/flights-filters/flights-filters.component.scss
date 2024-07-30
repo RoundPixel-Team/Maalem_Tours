@@ -1,0 +1,52 @@
+.filterContainer{
+    padding: 8% 4%;
+    background: var(--nine-color);
+    width: 100%;
+    .filterCriteria{
+        width: 100%;
+        .title{
+            color: var(--eight-color);
+            font-family: var(--two-font);
+            font-size: 1.5rem;
+            font-style: normal;
+            font-weight: 700;
+        }
+        .criteria{
+            width: 100%;
+            p{
+                color: var(--eight-color);
+                font-family: var(--two-font);
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 500;
+            }
+        }
+        hr{
+            width: 45%;
+            border-width: 2px;
+        }
+    }
+}
+.closeIcon{
+    text-align: end;
+    font-size: 1.5rem;
+}
+
+@media (min-width:770px) {
+    .filterContainer{
+        position: sticky;
+        top: 1%;
+        margin-bottom: 10%;
+    }
+}
+
+.closeFilterBtn{
+    padding: 2%;
+    border: 1px solid var(--one-color);
+    font-size: 1rem;
+    text-align: center;
+    background-color: var(--one-color);
+    color: var(--nine-color);
+    font-family: var(--two-font);
+    width: 100%;
+}

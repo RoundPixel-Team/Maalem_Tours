@@ -1,0 +1,107 @@
+<section>
+  <div class="container">
+    <!-- Title -->
+    <form [formGroup]="searchbox.searchFlight">
+      <ng-container formGroupName="passengers">
+        <!-- Adult -->
+        <div class="travelInput">
+          <div class="travelInput_text d-flex">
+            <p class="travelInput_text_num">
+              {{
+                searchbox.searchFlight.get("passengers")?.get("adults")?.value
+              }}
+            </p>
+            <p class="travelInput_text_title">
+              {{ "searchbox.adults" | translate }}
+            </p>
+          </div>
+          <div class="travelInput_btns">
+            <button
+              ngClass="{{
+                adultValid
+                  ? 'travelInput_btns_active'
+                  : 'travelInput_btns_disable'
+              }}"
+              (click)="changeAdultValue('increase')"
+            >
+              +
+            </button>
+            <button
+              ngClass="{{
+                !adultValid
+                  ? 'travelInput_btns_active'
+                  : 'travelInput_btns_disable'
+              }}"
+              (click)="changeAdultValue('decrease')"
+            >
+              -
+            </button>
+          </div>
+        </div>
+        <!-- Children and Infants -->
+        <div class="d-flex traveller_wrapper">
+          <!-- Child -->
+          <div class="travelInput">
+            <div class="travelInput_text d-flex">
+              <p class="travelInput_text_num">
+                {{ searchbox.searchFlight.get("passengers.child")?.value }}
+              </p>
+              <p class="travelInput_text_title">
+                {{ "searchbox.children" | translate }}
+              </p>
+            </div>
+            <div class="travelInput_btns">
+              <button ngClass="{{childValid?'travelInput_btns_active':'travelInput_btns_disable'}}" (click)="changeChildValue('increase')">+</button>
+              <button ngClass="{{!childValid ? 'travelInput_btns_active': 'travelInput_btns_disable'}}" (click)="changeChildValue('decrease')">-</button>
+            </div>
+          </div>
+          <!-- infant -->
+          <div class="travelInput">
+            <div class="travelInput_text d-flex">
+              <p class="travelInput_text_num">
+                {{ searchbox.searchFlight.get("passengers.infant")?.value }}
+              </p>
+              <p class="travelInput_text_title">
+                {{ "searchbox.infants" | translate }}
+              </p>
+            </div>
+            <div class="travelInput_btns">
+              <button
+                ngClass="{{
+                  infantValid
+                    ? 'travelInput_btns_active'
+                    : 'travelInput_btns_disable'
+                }}"
+                (click)="changeInfantValue('increase')"
+              >
+                +
+              </button>
+              <button
+                ngClass="{{
+                  !infantValid
+                    ? 'travelInput_btns_active'
+                    : 'travelInput_btns_disable'
+                }}"
+                (click)="changeInfantValue('decrease')"
+              >
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <!-- CLass Type -->
+      <div class="classType">
+        <mat-select formControlName="class">
+          <mat-option
+            *ngFor="let class of classes"
+            [value]="class"
+            class="classType_text"
+          >
+            {{ class | translate }}
+          </mat-option>
+        </mat-select>
+      </div>
+    </form>
+  </div>
+</section>

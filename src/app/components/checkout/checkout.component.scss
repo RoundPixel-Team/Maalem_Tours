@@ -1,0 +1,135 @@
+
+.summary-card{
+    border-radius: 10px;
+    background: #FFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .summary-card-text{
+        color:var(--four-color);
+        font-size: 1.25rem;
+        font-weight: 500;
+        
+    }
+    .summary-price{
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 700;
+        color:var(--eight-color);
+    }
+    .booknow-btn{
+        color:var(--nine-color);
+        background-color:var(--one-color);
+        width: 8.125rem;
+        height: 2.188rem;
+    }
+  
+}
+
+
+.mainFormSection{
+    width: 100%;
+    padding: 2%;
+    background-color: var(--nine-color);
+    input{
+        width: 100%;
+        padding: 3%;
+        border-radius: 5px;
+        border-color: var(--three-color);
+        font-family: var(--two-font);
+        font-size: 1rem;
+        font-weight: 400;
+        border-width: 0.5px;
+    }
+    button{
+        border-radius: 10px;
+        width: 100%;
+        padding: 2%;
+        background-color: var(--one-color);
+        font-size: 1rem;
+        font-family: var(--two-font);
+        color: var(--nine-color);
+    }
+}
+
+// .overlay {
+//     width: 100%;
+//     height: 170vh;
+//     position: absolute;
+//     top: 0rem;
+//     background: rgba(0,0,0,.7);
+//     -webkit-transition: opacity .5s;
+//     z-index: 100;
+  
+//   }
+//   .overlay:target {
+//     visibility: visible;
+//     opacity: 1;
+//   }
+  
+  
+  .popupFareBreaker {
+    margin: 84vh auto;
+    padding: 0px;
+    background: var(--nine-color);
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+  }
+
+  .popupError {
+    margin: 20vh auto;
+    padding: 0px;
+    background: var(--nine-color);
+    border-radius: 5px;
+    width: 40%;
+    position: relative;
+    padding: 4%;
+  }
+  
+  .popupFareBreaker h2 , .popupOfflineService h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  
+  
+  .popupFareBreaker .content , .popupOfflineService .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+
+  .desktopMargin{
+    margin-top: 3% !important;
+  }
+
+@media (max-width: 768px){
+  .desktopMargin{
+    margin-top: 0 !important;
+  }
+    .summary-card{
+        display: none !important; 
+    }
+    .popupFareBreaker , .popupError {
+      width: 90%;
+    }
+    
+    .bookNowWrapper{
+      margin-top: 5%;
+    }
+  
+}
+
+
+.searchAgainBtn{
+  border-radius: 10px;
+  background-color: var(--one-color);
+  padding: 2%;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--nine-color);
+}
+
+

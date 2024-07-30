@@ -1,0 +1,71 @@
+<!--services header-->
+<div class="w-100">
+    <div class="headerContainer">
+        {{'checkout.offlineService.header' | translate}}
+    </div>
+</div>
+
+<!--all services-->
+<div class="w-100 mt-3" *ngIf="flight.offlineServicesLoader">
+    <div class="row">
+        <div class="col-12 text-center mt-5">
+            <mat-spinner style="width: 100% !important;"></mat-spinner>
+        </div>
+    </div>
+</div>
+<div class="w-100 mt-3">
+    <div class="servicesContainer" id="offlineServiceSection" #offlineServiceSection>
+        <div class=" mt-4" *ngFor="let service of flight.allOfflineServices">
+            <div *ngIf="!service.recommended">
+                <div class="row service" style="align-items: center;">
+                    <div class="col-8">
+    
+                        <div class="row" style="align-items: center;">
+                            <div class="col-lg-2 col-4">
+                                <div class="w-100 serviceImg">
+                                    <img [src]="service.offlineServiceImageUrl">
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-10 col-8">
+                                <div class="serviceTitle">
+                                    {{translate.currentLang=='en'?service.serviceName:service.serviceNameAr}}
+                                    <span *ngIf="service.offlineServiceTerms">
+                                        <ng-template #tipContent>{{translate.currentLang=='en'?service.offlineServiceTerms:service.offlineServiceTermsAr}}</ng-template>
+                                        <img src="../../../../assets/images/terms-and-conditions.png" class="terms-icon"  placement="top" [ngbTooltip]="tipContent" triggers="click:blur">
+                                    </span>
+                                </div>
+                               
+                                <div class="serviceDescription mt-2">
+                                    {{translate.currentLang=='en'?service.serviceDescription:service.serviceDescriptionAr}}
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div class="col-4">
+    
+                        <div class="row" style="align-items: center;">
+                            <div class="col-12 col-lg-5">
+                                <div class="servicePrice">
+                                    {{service.currency | exchange:'code'}} {{service.servicePrice | exchange:'value'}}
+                                </div>
+                            </div>
+    
+                            <div class="col-12 col-lg-7" >
+                                <button (click)="flight.addOfflineService(service)" *ngIf="!service.added" mat-raised-button class="addBtn">
+                                    {{'checkout.offlineService.addBtn' | translate}}
+                                </button>
+                                <button (click)="flight.removeOfflineService(service)" *ngIf="service.added" mat-raised-button class="rmvBtn">
+                                    {{'checkout.offlineService.rmvBtn' | translate}}
+                                </button>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>

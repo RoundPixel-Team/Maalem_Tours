@@ -1,0 +1,41 @@
+
+.homePageStyle{
+    background: rgba(255, 255, 255, 0.80) !important;
+    margin-bottom: 5rem;
+}
+.navbar{
+    .nav-wrap{
+        flex-wrap: nowrap;
+    }
+    background-color: var(--nine-color);
+    .nav-link{
+        color: var(--four-color);
+        font-size: 1rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+    .nav-link-active{
+        color: var(--tweleve-color);
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    .navlink .active{
+        color: var(--tweleve-color);
+    }
+    .flight-li{
+        margin-inline-end: 9.375rem;
+    }
+    .ar{
+        margin-right: 0px;
+    }
+}
+
+@media only screen and (max-width:769px){
+    
+    .flight-li{
+        margin-right: 0rem !important;
+    }
+    .ar{
+        margin-right:155px !important;
+    }
+}

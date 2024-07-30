@@ -1,0 +1,194 @@
+.searchbox {
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #fff;
+  font-family: var(--one-font);
+  box-shadow: 0px 4px 4px 0px #00000040;
+
+  .searchbox_header {
+    &_title {
+      font-family: var(--one-font);
+      color: var(--tweleve-color);
+      font-weight: 400;
+      font-size: 30px;
+    }
+
+    &_btns {
+      margin: 0 1rem;
+
+      &__wrapper {
+        margin: 0 1rem;
+        display: flex;
+        justify-self: center;
+        align-items: center;
+
+        .radioBtn {
+          width: 25px;
+          height: 100%;
+          border-radius: 50px;
+          background-color: transparent;
+          border-color: transparent;
+          color: transparent;
+          box-shadow: 0px 0px 4px 2px #00000040;
+        }
+
+        .radioBtn:active,
+        .radioBtn:focus,
+        .radioBtn:visited {
+          background-color: var(--blue-color);
+          color: var(--blue-color);
+        }
+
+        .radioBtn-active {
+          background-color: var(--blue-color);
+          color: var(--blue-color);
+        }
+
+        .flightType {
+          font-size: 14px;
+          color: #000;
+          font-weight: 400;
+          margin-inline-start: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+//#region daterPicker
+::ng-deep .searchBox .mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0;
+}
+
+::ng-deep .searchBox .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+  height:4rem;
+}
+
+::ng-deep .searchBox ngb-datepicker {
+  width: 75% !important;
+  position: relative !important;
+  border: none !important;
+}
+
+::ng-deep .searchBox .ngb-dp-weekdays,
+::ng-deep .searchBox .ngb-dp-week {
+  justify-content: space-evenly !important;
+}
+
+::ng-deep .searchBox .ngb-dp-month {
+  width: 100% !important;
+}
+
+::ng-deep ngb-datepicker-navigation-select>.form-select {
+  margin-top: -5px !important;
+  direction: ltr;
+}
+
+::ng-deep .searchBox .ngb-dp-arrow {
+  position: absolute !important;
+  top: 40% !important;
+  left: -15% !important;
+
+  button {
+    padding: 1.3rem 0.6rem 2.5rem 1rem !important;
+    border: 1px solid rgb(2, 117, 216);
+    border-radius: 25px 0px 0px 25px;
+    background-color: #E6EFFA !important;
+  }
+}
+
+::ng-deep .searchBox .ngb-dp-arrow.right {
+  position: absolute !important;
+  top: 40% !important;
+  right: -15% !important;
+  left: unset !important;
+
+  button {
+    padding: 1.3rem 1rem 2.5rem 0.6rem !important;
+    border: 1px solid rgb(2, 117, 216);
+    border-radius: 0px 25px 25px 0;
+    background-color: #E6EFFA !important;
+  }
+}
+
+::ng-deep .searchBox .ngb-dp-months {
+  direction: ltr;
+}
+
+//#endregion
+
+//#region Media Queries
+@media(max-width:540px) {
+  .searchbox {
+
+    padding: 1rem 0.4rem;
+
+    .searchbox_header_btns {
+      margin: 1rem 0 0;
+
+      &__wrapper {
+        margin: 0;
+        margin-inline-end: 0.8rem;
+
+        .flightType {
+          margin-inline-start: 0.5rem;
+        }
+      }
+    }
+  }
+
+  ::ng-deep .searchBox .ngb-dp-arrow {
+    button {
+      padding: 0.6rem 0.2rem 2rem 0.6rem !important;
+    }
+  }
+
+  ::ng-deep .searchBox .ngb-dp-arrow.right {
+    button {
+      padding: 0.6rem 0.6rem 2rem 0.2rem !important;
+    }
+  }
+
+  ::ng-deep .searchBox .ngb-dp-months {
+    display: block !important;
+  }
+}
+
+@media(max-width:375px) {
+  .searchbox {
+    padding: 1rem 0.4rem;
+
+    .searchbox_header_btns {
+      margin: 1rem 0 0;
+
+      &__wrapper {
+        margin: 0;
+        margin-inline-end: 0.3rem;
+
+        .flightType {
+          margin-inline-start: 0.2rem;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:325px) {
+  .searchbox {
+    padding: 1rem 0.3rem;
+
+    .searchbox_header_btns {
+      &__wrapper {
+        margin-inline-end: 0.1rem;
+
+        .flightType {
+          margin-inline-start: 0.2rem;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+//#endregion
