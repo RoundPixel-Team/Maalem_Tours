@@ -14,6 +14,7 @@ import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.comp
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { CoreValuesComponent } from './components/core-values/core-values.component';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/compiler';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CoreValuesComponent } from './components/core-values/core-values.compon
         deps: [HttpClient]
     }}),
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

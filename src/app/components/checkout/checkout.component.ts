@@ -45,8 +45,9 @@ export class CheckoutComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.subscription.add(
       this.route.queryParams.subscribe((params)=>{
-        this.flight.getSelectedFlightData(params["sid"],+params["sequenceNum"],params["providerKey"]?params["providerKey"]:params["pkey"])
-        this.flight.getAllOfflineServices(params["sid"],'KW')
+        this.flight.getSelectedFlightData(params["sid"].split('_')[0],+params["sequenceNum"],params["providerKey"]?params["providerKey"]:params["pkey"],false,params["sid"].split('_')[1])
+          this.flight.getAllOfflineServices(params["sid"].split('_')[0],'KW',true)
+        this.flight.pcc = String(params["sid"]).split('_')[1]
         if(params["wego_click_id"]){localStorage.setItem("click_id", params["wego_click_id"]);}
       })
 

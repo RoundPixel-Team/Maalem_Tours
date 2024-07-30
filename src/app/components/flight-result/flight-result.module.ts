@@ -8,7 +8,6 @@ import { RoundtripComponent } from './roundtrip/roundtrip.component';
 import { MulticityComponent } from './multicity/multicity.component';
 import { FlightsFiltersComponent } from './flights-filters/flights-filters.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
@@ -23,7 +22,6 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
   imports: [
     CommonModule,
     FlightResultRoutingModule,
-    NgxSliderModule,
     MatProgressBarModule,
     SharedModule,
   ]

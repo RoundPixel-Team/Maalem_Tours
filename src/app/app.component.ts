@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
   public home = inject(HomePageService)
   public environment = inject(EnvironmentService);
   private sharedService = inject(SharedService);
-  title = 'triphands';
+  title = 'Maalem-Tours';
    currentURL = location.href;
 
   // Define the checkout URL you want to check against
@@ -39,9 +39,9 @@ export class AppComponent implements OnInit{
           admin:  'https://adminapi.triphands.com/',
           getDPayment:  'https://adminapi.triphands.com/',
           bookHotels: "https://hotels.triphands.com",
-          hotelPrepay: 'https://prepayapi.triphands.com',
           backOffice: 'https://backofficeapi.triphands.com',
           FlightTop:'https://flightsearch.triphands.com',
+          prepay: 'https://prepayapi.triphands.com',
           offers: {
             getAll: 'http://41.215.243.36:7893/api/GetAllOffersAPI?POS=',
             getByID: 'http://41.215.243.36:7893/api/GetOfferByIdAPI?OfferId=',
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit{
         }
       }
 
-    this.environment.envConfiguration(envTriphands)
+    // this.environment.envConfiguration(envTriphands)
     if (!this.currentURL.includes(this.checkoutURL)) {
       setTimeout(()=>{
         if(localStorage.getItem('lang')){

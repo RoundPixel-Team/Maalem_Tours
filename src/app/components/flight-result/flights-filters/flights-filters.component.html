@@ -1,4 +1,4 @@
-<div class="filterContainer" [formGroup]="flightResult.filterForm">
+<div class="filterContainer" [formGroup]="flightResult.filterForm" [ngClass]="{'ar': translate.currentLang == 'ar' }">
 
     <div class="closeIcon mb-4 mt-2 desktopHide" (click)="closeMobileSideFilter()">
         <i class="bi bi-x-circle"></i>
@@ -20,22 +20,24 @@
         </div>
     </div>
 
-
     <!--PRICE FILTER-->
     <div class="filterCriteria mb-4">
         <div class="title">{{'flightFilter.price' | translate}}</div>
         <hr>
-        <div class="row criteria">
-            <div class="col-12">
-                <ngx-slider *ngIf="!flightResult.loading" formControlName="priceSlider"  [options]="flightResult.options">
-                </ngx-slider>
-
-                <ngx-slider style="opacity: 0.2;"  [value]="0" [highValue]="500" [options]="optionsLoading" *ngIf="flightResult.loading">
-                </ngx-slider>
+        <div class="criteria">             
+            <div class="filter_slider" >
+                <mat-slider *ngIf="!flightResult.loading" [min]="flightResult.minPriceValueForSlider" [max]="flightResult.maxPriceValueForSlider" discrete="true" matSliderThumb>
+                    <input  [value]="flightResult.priceMinValue" matSliderStartThumb formControlName="minpriceSlider">
+                    <input  [value]="flightResult.priceMaxValue" matSliderEndThumb   formControlName="maxpriceSlider">
+                </mat-slider>                 
+                <!-- Price Slider Loading -->
+                <mat-slider *ngIf="flightResult.loading" style="opacity: 0.1;" [min]="0" [max]="500" discrete="true" matSliderThumb>
+                    <input [value]="0"  matSliderStartThumb formControlName="minpriceSlider">
+                    <input [value]="500"  matSliderEndThumb   formControlName="maxpriceSlider">
+                </mat-slider>
             </div>
         </div>
     </div>
-
 
     <!--AIRLINES FILTER-->
     <div class="filterCriteria mb-4">
@@ -47,7 +49,7 @@
                     <ng-container formArrayName='airlines'>
                       <ng-container *ngFor="let item of flightResult.airlinesA;let i= index">
                         <div class="row pl-3">
-                          <mat-checkbox class="filterCheckbox" [formControlName]="i">{{flightResult.airlinesA[i]}}</mat-checkbox>
+                          <mat-checkbox class="filterCheckbox" [formControlName]="i">{{item}}</mat-checkbox>
                         </div>
                       </ng-container>
                     </ng-container>
@@ -61,33 +63,47 @@
     <div class="filterCriteria mb-4">
         <div class="title">{{'flightFilter.time' | translate}}</div>
         <hr>
-        <div class="row criteria">
-            <div class="col-12 mb-3">
+        <div class="criteria">
+            <!-- Depart Date Slider -->
+            <div class="filter_slider" >
                 <p class="mb-2">{{'flightFilter.departingTime' | translate}}</p>
-                <ngx-slider *ngIf="!flightResult.loading" formControlName="dpartingSlider"  [options]="flightResult.optionsdeparting">
-                </ngx-slider>
-
-                <ngx-slider style="opacity: 0.2;"  [value]="0" [highValue]="500" [options]="optionsLoading" *ngIf="flightResult.loading">
-                </ngx-slider>
+                <mat-slider *ngIf="!flightResult.loading" [displayWith]="formatDate" [min]="flightResult.minDepartingValueForSlider" [max]="flightResult.maxDepartingValueForSlider" discrete="true" matSliderThumb>
+                    <input  [value]="flightResult.departingMin" matSliderStartThumb formControlName="mindepartingSlider">
+                    <input  [value]="flightResult.departingMax" matSliderEndThumb   formControlName="maxdepartingSlider">
+                </mat-slider>
+                <!-- Departing Date Loading -->
+                <mat-slider style="opacity: 0.2;"  *ngIf="flightResult.loading"  [min]="0" [max]="7000" discrete="true" matSliderThumb>
+                    <input  [value]="0" matSliderStartThumb formControlName="mindepartingSlider">
+                    <input  [value]="7000" matSliderEndThumb   formControlName="maxdepartingSlider">
+                </mat-slider>
             </div>
 
-            <div class="col-12 mb-3">
+            <!-- Arraival Date Slider -->
+            <div class="filter_slider" >
                 <p class="mb-2">{{'flightFilter.landing' | translate}}</p>
-                <ngx-slider *ngIf="!flightResult.loading" formControlName="dpartingSlider"  [options]="flightResult.optionsArriving">
-                </ngx-slider>
-
-                <ngx-slider style="opacity: 0.2;"  [value]="0" [highValue]="500" [options]="optionsLoading" *ngIf="flightResult.loading">
-                </ngx-slider>
+                <mat-slider *ngIf="!flightResult.loading" [displayWith]="formatDate" [min]="flightResult.minArrivingValueForSlider" [max]="flightResult.maxArrivingValueForSlider" discrete="true" matSliderThumb>
+                    <input  [value]="flightResult.arrivingMin" matSliderStartThumb formControlName="minarrivingSlider">
+                    <input  [value]="flightResult.arrivingMax" matSliderEndThumb   formControlName="maxarrivingSlider">
+                </mat-slider>
+                <!-- Departing Date Loading -->
+                <mat-slider style="opacity: 0.2;"  *ngIf="flightResult.loading"  [min]="0" [max]="7000" discrete="true" matSliderThumb>
+                    <input  [value]="0" matSliderStartThumb formControlName="minarrivingSlider">
+                    <input  [value]="7000" matSliderEndThumb   formControlName="maxarrivingSlider">
+                </mat-slider>
             </div>
 
-
-            <div class="col-12 mb-3">
+            <!-- Stops Duration Slider -->
+            <div class="filter_slider" >
                 <p class="mb-2">{{'flightFilter.duration' | translate}}</p>
-                <ngx-slider *ngIf="!flightResult.loading" formControlName="durationSlider"  [options]="flightResult.optionsDurathion">
-                </ngx-slider>
-
-                <ngx-slider style="opacity: 0.2;"  [value]="0" [highValue]="500" [options]="optionsLoading" *ngIf="flightResult.loading">
-                </ngx-slider>
+                <mat-slider *ngIf="!flightResult.loading" [displayWith]="formatDuration" [min]="flightResult.minDurationValueForSlider" [max]="flightResult.maxDurationValueForSlider" discrete="true" matSliderThumb>
+                    <input  [value]="flightResult.durationMin" matSliderStartThumb formControlName="mindurationSlider">
+                    <input  [value]="flightResult.durationMax" matSliderEndThumb   formControlName="maxdurationSlider">
+                </mat-slider>
+                <!-- Duration Date Loading -->
+                <mat-slider style="opacity: 0.2;"  *ngIf="flightResult.loading"  [min]="0" [max]="7000" discrete="true" matSliderThumb>
+                    <input  [value]="0" matSliderStartThumb formControlName="mindurationSlider">
+                    <input  [value]="7000" matSliderEndThumb   formControlName="maxdurationSlider">
+                </mat-slider>
             </div>
 
             <div  class="col-12 mb-3 text-center desktopHide" (click)="closeMobileSideFilter()">

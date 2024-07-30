@@ -113,7 +113,7 @@ setStep(index:number){
       
     }
     else{
-      this.flight.saveBooking(this.home.selectedCurrency.Currency_Code)
+      this.flight.saveBooking(this.home.selectedCurrency.Currency_Code,'notPremium',this.flight.pcc)
     }
     
   }

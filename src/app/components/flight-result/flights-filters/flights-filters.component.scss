@@ -2,23 +2,36 @@
     padding: 8% 4%;
     background: var(--nine-color);
     width: 100%;
+    max-height: fit-content;
+    position: sticky;
+    top:calc(-100vh + (100vh - 100%) * 2);
     .filterCriteria{
         width: 100%;
         .title{
-            color: var(--eight-color);
+            color: black;
             font-family: var(--two-font);
             font-size: 1.5rem;
             font-style: normal;
             font-weight: 700;
+            color: var(--eight-color)
         }
         .criteria{
             width: 100%;
+            .filter_slider{
+                direction: ltr !important;
+                mat-slider{
+                    width: 90%;
+                }
+            }
             p{
                 color: var(--eight-color);
                 font-family: var(--two-font);
                 font-size: 1rem;
                 font-style: normal;
                 font-weight: 500;
+            }
+            .ar p{
+                font-family: var(--two-font);
             }
         }
         hr{
@@ -32,21 +45,13 @@
     font-size: 1.5rem;
 }
 
-@media (min-width:770px) {
-    .filterContainer{
-        position: sticky;
-        top: 1%;
-        margin-bottom: 10%;
-    }
-}
-
 .closeFilterBtn{
     padding: 2%;
     border: 1px solid var(--one-color);
     font-size: 1rem;
     text-align: center;
     background-color: var(--one-color);
-    color: var(--nine-color);
+    color: #fff;
     font-family: var(--two-font);
     width: 100%;
 }

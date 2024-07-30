@@ -6,22 +6,22 @@
         padding: 0rem 0 5rem 0;
         border-radius: 0 0 10rem 10rem;
     }
-    .triphandsAds{
+    .maalemToursAds{
         background-color: transparent;
         margin: 1.5rem 0;
         font-family: var(--one-font);
-        .tripHands_title {
+        .maalemTours_title {
             color: #FF0000;
             font-weight: 700;
             font-size: 35px;
         }
-        .tripHands_text {
+        .maalemTours_text {
             color: #0F56A6;
             font-weight: 700;
             font-size: 35px;
             margin-top: -5px;
         }
-        .tripHands_body{
+        .maalemTours_body{
             color:#5B5D5E;
             line-height: 1.2;
             font-weight: 400;
@@ -58,11 +58,11 @@
 
 @media(max-width:768px) {
     .homePage{
-        .triphandsAds{
-            .tripHands_text{
+        .maalemToursAds{
+            .maalemTours_text{
                 font-size: 30px;
             }
-            .tripHands_body{
+            .maalemTours_body{
                 font-size: 21px;
             }
         }
