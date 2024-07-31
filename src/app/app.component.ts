@@ -27,21 +27,21 @@ export class AppComponent implements OnInit{
    */
   constructor(@Inject(DOCUMENT) private document: Document) {
 
-      let envTriphands = {
+      let envMaalemTours = {
           offlineSeats:"http://41.223.55.14:7025",
-          searchflow:  'https://flightsearch.triphands.com',
-          BookingFlow:  'https://flightflow.triphands.com',
-          FareRules:  'https://flightprov.triphands.com',
-          asm:  'https://backofficeapi.triphands.com',
+          searchflow:  'https://flightsearch.wghat.com',
+          BookingFlow:  'https://flightflow.wghat.com',
+          FareRules:  'https://flightprov.wghat.com',
+          asm:  'https://backofficeapi.wghat.com',
           Apihotels:  "https://hotels.Tazkrticom",
-          hotelprepay: 'https://prepayapi.triphands.com',
-          users:  'https://usersapi.triphands.com',
-          admin:  'https://adminapi.triphands.com/',
-          getDPayment:  'https://adminapi.triphands.com/',
-          bookHotels: "https://hotels.triphands.com",
-          backOffice: 'https://backofficeapi.triphands.com',
-          FlightTop:'https://flightsearch.triphands.com',
-          prepay: 'https://prepayapi.triphands.com',
+          hotelprepay: 'https://prepayapi.wghat.com',
+          users:  'https://usersapi.wghat.com',
+          admin:  'https://adminapi.wghat.com/',
+          getDPayment:  'https://adminapi.wghat.com/',
+          bookHotels: "https://hotels.wghat.com",
+          backOffice: 'https://backofficeapi.wghat.com',
+          FlightTop:'https://flightsearch.wghat.com',
+          prepay: 'https://prepayapi.wghat.com',
           offers: {
             getAll: 'http://41.215.243.36:7893/api/GetAllOffersAPI?POS=',
             getByID: 'http://41.215.243.36:7893/api/GetOfferByIdAPI?OfferId=',
@@ -51,19 +51,19 @@ export class AppComponent implements OnInit{
       }
       let envWego = {
         offlineSeats:"http://178.63.214.219:7025",
-        searchflow:  'https://wegosearch.triphands.com',
-        BookingFlow:  'https://wegobook.triphands.com',
-        FareRules:  'https://wegoprovider.triphands.com',
-        asm:  'https://backofficeapi.triphands.com',
+        searchflow:  'https://wegosearch.wghat.com',
+        BookingFlow:  'https://wegobook.wghat.com',
+        FareRules:  'https://wegoprovider.wghat.com',
+        asm:  'https://backofficeapi.wghat.com',
         Apihotels:  "https://hotels.rhlatycom",
-        hotelprepay: 'https://prepayapi.triphands.com',
-        users:  'https://usersapi.triphands.com',
-        admin:  'https://adminapi.triphands.com/',
-        getDPayment:  'https://adminapi.triphands.com/',
-        bookHotels: "https://hotels.triphands.com",
-        hotelPrepay: 'https://prepayapi.triphands.com',
-        backOffice: 'https://backofficeapi.triphands.com',
-        FlightTop:'https://flightsearch.triphands.com',
+        hotelprepay: 'https://prepayapi.wghat.com',
+        users:  'https://usersapi.wghat.com',
+        admin:  'https://adminapi.wghat.com/',
+        getDPayment:  'https://adminapi.wghat.com/',
+        bookHotels: "https://hotels.wghat.com",
+        hotelPrepay: 'https://prepayapi.wghat.com',
+        backOffice: 'https://backofficeapi.wghat.com',
+        FlightTop:'https://flightsearch.wghat.com',
         offers: {
           getAll: 'http://41.215.243.138:7893/api/GetAllOffersAPI?POS=',
           getAllActive:'http://41.215.243.138:7893/api/GetAllActiveOffersAPI?POS=',
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit{
         }
       }
 
-    // this.environment.envConfiguration(envTriphands)
+    this.environment.envConfiguration(envMaalemTours)
     if (!this.currentURL.includes(this.checkoutURL)) {
       setTimeout(()=>{
         if(localStorage.getItem('lang')){
