@@ -47,9 +47,9 @@ searchId!:string
   detailsCollapse(){
     this.collapseRoute=!this.collapseRoute;
   }
-  toCheckout(sid: string, sequenceNum: number,providerKey: number | undefined) {
+  toCheckout(sid: string, sequenceNum: number,providerKey: number | undefined,pcc:string) {
     this.router.navigate(["/checkout"], {
-      queryParams: { sid: sid, sequenceNum: sequenceNum, providerKey: providerKey },
+      queryParams: { sid: sid+'_'+pcc, sequenceNum: sequenceNum, providerKey: providerKey },
     });
   }
   getFareRules(sid: string,sequenceNum: number,providerKey: any){

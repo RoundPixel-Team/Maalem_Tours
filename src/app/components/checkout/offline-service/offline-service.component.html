@@ -16,7 +16,7 @@
 <div class="w-100 mt-3">
     <div class="servicesContainer" id="offlineServiceSection" #offlineServiceSection>
         <div class=" mt-4" *ngFor="let service of flight.allOfflineServices">
-            <div *ngIf="!service.recommended">
+            <div *ngIf="!service.recommended && service.serviceType != 'package'">
                 <div class="row service" style="align-items: center;">
                     <div class="col-8">
     

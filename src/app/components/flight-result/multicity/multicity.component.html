@@ -112,7 +112,8 @@
                             <button class="btn booknow-btn" (click)="toCheckout(
                               this.FlightResult.searchID,
                               flight[0].sequenceNum,
-                              flight[0].pKey
+                              flight[0].pKey,
+                              flight[0].pcc
                             )">{{"checkout.bookNow.fastBookBtn" | translate }}</button>
                         </div>
                         <div class="refund-state mt-3">
@@ -634,7 +635,8 @@
                           <button class="btn booknow-btn" (click)="toCheckout(
                             this.FlightResult.searchID,
                             item.sequenceNum,
-                            item.pKey
+                            item.pKey,
+                            item.pcc
                           )">{{"checkout.bookNow.fastBookBtn" | translate }}</button>
                       </div>
                       <div class="refund-state mt-3">
