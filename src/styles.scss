@@ -166,3 +166,23 @@ html , body{ height: 100%;background-color:#F5F5F5; display: flex; flex-directio
       display: none !important;
     }
   }
+
+
+  [dir=rtl] .mat-form-field-appearance-outline .mat-form-field-outline-start{
+    border-right-style: none !important;
+  }
+  [dir=rtl] .mat-form-field-appearance-outline .mat-form-field-outline-end{
+    border-left-style: none !important;
+  }
+  
+  .searchbox_wrapper .mat-mdc-tab-body-wrapper{
+    min-height: 45vh;
+  }
+  
+  .mat-form-field-flex:hover{
+    border: none !important;
+  }
+  
+  [dir=rtl] .guestRow .mat-select {
+    direction: rtl !important;
+    }

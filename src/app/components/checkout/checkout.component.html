@@ -3,11 +3,11 @@
 <div class="container" *ngIf="!flight.loader && flight.selectedFlight && flight.selectedFlight.status == 'Valid'">
         <div *ngIf="checkoutStepNow == 1" class="summary-card p-2 mt-4 mx-auto ">
             <div class="summary-card-text ms-2 ">{{"checkout.fastConfirm" | translate }}</div>
-                <div class="row justify-content-center align-items-center ">
-                    <div class="col-4 summary-price ">
+                <div class="row justify-content-between align-items-center ">
+                    <div class="col-6 summary-price">
                        <span>{{flight.selectedFlight.airItineraryDTO.itinTotalFare.currencyCode | exchange:'code'}}&nbsp;</span>{{flight.selectedFlight.airItineraryDTO.itinTotalFare.amount | exchange:'value'}}
                     </div>
-                    <div class="col-6 me-3"><button (click)="goToNextStep()" class="btn booknow-btn">{{"checkout.bookNow.fastBookBtn" | translate }}</button></div>
+                    <div class="col-6"><button (click)="goToNextStep()" class="btn booknow-btn">{{"checkout.bookNow.fastBookBtn" | translate }}</button></div>
                 </div>
         </div>
 
@@ -86,8 +86,8 @@
 <!--LOADER BINDING-->
 <div class="container" *ngIf="flight.loader">
     <div class="row">
-        <div class="col-12 text-center mt-5">
-            <mat-spinner style="width: 100% !important;"></mat-spinner>
+        <div class="loader">
+            <mat-spinner diameter="100" ></mat-spinner>
         </div>
     </div>
 </div>

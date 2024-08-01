@@ -1,7 +1,7 @@
 .dialogContent{
     position: relative;
     width: 100% !important;
-    padding-top: 0 !important;
+    padding: 0 !important;
 }
 .mat-dialog-content{
     margin: 0;
@@ -138,7 +138,9 @@
     cursor: pointer;
     z-index: 100;
 }
-
+:host ::ng-deep .mat-mdc-dialog-content{
+    max-height: 100% !important;   
+}
 :host ::ng-deep .autModal mat-form-field{
     width: 100%;
     margin-top: .9em;

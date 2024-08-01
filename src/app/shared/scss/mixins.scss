@@ -1,8 +1,8 @@
 //#region SearchBox Mixins
 @mixin cityInput($width:100%) {
   @include inputStyle();
-  padding: 0rem 1rem;
-  margin: 0.5rem 0;
+  // padding: 0rem 1rem;
+  // margin: 0.5rem 0;
   width: $width;
 }
 @mixin cityInputPlacholder{
