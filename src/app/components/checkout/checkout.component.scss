@@ -46,16 +46,41 @@
         font-size: 1rem;
         font-weight: 400;
         border-width: 0.5px;
+        height: 100%;
     }
     button{
         border-radius: 10px;
         width: 100%;
-        padding: 1rem;
+        align-self: center;
+        padding: 1.2rem 1rem;
         background-color: var(--one-color);
         font-size: 1rem;
         font-family: var(--two-font);
         color: var(--nine-color);
     }
+    ::ng-deep .iti {
+      .iti__arrow{
+          margin-left:4px;
+          margin-right: 4px;
+      }
+      width: 100% !important;
+      direction: ltr;
+      .iti__flag-container{
+          left: 0 !important;
+          right: unset !important;
+          // height: 7vh;
+      }
+      .dropdown-toggle{
+          height: 2.8rem !important;
+      }
+      input {
+          width: 100%;
+          border: 1px solid #BDBDBD;
+          border-radius: 5px;
+          padding: 0.8rem 0 0.8rem 3rem;
+      }
+  }
+
 }
 
 // .overlay {

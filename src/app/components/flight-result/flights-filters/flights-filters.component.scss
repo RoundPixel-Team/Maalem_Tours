@@ -30,9 +30,6 @@
                 font-style: normal;
                 font-weight: 500;
             }
-            .ar p{
-                font-family: var(--two-font);
-            }
         }
         hr{
             width: 45%;
@@ -54,4 +51,8 @@
     color: #fff;
     font-family: var(--two-font);
     width: 100%;
+}
+
+.ar .criteria p{
+    text-align: right !important;
 }
