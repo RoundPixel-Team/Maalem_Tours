@@ -29,6 +29,7 @@ Lang:string= this.translate.currentLang;
 
   ngOnInit(): void {
     this.Utilities.getCurrency(this.Utilities.selectedCurrency.Currency_Code)
+    console.log(this.Utilities.selectedCurrency,'selected currency');
     this.Utilities.selectedCurrency
   }
   updateCurrency(currency:currencyModel){
