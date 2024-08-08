@@ -105,7 +105,7 @@
                                              *ngIf="user.get('PassengerType')!.value == 'ADT'">
                                                 <input [ngClass]="{'alert':user.get('dateOfBirth')!.touched && user.get('dateOfBirth')!.status == 'INVALID'}"
                                                  formControlName="dateOfBirth" 
-                                                [min]="minAdultDateBirth" [max]="todayDate" 
+                                                 [max]="todayDate" 
                                                  [matDatepicker]="pickerADT" type="datetime"
                                                 [placeholder]="translate.currentLang=='en'?'Date Of Birth':'تاريخ الميلاد'">
                                                 <mat-datepicker-toggle matSuffix [for]="pickerADT"></mat-datepicker-toggle>

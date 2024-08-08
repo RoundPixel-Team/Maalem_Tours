@@ -4,164 +4,161 @@
   <div *ngIf="flight[0].allJourney.flights[0] as data">
     
         <mat-card class="flight-mat-card mt-3">
-            <div class="card-content">
-            
-              <mat-card-content class="card-body">
-            <div class="row">
-                <div class="col-lg-9 col-sm-12 col-md-12 ps-lg-4 ps-sm-0 ps-0">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="flight-time" [ngClass]="{ar: translate.currentLang === 'ar' }">
-                                {{ data.flightDTO![0].departureDate | date : "shortTime" }} -
-                                {{
-                                  data.flightDTO![data.flightDTO!.length - 1].arrivalDate
-                                    | date : "shortTime"
-                                }}
-                              </div>
-                        </div>
-                        <div class="col-6">
-                            <div class=" d-flex flight-duration">
-                                <div class="duration me-lg-2 me-1">
+          <div class="card-content">
+            <mat-card-content class="card-body">
+              <div class="row">
+                  <div class="col-lg-9 col-sm-12 col-md-12 ps-lg-4 ps-sm-0 ps-0">
+                      <div class="row">
+                          <div class="col-6">
+                              <div class="flight-time" [ngClass]="{ar: translate.currentLang === 'ar' }">
+                                  {{ data.flightDTO![0].departureDate | date : "shortTime" }} -
                                   {{
-                                    flight[0].totalDuration
-                                      | hourminute
+                                    data.flightDTO![data.flightDTO!.length - 1].arrivalDate
+                                      | date : "shortTime"
                                   }}
                                 </div>
-                                <div class="stops">
-                                  <div
-                                    *ngIf="data.stopsNum == 0"
-                                  >
-                                    ({{ "checkout.summaryCard.direct" | translate }})
-                                  </div>
-                                  <div
-                                    *ngIf="data.stopsNum == 1"
-                                  >
-                                    ({{ "checkout.summaryCard.oneStop" | translate }})
-                                  </div>
-                                  <div
-                                    *ngIf="data.stopsNum > 1"
-                                  >
-                                    ({{ "checkout.summaryCard.twoStops" | translate }})
-                                  </div>
-                                </div>
-                              </div>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-lg-6 col-sm-12 flight-location mt-2">
-                          <div class="row">
-                            <div class="col-12">
-                              {{
-                                data.flightDTO![0].departureTerminalAirport.airportCode == "XNB"
-                                  ? "Dubai"
-                                  : data.flightDTO![0].departureTerminalAirport.cityName
-                              }}
-                              ({{ data.flightDTO![0].departureTerminalAirport.airportCode }}) -
-                              {{
-                                data.flightDTO![data.flightDTO!.length - 1]
-                                  .arrivalTerminalAirport.cityName
-                              }}
-                              
-                              ({{
-                                data.flightDTO![data.flightDTO!.length - 1]
-                                  .arrivalTerminalAirport.airportCode
-                              }})
-                            </div>
-                            <div class="col-12 mt-2">
-                              <div class="d-flex align-items-center ">
-                                <img
-                                class=" me-2 airline-logo "
-                                src="{{ data.flightAirline!.airlineLogo }}"
-                              />
-                              <div class="logo-name">{{ data.flightAirline!.airlineName }}</div>
-                              </div>
-                            </div>
-
-                          </div>
-                        
-                          
                           </div>
                           <div class="col-6">
-                            <div *ngFor="let transitData of data.flightDTO">
-                              <div class="transit" *ngIf="transitData.transitTime != '00:00:00'">
-                              
-                                {{ transitData.transitTime  | durationToHourMin }}
-                              
-                             in
-                             
-                                {{transitData.arrivalTerminalAirport.cityName}}
-                              
+                              <div class=" d-flex flight-duration">
+                                  <div class="duration me-lg-2 me-1">
+                                    {{
+                                      flight[0].totalDuration
+                                        | hourminute
+                                    }}
+                                  </div>
+                                  <div class="stops">
+                                    <div
+                                      *ngIf="data.stopsNum == 0"
+                                    >
+                                      ({{ "checkout.summaryCard.direct" | translate }})
+                                    </div>
+                                    <div
+                                      *ngIf="data.stopsNum == 1"
+                                    >
+                                      ({{ "checkout.summaryCard.oneStop" | translate }})
+                                    </div>
+                                    <div
+                                      *ngIf="data.stopsNum > 1"
+                                    >
+                                      ({{ "checkout.summaryCard.twoStops" | translate }})
+                                    </div>
+                                  </div>
+                                </div>
+                          </div>
+                      </div>
+                      <div class="row ">
+                          <div class="col-lg-6 col-sm-12 flight-location mt-2">
+                            <div class="row">
+                              <div class="col-12">
+                                {{
+                                  data.flightDTO![0].departureTerminalAirport.airportCode == "XNB"
+                                    ? "Dubai"
+                                    : data.flightDTO![0].departureTerminalAirport.cityName
+                                }}
+                                ({{ data.flightDTO![0].departureTerminalAirport.airportCode }}) -
+                                {{
+                                  data.flightDTO![data.flightDTO!.length - 1]
+                                    .arrivalTerminalAirport.cityName
+                                }}
+                                
+                                ({{
+                                  data.flightDTO![data.flightDTO!.length - 1]
+                                    .arrivalTerminalAirport.airportCode
+                                }})
+                              </div>
+                              <div class="col-12 mt-2">
+                                <div class="d-flex align-items-center ">
+                                  <img
+                                  class=" me-2 airline-logo "
+                                  src="{{ data.flightAirline!.airlineLogo }}"
+                                />
+                                <div class="logo-name">{{ data.flightAirline!.airlineName }}</div>
+                                </div>
+                              </div>
+
                             </div>
-                            </div>
-                        
+                          
                             
-                           
-                          </div>
-                    </div>
-                  
-                </div>
-                
-                <div class="col-lg-3 col-sm-12 col-md-12 right-side-wrapper" [ngClass]="{arx: translate.currentLang === 'ar' }">
-                    <div class="flight-price mt-2">
-                        <span>{{flight[0].itinTotalFare.currencyCode | exchange:'code'}}&nbsp;</span>{{flight[0].itinTotalFare.amount | exchange:'value'}}
-
-                    </div>
-                    <div class="booknow mt-3"  
-                   >
-                        <button class="btn booknow-btn" (click)="toCheckout(
-                          this.FlightResult.searchID,
-                          flight[0].sequenceNum,
-                          flight[0].pKey,
-                          flight[0].pcc
-                        )">{{"checkout.bookNow.fastBookBtn" | translate }}</button>
-                    </div>
-                    <div class="refund-state mt-3">
-                        <div *ngIf="flight[0].isRefundable">
-                            {{ "checkout.summaryCard.refundable" | translate }}
-                          </div>
-                          <div *ngIf="!flight[0].isRefundable">
-                            {{ "checkout.summaryCard.nonRefundable" | translate }}
-                          </div>
-                    </div>
-
-                </div>
-            </div>
-               
-              </mat-card-content>
-            </div>
-              <div class="card-footer">
-                <div class="card-footer-content">
-                  <div class="col-lg-2 col-sm-1">
-                  </div>
-                  <div class="col-lg-4 col-sm-10">
-                    <div class="more-flights" *ngIf="flight.length>1 && !moreFlights">
-                      <div (click)="showMoreFlights()"
-                      
-                      >
-                  
-                        +{{flight.length -1}} {{"flightsResult.moreFlights" | translate }}
+                            </div>
+                            <div class="col-6">
+                              <div *ngFor="let transitData of data.flightDTO">
+                                <div class="transit" *ngIf="transitData.transitTime != '00:00:00'">
+                                
+                                  {{ transitData.transitTime  | durationToHourMin }}
+                                
+                              in
+                              
+                                  {{transitData.arrivalTerminalAirport.cityName}}
+                                
+                              </div>
+                              </div>
+                          
+                              
+                            
+                            </div>
                       </div>
-                    </div>
-                    <div class="more-flights" *ngIf="flight.length>1 && moreFlights">
-                      <div (click)="showMoreFlights()"
-                     
-                      >
-                         {{"flightsResult.lessFlights" | translate }}
-                      </div>
-                    </div>
-                    </div>
-                  <div class="col-lg-2 col-sm-2 flight-details" (click)="toggleDetailsCard(
-                    data,
-                    flight[0].sequenceNum
-
-                  );getFareRules(this.FlightResult.searchID,flight[0].sequenceNum,flight[0].pKey)">
-                          {{ "checkout.summaryCard.flightDetails" | translate }}
                     
                   </div>
-                </div>
+                  
+                  <div class="col-lg-3 col-sm-12 col-md-12 right-side-wrapper" [ngClass]="{arx: translate.currentLang === 'ar' }">
+                      <div class="flight-price mt-2">
+                          <span>{{flight[0].itinTotalFare.currencyCode | exchange:'code'}}&nbsp;</span>{{flight[0].itinTotalFare.amount | exchange:'value'}}
+
+                      </div>
+                      <div class="booknow mt-3"  
+                    >
+                          <button class="btn booknow-btn" (click)="toCheckout(
+                            this.FlightResult.searchID,
+                            flight[0].sequenceNum,
+                            flight[0].pKey,
+                            flight[0].pcc
+                          )">{{"checkout.bookNow.fastBookBtn" | translate }}</button>
+                      </div>
+                      <div class="refund-state mt-3">
+                          <div *ngIf="flight[0].isRefundable">
+                              {{ "checkout.summaryCard.refundable" | translate }}
+                            </div>
+                            <div *ngIf="!flight[0].isRefundable">
+                              {{ "checkout.summaryCard.nonRefundable" | translate }}
+                            </div>
+                      </div>
+
+                  </div>
+              </div> 
+            </mat-card-content>
+          </div>
+          <div class="card-footer">
+            <div class="card-footer-content">
+              <div class="col-lg-2 col-sm-1">
               </div>
-            
-          </mat-card>
+              <div class="col-lg-4 col-sm-10">
+                <div class="more-flights" *ngIf="flight.length>1 && !moreFlights">
+                  <div (click)="showMoreFlights()"
+                  
+                  >
+              
+                    +{{flight.length -1}} {{"flightsResult.moreFlights" | translate }}
+                  </div>
+                </div>
+                <div class="more-flights" *ngIf="flight.length>1 && moreFlights">
+                  <div (click)="showMoreFlights()"
+                  
+                  >
+                      {{"flightsResult.lessFlights" | translate }}
+                  </div>
+                </div>
+                </div>
+              <div class="col-lg-2 col-sm-2 flight-details" (click)="toggleDetailsCard(
+                data,
+                flight[0].sequenceNum
+
+              );getFareRules(this.FlightResult.searchID,flight[0].sequenceNum,flight[0].pKey)">
+                      {{ "checkout.summaryCard.flightDetails" | translate }}
+                
+              </div>
+            </div>
+          </div>    
+        </mat-card>
        
           <div *ngIf="showDetails">
             <mat-card class="mt-3 flight_details">
