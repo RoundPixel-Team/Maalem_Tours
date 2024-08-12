@@ -5,6 +5,9 @@
 ::ng-deep .mat-card-content{
     margin-bottom: 0px !important;
 } 
+.flight-number{
+  text-wrap: nowrap;
+}
 .ar{
   direction: ltr;
   display: flex;

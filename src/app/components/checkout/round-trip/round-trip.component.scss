@@ -211,10 +211,9 @@
       font-size: 1rem;
   }
   .CabinClass{
-    color:var(--one-color);
-      font-size: 1.25rem;
+    margin-inline-end: 0.3rem;
   }
-  .CabinBagg{
+  .CabinBagg, .cityCode, .CabinClass{
     color:var(--one-color);
     font-size: 1rem;
   }
@@ -358,6 +357,7 @@
  .baggage{
   .airline-name{
     font-size: small !important;
+    text-wrap: nowrap;
 }
 .CabinClass{
   white-space:nowrap;

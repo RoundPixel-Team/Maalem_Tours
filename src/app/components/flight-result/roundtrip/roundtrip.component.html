@@ -465,10 +465,6 @@
                                     <div class="cabin-class">
                                       {{ flightDetails.flightInfo.cabinClass }}
                                     </div>
-                                    <!-- Baggage Info -->
-                                    <div class="cabin-class">
-                                      {{ flightDetails.segmentDetails.baggage }}
-                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -661,47 +657,33 @@
                 </div>
               </div>
             </mat-tab>
-            <mat-tab label="{{ 'checkout.flightDetails.baggage' | translate }}">
+            <!-- Baggage -->
+            <mat-tab  label="{{'checkout.flightDetails.baggage' |translate}}">
               <div class="baggage">
                 <div class="container">
-                  <div
-                    class=""
-                    *ngFor="
-                      let flightDetails of flight[0].allJourney.flights[index]
-                        .flightDTO;
-                      let i = index
-                    "
-                  >
-                    <div class="row mt-3">
-                      <div class="col-8 col-md-5 col-lg-5 col-xl-5">
-                        <div class="row">
-                          <div class="col-6 col-md-3 col-lg-3 col-xl-3">
-                            <img
-                              src="{{
-                                flightDetails.flightAirline.airlineLogo
-                              }}"
-                              alt="airline logo"
-                              title="airlineLogo"
-                              class="airline-logo"
-                            />
-                          </div>
-                          <div class="col-6 col-md-10 col-lg-9 col-xl-9">
-                            <p class="airline-name">
-                              {{ flightDetails.flightAirline.airlineName }}
-                            </p>
+                  <div class="row mt-3" *ngFor="let baggage of flight[0].allJourney.flights; let baggageIndex=index;">
+                    <div class="col-8 col-md-5 col-lg-5 col-xl-5" >
+                      <div class="row">
+                        <div class="col-6 col-md-3 col-lg-3 col-xl-3">
+                          <img src="{{ baggage.flightDTO[0].flightAirline.airlineLogo}}"  alt="airline logo"  title="airlineLogo"  class="airline-logo"/>
+                        </div>
+                        <div class="col-6 col-md-10 col-lg-9 col-xl-9">
+                          <span class="airline-name">
+                            {{baggage.flightDTO[0].flightAirline.airlineName}}
+                          </span>
+                          <div class="d-flex">
+                            <span class="cityCode">{{baggage.flightDTO[0].departureTerminalAirport.airportCode}}</span>
+                            <span class="mx-1 cityCode">-</span>
+                            <span class="cityCode">{{baggage.flightDTO[0].arrivalTerminalAirport.airportCode}}</span>
                           </div>
                         </div>
                       </div>
-                      <div class="col-4 col-md-7 col-lg-7 col-xl-7">
-                        <p class="CabinClass">
-                          {{
-                            "checkout.flightDetails.cabinBaggage" | translate
-                          }}
-                        </p>
-                        <p class="CabinBagg">
-                          {{ flight[0].baggageInformation[0].baggage }}
-                        </p>
-                      </div>
+                    </div>
+                    <div class="col-4 col-md-7 col-lg-7 col-xl-7">
+                        <span class="CabinClass">{{"checkout.flightDetails.cabinBaggage" | translate}}: </span>
+                        <span class="CabinBagg">
+                          {{ flight[0].baggageInformation[baggageIndex].baggage }}
+                        </span>
                     </div>
                   </div>
                 </div>
@@ -1002,6 +984,7 @@
               </div>
 
               <mat-tab-group mat-align-tabs="start">
+                <!-- -->
                 <mat-tab
                   label="{{ 'checkout.flightDetails.flightRoute' | translate }}"
                 >
@@ -1084,9 +1067,7 @@
                       </div>
 
                       <hr
-                        *ngIf="
-                          flight[0].allJourney.flights.length - 1 != flightIndex
-                        "
+                        *ngIf="flight[0].allJourney.flights.length - 1 != flightIndex"
                       />
                       <div *ngIf="detailsStates[flightIndex]" class="details">
                         <div class="container">
@@ -1191,10 +1172,6 @@
                                             flightDetails.flightInfo.cabinClass
                                           }}
                                         </div>
-                                        <!-- Baggage Info -->
-                                        <div class="cabin-class">
-                                          {{ flightDetails.segmentDetails.baggage }}
-                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -1298,17 +1275,13 @@
                               </div>
                             </div>
                           </div>
-                          <hr
-                            *ngIf="
-                              flight[0].allJourney.flights.length - 1 !=
-                              flightIndex
-                            "
-                          />
+                          <hr *ngIf="flight[0].allJourney.flights.length - 1 !=  flightIndex" />
                         </div>
                       </div>
                     </div>
                   </div>
                 </mat-tab>
+                <!-- -->
                 <mat-tab
                   label="{{ 'checkout.flightDetails.fareRules' | translate }}"
                 >
@@ -1404,102 +1377,33 @@
                     </div>
                   </div>
                 </mat-tab>
-                <!-- <mat-tab  label="{{'checkout.flightDetails.fareRules' |translate}}">
-                      <div class="fare-rules w-100">
-                        <div class="row mb-2">
-                          <div class="col-12 col-md-12 col-lg-6 mb-2">
-                            <div class="cancellation">
-                              <p class="cancel-text p-3 m-0">
-                                {{ "checkout.flightDetails.cancel" | translate }}
-                              </p>
-                              <div class="content p-3">
-                              
-                                <ul>
-                                  <li>
-                                    {{ "checkout.flightDetails.cancelFareText" | translate }}
-                                  </li>
-                                </ul>
-                                <div class="d-flex justify-content-between pt-2">
-                                  <p>{{ "checkout.flightDetails.fareLabel" | translate }}</p>
-                                  <p class="text-price">
-                                      
-                                    EGP 500
-                                  </p>
-                                </div>
-                              </div>
+                <!-- More Details baggage -->
+                <mat-tab  label="{{'checkout.flightDetails.baggage' |translate}}">
+                  <div class="baggage">
+                    <div class="container">
+                      <div class="row mt-3" *ngFor="let baggage of item.allJourney.flights; let baggageIndex=index;">
+                        <div class="col-8 col-md-5 col-lg-5 col-xl-5" >
+                          <div class="row">
+                            <div class="col-6 col-md-3 col-lg-3 col-xl-3">
+                              <img src="{{ baggage.flightDTO[0].flightAirline.airlineLogo}}"  alt="airline logo"  title="airlineLogo"  class="airline-logo"/>
                             </div>
-                          </div>
-            
-                          <div class="col-12 col-md-12 col-lg-6 mb-2">
-                            <div class="cancellation"
-                            >
-                              <p class="cancel-text p-3 m-0">
-                                {{ "checkout.flightDetails.change" | translate }}
-                              </p>
-                              <div class="content p-3">
-                                
-                                <ul>
-                                  <li>
-                                    {{ "checkout.flightDetails.changeFareText" | translate }}
-                                  </li>
-                                </ul>
-                                <div class="d-flex justify-content-between pt-2">
-                                  <p>{{ "checkout.flightDetails.fareLabel" | translate }}</p>
-                                  <p class="text-price">
-                                    EGP 500
-                                  </p>
-                                </div>
+                            <div class="col-6 col-md-10 col-lg-9 col-xl-9">
+                              <span class="airline-name">
+                                {{baggage.flightDTO[0].flightAirline.airlineName}}
+                              </span>
+                              <div class="d-flex">
+                                <span class="cityCode">{{baggage.flightDTO[0].departureTerminalAirport.airportCode}}</span>
+                                <span class="mx-1 cityCode">-</span>
+                                <span class="cityCode">{{baggage.flightDTO[0].arrivalTerminalAirport.airportCode}}</span>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </mat-tab> -->
-                <mat-tab
-                  label="{{ 'checkout.flightDetails.baggage' | translate }}"
-                >
-                  <div class="baggage">
-                    <div class="container">
-                      <div
-                        class=""
-                        *ngFor="
-                          let flightDetails of flight[0].allJourney.flights[
-                            index
-                          ].flightDTO;
-                          let i = index
-                        "
-                      >
-                        <div class="row mt-3">
-                          <div class="col-8 col-md-5 col-lg-5 col-xl-5">
-                            <div class="row">
-                              <div class="col-6 col-md-3 col-lg-3 col-xl-3">
-                                <img
-                                  src="{{
-                                    flightDetails.flightAirline.airlineLogo
-                                  }}"
-                                  alt="airline logo"
-                                  title="airlineLogo"
-                                  class="airline-logo"
-                                />
-                              </div>
-                              <div class="col-6 col-md-10 col-lg-9 col-xl-9">
-                                <p class="airline-name">
-                                  {{ flightDetails.flightAirline.airlineName }}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-4 col-md-7 col-lg-7 col-xl-7">
-                            <p class="CabinClass">
-                              {{
-                                "checkout.flightDetails.cabinBaggage"
-                                  | translate
-                              }}
-                            </p>
-                            <p class="CabinBagg">
-                              {{ flight[0].baggageInformation[0].baggage }}
-                            </p>
-                          </div>
+                        <div class="col-4 col-md-7 col-lg-7 col-xl-7">
+                            <span class="CabinClass">{{"checkout.flightDetails.cabinBaggage" | translate}}: </span>
+                            <span class="CabinBagg">
+                              {{ flight[0].baggageInformation[baggageIndex].baggage }}
+                            </span>
                         </div>
                       </div>
                     </div>
