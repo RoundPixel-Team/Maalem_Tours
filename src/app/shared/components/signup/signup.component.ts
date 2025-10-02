@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UserManagmentService } from 'rp-travel-ui';
+// import { UserManagmentService } from 'rp-travel-ui';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginComponent } from '../login/login.component';
@@ -13,7 +13,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class SignupComponent implements OnInit {
 
-  public user = inject(UserManagmentService)
+  // public user = inject(UserManagmentService)
   subscription : Subscription = new Subscription()
 
   constructor(
@@ -24,17 +24,17 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user.initRegisterForm()
+    // this.user.initRegisterForm()
 
-    this.subscription.add(this.user.userChange.subscribe((res)=>{
-      if(res == 'logedin' || res == 'signedup'){
-        this.dialog.closeAll()
-      }
-    }))
+    // this.subscription.add(this.user.userChange.subscribe((res)=>{
+    //   if(res == 'logedin' || res == 'signedup'){
+    //     this.dialog.closeAll()
+    //   }
+    // }))
   }
 
   onSubmit(){
-    this.user.regitserSubmit('')
+    // this.user.regitserSubmit('')
   }
 
 

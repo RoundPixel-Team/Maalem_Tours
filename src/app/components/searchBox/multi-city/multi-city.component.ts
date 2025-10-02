@@ -128,7 +128,6 @@ export class MultiCityComponent implements OnInit {
       this.lang,
       this.currency,
       this.lang,
-      1,
       ','
     ); //call submit function from searchbox service
     let splittedLink = this.resultLink.toString().split('/');

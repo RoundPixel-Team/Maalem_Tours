@@ -52,7 +52,7 @@ export class TopDestinationComponent implements OnInit {
       })
     );
     this.currency = this.homePageService.selectedCurrency.Currency_Code; 
-    let resultLink=this.flightSearch.getSearchresultLink(this.translate.currentLang,this.currency,this.translate.currentLang,1,',');
+    let resultLink=this.flightSearch.getSearchresultLink(this.translate.currentLang,this.currency,this.translate.currentLang,',');
     let splittedLink = resultLink.toString().split('/');
     //Navigate To SearchResult
     if(resultLink){
